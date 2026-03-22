@@ -26,13 +26,13 @@
 
     .nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,0.06);transition:box-shadow .3s}
     .nav.scrolled{box-shadow:0 4px 20px rgba(0,0,0,0.08)}
-    .nav-inner{max-width:var(--max);margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:72px}
+    .nav-inner{max-width:var(--max);margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:72px;gap:8px}
     .nav-brand{display:flex;align-items:center;gap:12px;font-weight:700;font-size:18px;color:var(--primary-dark)}
     .nav-brand img{width:56px;height:56px;border-radius:12px}
-    .nav-links{display:flex;gap:32px;list-style:none}
+    .nav-links{display:flex;gap:20px;list-style:none}
     .nav-links a{font-size:14px;font-weight:500;color:var(--muted);transition:color .2s;letter-spacing:.2px}
     .nav-links a:hover{color:var(--primary)}
-    .nav-cta{padding:10px 22px;border-radius:10px;background:var(--primary);color:white;font-weight:600;font-size:14px;transition:background .2s,transform .2s}
+    .nav-cta{padding:10px 16px;border-radius:10px;background:var(--primary);color:white;font-weight:600;font-size:14px;transition:background .2s,transform .2s;white-space:nowrap}
     .nav-cta:hover{background:var(--primary-dark);transform:translateY(-1px)}
     .mobile-toggle{display:none;background:none;border:none;cursor:pointer;width:32px;height:32px;position:relative}
     .mobile-toggle span{display:block;width:22px;height:2px;background:var(--text);position:absolute;left:5px;transition:.3s}
@@ -322,6 +322,11 @@
     .mobile-menu.active{display:block}
     .mobile-menu a{display:block;padding:12px 0;font-size:16px;font-weight:500;color:var(--text);border-bottom:1px solid var(--line)}
     .mobile-menu a:last-child{border-bottom:none}
+    .lang-switcher{display:flex;gap:4px;margin-left:8px;flex-shrink:0}
+    .lang-btn{padding:4px 10px;border-radius:6px;font-size:12px;font-weight:600;color:var(--muted);background:transparent;border:1.5px solid var(--line);cursor:pointer;transition:all .2s;text-decoration:none;line-height:1.4}
+    .lang-btn:hover{border-color:var(--primary);color:var(--primary)}
+    .lang-btn.active{background:var(--primary);color:white;border-color:var(--primary)}
+    @media(max-width:640px){.lang-switcher{position:absolute;top:22px;right:52px}.lang-btn{padding:3px 6px;font-size:10px}.nav-brand{font-size:14px}}
   </style>
 </head>
 <body>
@@ -329,42 +334,47 @@
     <div class="nav-inner">
             <a href="#" class="nav-brand"><img src="logo.svg" alt="Raíces Médicas" /> Raíces Médicas</a>
             <ul class="nav-links">
-        <li><a href="#inicio">Inicio</a></li>
-        <li><a href="#nosotros">Nosotros</a></li>
-        <li><a href="#programas">Programas</a></li>
-        <li><a href="#valores">Valores</a></li>
-        <li><a href="#nuestras-raices">Nuestras Ra&iacute;ces</a></li>
-        <li><a href="#ultimo-episodio">Último Episodio</a></li>
-        <li><a href="#contacto">Contacto</a></li>
+        <li><a href="#inicio" data-i18n="nav.inicio">Inicio</a></li>
+        <li><a href="#nosotros" data-i18n="nav.nosotros">Nosotros</a></li>
+        <li><a href="#programas" data-i18n="nav.programas">Programas</a></li>
+        <li><a href="#valores" data-i18n="nav.valores">Valores</a></li>
+        <li><a href="#nuestras-raices" data-i18n="nav.raices">Nuestras Ra&iacute;ces</a></li>
+        <li><a href="#ultimo-episodio" data-i18n="nav.episodio">Último Episodio</a></li>
+        <li><a href="#contacto" data-i18n="nav.contacto">Contacto</a></li>
       </ul>
-      <a href="#contacto" class="nav-cta">Contactar</a>
+      <a href="#contacto" class="nav-cta" data-i18n="nav.cta">Contactar</a>
+      <div class="lang-switcher">
+        <a href="#" class="lang-btn active" data-lang="es">ES</a>
+        <a href="#" class="lang-btn" data-lang="en">EN</a>
+        <a href="#" class="lang-btn" data-lang="pt">PT</a>
+      </div>
       <button class="mobile-toggle" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </nav>
   <div class="mobile-menu" id="mobileMenu">
-    <a href="#inicio" onclick="toggleMenu()">Inicio</a>
-    <a href="#nosotros" onclick="toggleMenu()">Nosotros</a>
-    <a href="#programas" onclick="toggleMenu()">Programas</a>
-    <a href="#valores" onclick="toggleMenu()">Valores</a>
-    <a href="#nuestras-raices" onclick="toggleMenu()">Nuestras Ra&iacute;ces</a>
-    <a href="#ultimo-episodio" onclick="toggleMenu()">Último Episodio</a>
-    <a href="#contacto" onclick="toggleMenu()">Contacto</a>
+    <a href="#inicio" onclick="toggleMenu()" data-i18n="nav.inicio">Inicio</a>
+    <a href="#nosotros" onclick="toggleMenu()" data-i18n="nav.nosotros">Nosotros</a>
+    <a href="#programas" onclick="toggleMenu()" data-i18n="nav.programas">Programas</a>
+    <a href="#valores" onclick="toggleMenu()" data-i18n="nav.valores">Valores</a>
+    <a href="#nuestras-raices" onclick="toggleMenu()" data-i18n="nav.raices">Nuestras Ra&iacute;ces</a>
+    <a href="#ultimo-episodio" onclick="toggleMenu()" data-i18n="nav.episodio">Último Episodio</a>
+    <a href="#contacto" onclick="toggleMenu()" data-i18n="nav.contacto">Contacto</a>
   </div>
 
   <section class="hero" id="inicio">
     <div class="hero-inner">
       <div>
-        <div class="hero-badge">Educación Médica de Excelencia</div>
-        <h1>Donde la <span>ciencia</span> se encuentra con la <span>compasión</span></h1>
-        <p>Raíces Médicas es una plataforma educativa dedicada a la formación en salud renal, nefrología y salud digital. Transformamos el conocimiento médico en herramientas accesibles para profesionales y comunidades.</p>
+        <div class="hero-badge" data-i18n="hero.badge">Educación Médica de Excelencia</div>
+        <h1 id="hero-title">Donde la <span>ciencia</span> se encuentra con la <span>compasión</span></h1>
+        <p data-i18n="hero.desc">Raíces Médicas es una plataforma educativa dedicada a la formación en salud renal, nefrología y salud digital. Transformamos el conocimiento médico en herramientas accesibles para profesionales y comunidades.</p>
         <div class="hero-buttons">
-          <a href="#programas" class="btn-primary">Explorar programas <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-          <a href="#nosotros" class="btn-outline">Conocer más</a>
+          <a href="#programas" class="btn-primary"><span data-i18n="hero.btn.programs">Explorar programas</span> <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="#nosotros" class="btn-outline" data-i18n="hero.btn.about">Conocer más</a>
         </div>
         <div class="hero-stats">
-          <div class="hero-stat"><div class="number">850M+</div><div class="label">Personas con enfermedad renal</div></div>
-          <div class="hero-stat"><div class="number">10%</div><div class="label">Población mundial afectada</div></div>
-          <div class="hero-stat"><div class="number">24/7</div><div class="label">Recursos educativos</div></div>
+          <div class="hero-stat"><div class="number" data-i18n="hero.stat.1.number">850M+</div><div class="label" data-i18n="hero.stat.1.label">Personas con enfermedad renal</div></div>
+          <div class="hero-stat"><div class="number" data-i18n="hero.stat.2.number">10%</div><div class="label" data-i18n="hero.stat.2.label">Población mundial afectada</div></div>
+          <div class="hero-stat"><div class="number" data-i18n="hero.stat.3.number">24/7</div><div class="label" data-i18n="hero.stat.3.label">Recursos educativos</div></div>
         </div>
       </div>
       <div class="hero-image">
@@ -380,13 +390,13 @@
           <img src="images/pablo-nanum.jpg" alt="Pablo Nanum, RN, BSN — Fundador de Raíces Médicas" />
         </div>
         <div class="raices-content">
-          <div class="section-label">Nuestras Raíces</div>
-          <h2 class="section-title">&#x1F331; Nuestras Ra&iacute;ces</h2>
-          <p class="raices-subtitle">Pablo Nanum, RN, BSN &mdash; Fundador</p>
-          <p class="raices-text">Hace m&aacute;s de 30 a&ntilde;os, Pablo lleg&oacute; a los Estados Unidos y comenz&oacute; su camino en la salud haciendo lo que hab&iacute;a disponible: limpieza y mantenimiento en un hospital en Hoboken, Nueva Jersey. Pero desde el primer d&iacute;a tuvo una meta clara &mdash; crecer dentro de ese mundo.</p>
-          <p class="raices-text">Lo que sigui&oacute; fue un ascenso construido paso a paso: t&eacute;cnico en hemodi&aacute;lisis, LPN, RN, BSN, y hoy en camino a convertirse en Nurse Practitioner. A&ntilde;os al lado de pacientes renales le ense&ntilde;aron una verdad inc&oacute;moda: muchas de esas enfermedades pudieron haberse prevenido, si alguien les hubiera dado la informaci&oacute;n correcta, en su idioma, a tiempo.</p>
-          <p class="raices-text">Ra&iacute;ces M&eacute;dicas naci&oacute; de esa convicci&oacute;n &mdash; que el conocimiento transforma trayectorias y salva vidas. Es una plataforma de educaci&oacute;n renal en espa&ntilde;ol, con contenido claro, basado en evidencia cient&iacute;fica y centrado en el paciente. Dirigida tanto a la comunidad general como a profesionales de la salud hispanohablantes en todo el mundo.</p>
-          <p class="raices-quote">&ldquo;Conocimiento que salva vidas.&rdquo;</p>
+          <div class="section-label" data-i18n="raices.label">Nuestras Raíces</div>
+          <h2 class="section-title" data-i18n="raices.title">&#x1F331; Nuestras Ra&iacute;ces</h2>
+          <p class="raices-subtitle" data-i18n="raices.subtitle">Pablo Nanum, RN, BSN &mdash; Fundador</p>
+          <p class="raices-text" data-i18n="raices.p1">Hace m&aacute;s de 30 a&ntilde;os, Pablo lleg&oacute; a los Estados Unidos y comenz&oacute; su camino en la salud haciendo lo que hab&iacute;a disponible: limpieza y mantenimiento en un hospital en Hoboken, Nueva Jersey. Pero desde el primer d&iacute;a tuvo una meta clara &mdash; crecer dentro de ese mundo.</p>
+          <p class="raices-text" data-i18n="raices.p2">Lo que sigui&oacute; fue un ascenso construido paso a paso: t&eacute;cnico en hemodi&aacute;lisis, LPN, RN, BSN, y hoy en camino a convertirse en Nurse Practitioner. A&ntilde;os al lado de pacientes renales le ense&ntilde;aron una verdad inc&oacute;moda: muchas de esas enfermedades pudieron haberse prevenido, si alguien les hubiera dado la informaci&oacute;n correcta, en su idioma, a tiempo.</p>
+          <p class="raices-text" data-i18n="raices.p3">Ra&iacute;ces M&eacute;dicas naci&oacute; de esa convicci&oacute;n &mdash; que el conocimiento transforma trayectorias y salva vidas. Es una plataforma de educaci&oacute;n renal en espa&ntilde;ol, con contenido claro, basado en evidencia cient&iacute;fica y centrado en el paciente. Dirigida tanto a la comunidad general como a profesionales de la salud hispanohablantes en todo el mundo.</p>
+          <p class="raices-quote" data-i18n="raices.quote">&ldquo;Conocimiento que salva vidas.&rdquo;</p>
         </div>
       </div>
     </div>
@@ -398,9 +408,9 @@
 
       <!-- Section Header -->
       <div class="ue-header">
-        <span class="ue-eyebrow">Canal de YouTube</span>
-        <h2 class="ue-title">Último Episodio</h2>
-        <p class="ue-subtitle">
+        <span class="ue-eyebrow" data-i18n="episodio.eyebrow">Canal de YouTube</span>
+        <h2 class="ue-title" data-i18n="episodio.title">Último Episodio</h2>
+        <p class="ue-subtitle" data-i18n="episodio.subtitle">
           Educación en salud renal &mdash; directo a tu pantalla, en tu idioma.
         </p>
       </div>
@@ -408,7 +418,7 @@
       <!-- Loading State -->
       <div class="ue-loading" id="ue-loading">
         <div class="ue-spinner"></div>
-        <p>Cargando video&hellip;</p>
+        <p data-i18n="episodio.loading">Cargando video&hellip;</p>
       </div>
 
       <!-- Error State (hidden by default) -->
@@ -432,7 +442,7 @@
         <div class="ue-meta">
           <h3 class="ue-video-title" id="ue-video-title"></h3>
           <p class="ue-video-date" id="ue-video-date"></p>
-          <a class="ue-watch-btn" id="ue-watch-btn" href="#" target="_blank" rel="noopener">
+          <a class="ue-watch-btn" id="ue-watch-btn" href="#" target="_blank" rel="noopener" data-i18n="episodio.watch">
             Ver en YouTube &#x2197;
           </a>
         </div>
@@ -440,7 +450,7 @@
 
       <!-- CTA to full channel -->
       <div class="ue-channel-cta" id="ue-channel-cta" hidden>
-        <a href="https://www.youtube.com/@raicesmedicas" target="_blank" rel="noopener" class="ue-channel-link">
+        <a href="https://www.youtube.com/@raicesmedicas" target="_blank" rel="noopener" class="ue-channel-link" data-i18n="episodio.channel">
           Ver todos los videos en el canal &rarr;
         </a>
       </div>
@@ -453,29 +463,29 @@
       <div class="yt-banner-inner">
         <div class="yt-banner-qr-wa">
           <img src="images/whatsapp-qr.png" alt="QR Code - Canal de WhatsApp Raíces Médicas" />
-          <span>Escanea para seguirnos en WhatsApp</span>
+          <span data-i18n="redes.qr.wa">Escanea para seguirnos en WhatsApp</span>
         </div>
         <div class="yt-banner-text">
-                    <h2>Síguenos en Nuestras Redes</h2>
-                    <p>Contenido educativo sobre salud renal, prevención y bienestar en español. Suscríbete para no perderte nuestros videos y actualizaciones.</p>
+                    <h2 data-i18n="redes.title">Síguenos en Nuestras Redes</h2>
+                    <p data-i18n="redes.desc">Contenido educativo sobre salud renal, prevención y bienestar en español. Suscríbete para no perderte nuestros videos y actualizaciones.</p>
           <div class="yt-banner-buttons">
             <a href="https://www.youtube.com/@RaicesMedicas" target="_blank" class="btn-yt">
               <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-              Suscríbete
+              <span data-i18n="redes.btn.yt">Suscríbete</span>
             </a>
             <a href="https://whatsapp.com/channel/0029VbCXqShEFeXffO0tgP1B" target="_blank" class="btn-wa">
               <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-              WhatsApp
+              <span data-i18n="redes.btn.wa">WhatsApp</span>
             </a>
             <a href="https://t.me/raicesmedicas" class="btn-tg" target="_blank" rel="noopener">
               <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-              Telegram
+              <span data-i18n="redes.btn.tg">Telegram</span>
             </a>
           </div>
         </div>
         <div class="yt-banner-qr">
           <img src="images/youtube-qr.png" alt="QR Code - Canal de YouTube Raíces Médicas" />
-          <span>Escanea para visitar nuestro canal</span>
+          <span data-i18n="redes.qr.yt">Escanea para visitar nuestro canal</span>
         </div>
       </div>
     </div>
@@ -488,25 +498,25 @@
           <img src="assets/images/education.jpg" alt="Educación médica en aula" />
         </div>
         <div class="about-content">
-          <div class="section-label">Sobre Nosotros</div>
-          <h2 class="section-title">Formando el futuro de la salud renal</h2>
-          <p class="section-desc">Raíces Médicas nace con la misión de democratizar la educación en salud renal y nefrología. Creemos que el acceso a información médica clara y basada en evidencia es un derecho fundamental. Nuestra plataforma conecta a profesionales de la salud, estudiantes y pacientes con recursos educativos de calidad.</p>
+          <div class="section-label" data-i18n="about.label">Sobre Nosotros</div>
+          <h2 class="section-title" data-i18n="about.title">Formando el futuro de la salud renal</h2>
+          <p class="section-desc" data-i18n="about.desc">Raíces Médicas nace con la misión de democratizar la educación en salud renal y nefrología. Creemos que el acceso a información médica clara y basada en evidencia es un derecho fundamental. Nuestra plataforma conecta a profesionales de la salud, estudiantes y pacientes con recursos educativos de calidad.</p>
           <div class="about-features">
             <div class="about-feature">
               <div class="about-feature-icon">&#x1F3EB;</div>
-              <div class="about-feature-text"><h4>Educación Continua</h4><p>Cursos y talleres para profesionales de la salud</p></div>
+              <div class="about-feature-text"><h4 data-i18n="about.feat1.title">Educación Continua</h4><p data-i18n="about.feat1.desc">Cursos y talleres para profesionales de la salud</p></div>
             </div>
             <div class="about-feature">
               <div class="about-feature-icon">&#x1F52C;</div>
-              <div class="about-feature-text"><h4>Investigación</h4><p>Contenido basado en evidencia científica</p></div>
+              <div class="about-feature-text"><h4 data-i18n="about.feat2.title">Investigación</h4><p data-i18n="about.feat2.desc">Contenido basado en evidencia científica</p></div>
             </div>
             <div class="about-feature">
               <div class="about-feature-icon">&#x1F4F1;</div>
-              <div class="about-feature-text"><h4>Salud Digital</h4><p>Herramientas tecnológicas para la salud</p></div>
+              <div class="about-feature-text"><h4 data-i18n="about.feat3.title">Salud Digital</h4><p data-i18n="about.feat3.desc">Herramientas tecnológicas para la salud</p></div>
             </div>
             <div class="about-feature">
               <div class="about-feature-icon">&#x1F91D;</div>
-              <div class="about-feature-text"><h4>Comunidad</h4><p>Red de profesionales y pacientes</p></div>
+              <div class="about-feature-text"><h4 data-i18n="about.feat4.title">Comunidad</h4><p data-i18n="about.feat4.desc">Red de profesionales y pacientes</p></div>
             </div>
           </div>
         </div>
@@ -517,36 +527,36 @@
   <section class="programs" id="programas">
     <div class="container">
       <div class="section-header">
-        <div class="section-label">Nuestros Programas</div>
-        <h2 class="section-title">Áreas de enfoque educativo</h2>
-        <p class="section-desc">Ofrecemos programas especializados en las áreas más críticas de la salud renal y la educación médica contemporánea.</p>
+        <div class="section-label" data-i18n="programs.label">Nuestros Programas</div>
+        <h2 class="section-title" data-i18n="programs.title">Áreas de enfoque educativo</h2>
+        <p class="section-desc" data-i18n="programs.desc">Ofrecemos programas especializados en las áreas más críticas de la salud renal y la educación médica contemporánea.</p>
       </div>
       <div class="programs-grid">
         <div class="program-card">
           <div class="program-card-img"><img src="assets/images/kidney-health.jpg" alt="Salud renal y nefrología" /></div>
           <div class="program-card-body">
-                        <span class="tag">Nefrología</span>
-                        <h3>Salud Renal y Prevención</h3>
-                        <p>Educación integral sobre función renal, creatinina, filtración glomerular, prevención de enfermedad renal crónica y manejo temprano.</p>
-                    <a href="#contacto" class="program-link">Más información <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                        <span class="tag" data-i18n="programs.card1.tag">Nefrología</span>
+                        <h3 data-i18n="programs.card1.title">Salud Renal y Prevención</h3>
+                        <p data-i18n="programs.card1.desc">Educación integral sobre función renal, creatinina, filtración glomerular, prevención de enfermedad renal crónica y manejo temprano.</p>
+                    <a href="#contacto" class="program-link"><span data-i18n="programs.card1.link">Más información</span> <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
                   </div>
                 </div>
                 <div class="program-card">
                   <div class="program-card-img"><img src="assets/images/digital-health.jpg" alt="Innovación en salud digital" /></div>
                   <div class="program-card-body">
-                    <span class="tag">Innovación</span>
-                    <h3>Salud Digital y Tecnología</h3>
-                    <p>Exploramos cómo la tecnología transforma la atención médica: telemedicina, inteligencia artificial en diagnóstico, y herramientas digitales para pacientes.</p>
-                    <a href="#contacto" class="program-link">Más información <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                    <span class="tag" data-i18n="programs.card2.tag">Innovación</span>
+                    <h3 data-i18n="programs.card2.title">Salud Digital y Tecnología</h3>
+                    <p data-i18n="programs.card2.desc">Exploramos cómo la tecnología transforma la atención médica: telemedicina, inteligencia artificial en diagnóstico, y herramientas digitales para pacientes.</p>
+                    <a href="#contacto" class="program-link"><span data-i18n="programs.card2.link">Más información</span> <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
                   </div>
                 </div>
                 <div class="program-card">
                   <div class="program-card-img"><img src="assets/images/research.jpg" alt="Investigación y formación médica" /></div>
                   <div class="program-card-body">
-                    <span class="tag">Formación</span>
-                    <h3>Educación Médica Continua</h3>
-                    <p>Programas de formación continua para médicos, enfermeros y profesionales de la salud. Talleres, seminarios y recursos actualizados.</p>
-                    <a href="#contacto" class="program-link">Más información <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                    <span class="tag" data-i18n="programs.card3.tag">Formación</span>
+                    <h3 data-i18n="programs.card3.title">Educación Médica Continua</h3>
+                    <p data-i18n="programs.card3.desc">Programas de formación continua para médicos, enfermeros y profesionales de la salud. Talleres, seminarios y recursos actualizados.</p>
+                    <a href="#contacto" class="program-link"><span data-i18n="programs.card3.link">Más información</span> <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
           </div>
         </div>
       </div>
@@ -556,30 +566,30 @@
   <section class="values" id="valores">
     <div class="container">
       <div class="section-header">
-        <div class="section-label">Nuestros Valores</div>
-        <h2 class="section-title">Lo que nos define</h2>
-        <p class="section-desc">Cada decisión que tomamos está guiada por estos principios fundamentales.</p>
+        <div class="section-label" data-i18n="values.label">Nuestros Valores</div>
+        <h2 class="section-title" data-i18n="values.title">Lo que nos define</h2>
+        <p class="section-desc" data-i18n="values.desc">Cada decisión que tomamos está guiada por estos principios fundamentales.</p>
       </div>
       <div class="values-grid">
         <div class="value-card">
           <div class="value-icon">&#x1F4D6;</div>
-                    <h3>Educación Accesible</h3>
-                    <p>Creemos que el conocimiento médico debe estar al alcance de todos, sin barreras.</p>
+                    <h3 data-i18n="values.v1.title">Educación Accesible</h3>
+                    <p data-i18n="values.v1.desc">Creemos que el conocimiento médico debe estar al alcance de todos, sin barreras.</p>
         </div>
         <div class="value-card">
           <div class="value-icon">&#x2764;&#xFE0F;</div>
-                    <h3>Compasión</h3>
-                    <p>Cada paciente merece ser tratado con dignidad, empatía y respeto.</p>
+                    <h3 data-i18n="values.v2.title">Compasión</h3>
+                    <p data-i18n="values.v2.desc">Cada paciente merece ser tratado con dignidad, empatía y respeto.</p>
         </div>
         <div class="value-card">
           <div class="value-icon">&#x1F4A1;</div>
-                    <h3>Innovación</h3>
-                    <p>Abrazamos la tecnología como herramienta para mejorar la atención en salud.</p>
+                    <h3 data-i18n="values.v3.title">Innovación</h3>
+                    <p data-i18n="values.v3.desc">Abrazamos la tecnología como herramienta para mejorar la atención en salud.</p>
         </div>
         <div class="value-card">
           <div class="value-icon">&#x1F331;</div>
-          <h3>Crecimiento</h3>
-          <p>Nos comprometemos con el aprendizaje continuo y la mejora constante.</p>
+          <h3 data-i18n="values.v4.title">Crecimiento</h3>
+          <p data-i18n="values.v4.desc">Nos comprometemos con el aprendizaje continuo y la mejora constante.</p>
         </div>
       </div>
     </div>
@@ -587,9 +597,9 @@
 
   <section class="cta-banner">
     <div class="container">
-            <h2>Únete a nuestra comunidad educativa</h2>
-            <p>Sé parte de una red de profesionales comprometidos con la salud renal y la educación médica de calidad.</p>
-            <a href="#contacto" class="btn-primary">Contáctanos hoy <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            <h2 data-i18n="cta.title">Únete a nuestra comunidad educativa</h2>
+            <p data-i18n="cta.desc">Sé parte de una red de profesionales comprometidos con la salud renal y la educación médica de calidad.</p>
+            <a href="#contacto" class="btn-primary"><span data-i18n="cta.btn">Contáctanos hoy</span> <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
   </section>
 
@@ -597,31 +607,31 @@
     <div class="container">
       <div class="contact-grid">
         <div class="contact-info">
-          <div class="section-label">Contacto</div>
-                    <h2 class="section-title">Hablemos sobre educación médica</h2>
-                    <p class="section-desc">Estamos aquí para responder tus preguntas sobre nuestros programas educativos, colaboraciones y oportunidades.</p>
+          <div class="section-label" data-i18n="contact.label">Contacto</div>
+                    <h2 class="section-title" data-i18n="contact.title">Hablemos sobre educación médica</h2>
+                    <p class="section-desc" data-i18n="contact.desc">Estamos aquí para responder tus preguntas sobre nuestros programas educativos, colaboraciones y oportunidades.</p>
           <div class="contact-item">
             <div class="contact-item-icon">&#x2709;&#xFE0F;</div>
-            <div><h4>Correo electrónico</h4><p><a href="mailto:info@raicesmedicas.com">info@raicesmedicas.com</a></p></div>
+            <div><h4 data-i18n="contact.email.title">Correo electrónico</h4><p><a href="mailto:info@raicesmedicas.com">info@raicesmedicas.com</a></p></div>
           </div>
           <div class="contact-item">
             <div class="contact-item-icon">&#x1F310;</div>
-            <div><h4>Sitio web</h4><p><a href="https://raicesmedicas.health">raicesmedicas.health</a></p></div>
+            <div><h4 data-i18n="contact.web.title">Sitio web</h4><p><a href="https://raicesmedicas.health">raicesmedicas.health</a></p></div>
           </div>
           <div class="contact-item">
             <div class="contact-item-icon">&#x1F4CD;</div>
-            <div><h4>Ubicación</h4><p>Educación médica sin fronteras</p></div>
+            <div><h4 data-i18n="contact.location.title">Ubicación</h4><p data-i18n="contact.location.desc">Educación médica sin fronteras</p></div>
           </div>
         </div>
         <div class="contact-form">
           <form onsubmit="handleSubmit(event)">
             <div class="form-row">
-              <div class="form-group"><label for="nombre">Nombre</label><input type="text" id="nombre" placeholder="Tu nombre" required /></div>
-              <div class="form-group"><label for="email">Correo</label><input type="email" id="email" placeholder="tu@correo.com" required /></div>
+              <div class="form-group"><label for="nombre" data-i18n="contact.form.name">Nombre</label><input type="text" id="nombre" data-i18n-placeholder="contact.form.name.ph" placeholder="Tu nombre" required /></div>
+              <div class="form-group"><label for="email" data-i18n="contact.form.email">Correo</label><input type="email" id="email" data-i18n-placeholder="contact.form.email.ph" placeholder="tu@correo.com" required /></div>
             </div>
-            <div class="form-group"><label for="asunto">Asunto</label><input type="text" id="asunto" placeholder="¿Sobre qué quieres hablar?" /></div>
-            <div class="form-group"><label for="mensaje">Mensaje</label><textarea id="mensaje" placeholder="Escribe tu mensaje aquí..."></textarea></div>
-            <button type="submit" class="form-submit">Enviar mensaje</button>
+            <div class="form-group"><label for="asunto" data-i18n="contact.form.subject">Asunto</label><input type="text" id="asunto" data-i18n-placeholder="contact.form.subject.ph" placeholder="¿Sobre qué quieres hablar?" /></div>
+            <div class="form-group"><label for="mensaje" data-i18n="contact.form.message">Mensaje</label><textarea id="mensaje" data-i18n-placeholder="contact.form.message.ph" placeholder="Escribe tu mensaje aquí..."></textarea></div>
+            <button type="submit" class="form-submit" data-i18n="contact.form.submit">Enviar mensaje</button>
           </form>
         </div>
       </div>
@@ -633,36 +643,36 @@
       <div class="footer-grid">
         <div class="footer-brand">
                     <a href="#" class="nav-brand"><img src="logo.svg" alt="Raíces Médicas" /> Raíces Médicas</a>
-                    <p>Plataforma de educación médica dedicada a la salud renal, nefrología e innovación en salud digital.</p>
+                    <p data-i18n="footer.desc">Plataforma de educación médica dedicada a la salud renal, nefrología e innovación en salud digital.</p>
         </div>
         <div>
-          <h4>Navegación</h4>
+          <h4 data-i18n="footer.nav.title">Navegación</h4>
           <ul>
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#nosotros">Nosotros</a></li>
-            <li><a href="#programas">Programas</a></li>
-            <li><a href="#valores">Valores</a></li>
+            <li><a href="#inicio" data-i18n="footer.nav.inicio">Inicio</a></li>
+            <li><a href="#nosotros" data-i18n="footer.nav.nosotros">Nosotros</a></li>
+            <li><a href="#programas" data-i18n="footer.nav.programas">Programas</a></li>
+            <li><a href="#valores" data-i18n="footer.nav.valores">Valores</a></li>
           </ul>
         </div>
         <div>
-          <h4>Programas</h4>
+          <h4 data-i18n="footer.programs.title">Programas</h4>
           <ul>
-            <li><a href="#programas">Salud Renal</a></li>
-            <li><a href="#programas">Salud Digital</a></li>
-                        <li><a href="#programas">Educación Médica</a></li>
-                        <li><a href="#programas">Investigación</a></li>
+            <li><a href="#programas" data-i18n="footer.programs.renal">Salud Renal</a></li>
+            <li><a href="#programas" data-i18n="footer.programs.digital">Salud Digital</a></li>
+                        <li><a href="#programas" data-i18n="footer.programs.edu">Educación Médica</a></li>
+                        <li><a href="#programas" data-i18n="footer.programs.research">Investigación</a></li>
           </ul>
         </div>
         <div>
-          <h4>Contacto</h4>
+          <h4 data-i18n="footer.contact.title">Contacto</h4>
           <ul>
-            <li><a href="mailto:info@raicesmedicas.com">Email</a></li>
-            <li><a href="https://raicesmedicas.health">Sitio web</a></li>
+            <li><a href="mailto:info@raicesmedicas.com" data-i18n="footer.contact.email">Email</a></li>
+            <li><a href="https://raicesmedicas.health" data-i18n="footer.contact.web">Sitio web</a></li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
-        <span>&copy; 2026 Raíces Médicas. Todos los derechos reservados.</span>
+        <span data-i18n="footer.copy">&copy; 2026 Raíces Médicas. Todos los derechos reservados.</span>
         <div class="footer-social">
           <a href="https://www.youtube.com/@RaicesMedicas" target="_blank" aria-label="YouTube"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
           <a href="https://www.tiktok.com/@races.mdicas?lang=en" target="_blank" aria-label="TikTok"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
@@ -706,8 +716,11 @@
         watchBtn.href = data.watchUrl;
 
         if (data.published) {
+          dateEl.dataset.published = data.published;
+          var currentLang = (typeof getCurrentLang === "function") ? getCurrentLang() : "es";
+          var localeMap = { es: "es-MX", en: "en-US", pt: "pt-BR" };
           var date = new Date(data.published);
-          dateEl.textContent = date.toLocaleDateString("es-MX", {
+          dateEl.textContent = date.toLocaleDateString(localeMap[currentLang] || "es-MX", {
             year: "numeric", month: "long", day: "numeric"
           });
         }
@@ -733,5 +746,6 @@
         '&body=' + encodeURIComponent('Nombre: ' + n + '\nCorreo: ' + em + '\n\n' + m);
     }
   </script>
+  <script src="i18n.js"></script>
 </body>
 </html>
