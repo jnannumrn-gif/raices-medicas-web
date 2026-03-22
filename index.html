@@ -590,6 +590,62 @@
     </div>
   </section>
 
+  <!-- Último Episodio Section -->
+  <section class="ultimo-episodio" id="ultimo-episodio">
+    <div class="ue-inner">
+
+      <!-- Section Header -->
+      <div class="ue-header">
+        <span class="ue-eyebrow">Canal de YouTube</span>
+        <h2 class="ue-title">Último Episodio</h2>
+        <p class="ue-subtitle">
+          Educación en salud renal &mdash; directo a tu pantalla, en tu idioma.
+        </p>
+      </div>
+
+      <!-- Loading State -->
+      <div class="ue-loading" id="ue-loading">
+        <div class="ue-spinner"></div>
+        <p>Cargando video&hellip;</p>
+      </div>
+
+      <!-- Error State (hidden by default) -->
+      <div class="ue-error" id="ue-error" hidden>
+        <p>No se pudo cargar el video. <a href="https://www.youtube.com/@raicesmedicas" target="_blank" rel="noopener">Ver canal en YouTube &rarr;</a></p>
+      </div>
+
+      <!-- Video Card (hidden until loaded) -->
+      <div class="ue-card" id="ue-card" hidden>
+        <div class="ue-embed-wrapper">
+          <iframe
+            id="ue-iframe"
+            src=""
+            title="Último episodio de Raíces Médicas"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+        </div>
+        <div class="ue-meta">
+          <h3 class="ue-video-title" id="ue-video-title"></h3>
+          <p class="ue-video-date" id="ue-video-date"></p>
+          <a class="ue-watch-btn" id="ue-watch-btn" href="#" target="_blank" rel="noopener">
+            Ver en YouTube &#x2197;
+          </a>
+        </div>
+      </div>
+
+      <!-- CTA to full channel -->
+      <div class="ue-channel-cta" id="ue-channel-cta" hidden>
+        <a href="https://www.youtube.com/@raicesmedicas" target="_blank" rel="noopener" class="ue-channel-link">
+          Ver todos los videos en el canal &rarr;
+        </a>
+      </div>
+
+    </div>
+  </section>
+
   <section class="yt-banner">
     <div class="container">
       <div class="yt-banner-inner">

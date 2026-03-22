@@ -1,0 +1,11 @@
+name = "youtube-feed-worker"
+main = "youtube-feed-worker.js"
+compatibility_date = "2024-01-01"
+
+[vars]
+# Environment variables can be added here if needed
+
+# Route the worker to raicesmedicas.health/api/latest-video
+[[routes]]
+pattern = "raicesmedicas.health/api/latest-video"
+zone_name = "raicesmedicas.health"
