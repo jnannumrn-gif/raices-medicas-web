@@ -139,6 +139,9 @@
     .yt-banner::before{content:'';position:absolute;top:-50%;left:-20%;width:60%;height:200%;background:radial-gradient(ellipse,rgba(127,181,158,0.15),transparent 60%)}
     .yt-banner .container{position:relative;z-index:1}
     .yt-banner-inner{display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap}
+    .yt-banner-qr-wa{background:white;padding:16px;border-radius:16px;box-shadow:0 10px 40px rgba(0,0,0,0.2)}
+    .yt-banner-qr-wa img{width:200px;height:200px;display:block;border-radius:8px}
+    .yt-banner-qr-wa span{display:block;text-align:center;font-size:12px;color:var(--muted);margin-top:8px;font-weight:500}
     .yt-banner-text{text-align:left;max-width:420px}
     .yt-banner-text h2{font-family:'Playfair Display',serif;font-size:clamp(26px,3.5vw,36px);font-weight:700;margin-bottom:12px;color:white}
     .yt-banner-text p{font-size:16px;color:rgba(255,255,255,0.8);line-height:1.7;margin-bottom:24px}
@@ -150,7 +153,7 @@
     .yt-banner-qr{background:white;padding:16px;border-radius:16px;box-shadow:0 10px 40px rgba(0,0,0,0.2)}
     .yt-banner-qr img{width:200px;height:200px;display:block;border-radius:8px}
     .yt-banner-qr span{display:block;text-align:center;font-size:12px;color:var(--muted);margin-top:8px;font-weight:500}
-    @media(max-width:640px){.yt-banner-inner{flex-direction:column;gap:30px}.yt-banner-text{text-align:center}.yt-banner-qr img{width:160px;height:160px}}
+    @media(max-width:640px){.yt-banner-inner{flex-direction:column;gap:30px}.yt-banner-text{text-align:center}.yt-banner-qr img{width:160px;height:160px}.yt-banner-qr-wa img{width:160px;height:160px}.yt-banner-qr-wa{order:-1}}
 
     /* Último Episodio Section */
     .ultimo-episodio {
@@ -446,9 +449,13 @@
   <section class="yt-banner">
     <div class="container">
       <div class="yt-banner-inner">
+        <div class="yt-banner-qr-wa">
+          <img src="images/whatsapp-qr.png" alt="QR Code - Canal de WhatsApp Raíces Médicas" />
+          <span>Escanea para seguirnos en WhatsApp</span>
+        </div>
         <div class="yt-banner-text">
-                    <h2>Síguenos en YouTube</h2>
-                    <p>Contenido educativo sobre salud renal, prevención y bienestar en español. Suscríbete para no perderte nuestros videos.</p>
+                    <h2>Síguenos en Nuestras Redes</h2>
+                    <p>Contenido educativo sobre salud renal, prevención y bienestar en español. Suscríbete para no perderte nuestros videos y actualizaciones.</p>
           <div class="yt-banner-buttons">
             <a href="https://www.youtube.com/@RaicesMedicas" target="_blank" class="btn-yt">
               <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
