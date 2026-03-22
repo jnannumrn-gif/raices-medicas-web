@@ -57,7 +57,7 @@ export async function onRequest(context) {
   // --- Parse the XML to extract latest video ---
   const videoId    = extractTag(rssText, "yt:videoId");
   const title      = extractTag(rssText, "title", 1); // index 1 = first video title (index 0 is channel title)
-  const published  = extractTag(rssText, "published");
+  const published  = extractTag(rssText, "published", 1); // index 1 = first video's publish date (index 0 is channel creation date)
   const thumbnail  = extractAttr(rssText, "media:thumbnail", "url");
   const channelName = extractTag(rssText, "title", 0);
 
