@@ -34,7 +34,7 @@ const translations = {
     // Nuestras Raíces
     "raices.label": "Nuestras Ra\u00edces",
     "raices.title": "\uD83C\uDF31 Nuestras Ra\u00edces",
-    "raices.subtitle": "Pablo Nanum, RN, BSN \u2014 Fundador",
+    "raices.subtitle": "Pablo Nannum, RN, BSN \u2014 Fundador",
     "raices.p1": "Hace m\u00e1s de 30 a\u00f1os, Pablo lleg\u00f3 a los Estados Unidos y comenz\u00f3 su camino en la salud haciendo lo que hab\u00eda disponible: limpieza y mantenimiento en un hospital en Hoboken, Nueva Jersey. Pero desde el primer d\u00eda tuvo una meta clara \u2014 crecer dentro de ese mundo.",
     "raices.p2": "Lo que sigui\u00f3 fue un ascenso construido paso a paso: t\u00e9cnico en hemodi\u00e1lisis, LPN, RN, BSN, y hoy en camino a convertirse en Nurse Practitioner. A\u00f1os al lado de pacientes renales le ense\u00f1aron una verdad inc\u00f3moda: muchas de esas enfermedades pudieron haberse prevenido, si alguien les hubiera dado la informaci\u00f3n correcta, en su idioma, a tiempo.",
     "raices.p3": "Ra\u00edces M\u00e9dicas naci\u00f3 de esa convicci\u00f3n \u2014 que el conocimiento transforma trayectorias y salva vidas. Es una plataforma de educaci\u00f3n renal en espa\u00f1ol, con contenido claro, basado en evidencia cient\u00edfica y centrado en el paciente. Dirigida tanto a la comunidad general como a profesionales de la salud hispanohablantes en todo el mundo.",
@@ -177,7 +177,7 @@ const translations = {
     // Our Roots
     "raices.label": "Our Roots",
     "raices.title": "\uD83C\uDF31 Our Roots",
-    "raices.subtitle": "Pablo Nanum, RN, BSN \u2014 Founder",
+    "raices.subtitle": "Pablo Nannum, RN, BSN \u2014 Founder",
     "raices.p1": "Over 30 years ago, Pablo arrived in the United States and began his journey in healthcare doing whatever was available: cleaning and maintenance at a hospital in Hoboken, New Jersey. But from day one, he had a clear goal \u2014 to grow within that world.",
     "raices.p2": "What followed was a career built step by step: hemodialysis technician, LPN, RN, BSN, and today on his way to becoming a Nurse Practitioner. Years alongside kidney patients taught him an uncomfortable truth: many of those diseases could have been prevented, if someone had given them the right information, in their language, in time.",
     "raices.p3": "Ra\u00edces M\u00e9dicas was born from that conviction \u2014 that knowledge transforms trajectories and saves lives. It is a renal education platform in Spanish, with clear, evidence-based, patient-centered content. Aimed at both the general community and Spanish-speaking healthcare professionals worldwide.",
@@ -320,7 +320,7 @@ const translations = {
     // Nossas Raízes
     "raices.label": "Nossas Ra\u00edzes",
     "raices.title": "\uD83C\uDF31 Nossas Ra\u00edzes",
-    "raices.subtitle": "Pablo Nanum, RN, BSN \u2014 Fundador",
+    "raices.subtitle": "Pablo Nannum, RN, BSN \u2014 Fundador",
     "raices.p1": "H\u00e1 mais de 30 anos, Pablo chegou aos Estados Unidos e come\u00e7ou sua jornada na sa\u00fade fazendo o que estava dispon\u00edvel: limpeza e manuten\u00e7\u00e3o em um hospital em Hoboken, Nova Jersey. Mas desde o primeiro dia, ele tinha um objetivo claro \u2014 crescer dentro desse mundo.",
     "raices.p2": "O que se seguiu foi uma ascens\u00e3o constru\u00edda passo a passo: t\u00e9cnico em hemodi\u00e1lise, LPN, RN, BSN, e hoje a caminho de se tornar Nurse Practitioner. Anos ao lado de pacientes renais lhe ensinaram uma verdade desconfort\u00e1vel: muitas dessas doen\u00e7as poderiam ter sido prevenidas, se algu\u00e9m lhes tivesse dado a informa\u00e7\u00e3o correta, em seu idioma, a tempo.",
     "raices.p3": "Ra\u00edces M\u00e9dicas nasceu dessa convic\u00e7\u00e3o \u2014 de que o conhecimento transforma trajet\u00f3rias e salva vidas. \u00c9 uma plataforma de educa\u00e7\u00e3o renal em espanhol, com conte\u00fado claro, baseado em evid\u00eancia cient\u00edfica e centrado no paciente. Dirigida tanto \u00e0 comunidade em geral quanto a profissionais de sa\u00fade hispanof\u00f3nicos em todo o mundo.",
