@@ -152,6 +152,119 @@
     .yt-banner-qr span{display:block;text-align:center;font-size:12px;color:var(--muted);margin-top:8px;font-weight:500}
     @media(max-width:640px){.yt-banner-inner{flex-direction:column;gap:30px}.yt-banner-text{text-align:center}.yt-banner-qr img{width:160px;height:160px}}
 
+    /* Último Episodio Section */
+    .ultimo-episodio {
+      background: #0d1b1e;
+      color: #f0ede6;
+      padding: 80px 24px;
+    }
+    .ue-inner {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .ue-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .ue-eyebrow {
+      display: inline-block;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #7ecfc0;
+      margin-bottom: 10px;
+    }
+    .ue-title {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      margin: 0 0 12px;
+      line-height: 1.15;
+    }
+    .ue-subtitle {
+      font-size: 1rem;
+      color: #9ab8b2;
+      margin: 0;
+    }
+    .ue-loading {
+      text-align: center;
+      color: #9ab8b2;
+      padding: 48px 0;
+    }
+    .ue-spinner {
+      width: 36px;
+      height: 36px;
+      border: 3px solid rgba(126,207,192,0.2);
+      border-top-color: #7ecfc0;
+      border-radius: 50%;
+      margin: 0 auto 16px;
+      animation: ue-spin 0.9s linear infinite;
+    }
+    @keyframes ue-spin { to { transform: rotate(360deg); } }
+    .ue-error {
+      text-align: center;
+      color: #e07070;
+      padding: 32px 0;
+    }
+    .ue-error a { color: #7ecfc0; }
+    .ue-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(126,207,192,0.15);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .ue-embed-wrapper {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      background: #000;
+    }
+    .ue-embed-wrapper iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .ue-meta {
+      padding: 24px 28px;
+    }
+    .ue-video-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin: 0 0 8px;
+      line-height: 1.4;
+      color: #f0ede6;
+    }
+    .ue-video-date {
+      font-size: 0.82rem;
+      color: #7ecfc0;
+      margin: 0 0 18px;
+    }
+    .ue-watch-btn {
+      display: inline-block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #0d1b1e;
+      background: #7ecfc0;
+      padding: 9px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .ue-watch-btn:hover { background: #5bbcac; }
+    .ue-channel-cta {
+      text-align: center;
+      margin-top: 28px;
+    }
+    .ue-channel-link {
+      font-size: 0.9rem;
+      color: #7ecfc0;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(126,207,192,0.35);
+      padding-bottom: 2px;
+      transition: color 0.2s;
+    }
+    .ue-channel-link:hover { color: #f0ede6; }
+
     .site-footer{background:#0b1e36;color:rgba(255,255,255,0.7);padding:60px 0 30px}
     .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,0.08)}
     .footer-brand p{font-size:14px;line-height:1.7;margin-top:14px;max-width:280px}
@@ -215,6 +328,7 @@
         <li><a href="#programas">Programas</a></li>
         <li><a href="#valores">Valores</a></li>
         <li><a href="#nuestras-raices">Nuestras Ra&iacute;ces</a></li>
+        <li><a href="#ultimo-episodio">Último Episodio</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
       <a href="#contacto" class="nav-cta">Contactar</a>
@@ -227,6 +341,7 @@
     <a href="#programas" onclick="toggleMenu()">Programas</a>
     <a href="#valores" onclick="toggleMenu()">Valores</a>
     <a href="#nuestras-raices" onclick="toggleMenu()">Nuestras Ra&iacute;ces</a>
+    <a href="#ultimo-episodio" onclick="toggleMenu()">Último Episodio</a>
     <a href="#contacto" onclick="toggleMenu()">Contacto</a>
   </div>
 
@@ -418,6 +533,62 @@
     </div>
   </section>
 
+  <!-- Último Episodio Section -->
+  <section class="ultimo-episodio" id="ultimo-episodio">
+    <div class="ue-inner">
+
+      <!-- Section Header -->
+      <div class="ue-header">
+        <span class="ue-eyebrow">Canal de YouTube</span>
+        <h2 class="ue-title">Último Episodio</h2>
+        <p class="ue-subtitle">
+          Educación en salud renal &mdash; directo a tu pantalla, en tu idioma.
+        </p>
+      </div>
+
+      <!-- Loading State -->
+      <div class="ue-loading" id="ue-loading">
+        <div class="ue-spinner"></div>
+        <p>Cargando video&hellip;</p>
+      </div>
+
+      <!-- Error State (hidden by default) -->
+      <div class="ue-error" id="ue-error" hidden>
+        <p>No se pudo cargar el video. <a href="https://www.youtube.com/@raicesmedicas" target="_blank" rel="noopener">Ver canal en YouTube &rarr;</a></p>
+      </div>
+
+      <!-- Video Card (hidden until loaded) -->
+      <div class="ue-card" id="ue-card" hidden>
+        <div class="ue-embed-wrapper">
+          <iframe
+            id="ue-iframe"
+            src=""
+            title="Último episodio de Raíces Médicas"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+        </div>
+        <div class="ue-meta">
+          <h3 class="ue-video-title" id="ue-video-title"></h3>
+          <p class="ue-video-date" id="ue-video-date"></p>
+          <a class="ue-watch-btn" id="ue-watch-btn" href="#" target="_blank" rel="noopener">
+            Ver en YouTube &#x2197;
+          </a>
+        </div>
+      </div>
+
+      <!-- CTA to full channel -->
+      <div class="ue-channel-cta" id="ue-channel-cta" hidden>
+        <a href="https://www.youtube.com/@raicesmedicas" target="_blank" rel="noopener" class="ue-channel-link">
+          Ver todos los videos en el canal &rarr;
+        </a>
+      </div>
+
+    </div>
+  </section>
+
   <section class="yt-banner">
     <div class="container">
       <div class="yt-banner-inner">
@@ -498,6 +669,45 @@
     function toggleMenu() {
       document.getElementById('mobileMenu').classList.toggle('active');
     }
+    // Último Episodio — fetch latest video from Worker
+    (async () => {
+      var loadingEl  = document.getElementById("ue-loading");
+      var errorEl    = document.getElementById("ue-error");
+      var cardEl     = document.getElementById("ue-card");
+      var ctaEl      = document.getElementById("ue-channel-cta");
+      var iframeEl   = document.getElementById("ue-iframe");
+      var titleEl    = document.getElementById("ue-video-title");
+      var dateEl     = document.getElementById("ue-video-date");
+      var watchBtn   = document.getElementById("ue-watch-btn");
+
+      try {
+        var res = await fetch("/api/latest-video");
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        var data = await res.json();
+
+        if (!data.videoId) throw new Error("No video ID in response");
+
+        iframeEl.src = data.embedUrl;
+        titleEl.textContent = data.title;
+        watchBtn.href = data.watchUrl;
+
+        if (data.published) {
+          var date = new Date(data.published);
+          dateEl.textContent = date.toLocaleDateString("es-MX", {
+            year: "numeric", month: "long", day: "numeric"
+          });
+        }
+
+        loadingEl.hidden = true;
+        cardEl.hidden = false;
+        ctaEl.hidden = false;
+      } catch (err) {
+        console.error("Raíces Médicas — latest video error:", err);
+        loadingEl.hidden = true;
+        errorEl.hidden = false;
+      }
+    })();
+
     function handleSubmit(e) {
       e.preventDefault();
       var n = document.getElementById('nombre').value;
