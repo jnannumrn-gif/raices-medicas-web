@@ -28,8 +28,8 @@ const translations = {
     "hero.stat.1.label": "Personas con enfermedad renal",
     "hero.stat.2.number": "10%",
     "hero.stat.2.label": "Poblaci\u00f3n mundial afectada",
-    "hero.stat.3.number": "24/7",
-    "hero.stat.3.label": "Recursos educativos",
+        "hero.stat.3.number": "5ª",
+        "hero.stat.3.label": "Causa de muerte para 2040",
 
     // Nuestras Raíces
     "raices.label": "Nuestras Ra\u00edces",
@@ -171,8 +171,8 @@ const translations = {
     "hero.stat.1.label": "People with kidney disease",
     "hero.stat.2.number": "10%",
     "hero.stat.2.label": "World population affected",
-    "hero.stat.3.number": "24/7",
-    "hero.stat.3.label": "Educational resources",
+        "hero.stat.3.number": "5th",
+        "hero.stat.3.label": "Cause of death by 2040",
 
     // Our Roots
     "raices.label": "Our Roots",
@@ -314,8 +314,8 @@ const translations = {
     "hero.stat.1.label": "Pessoas com doen\u00e7a renal",
     "hero.stat.2.number": "10%",
     "hero.stat.2.label": "Popula\u00e7\u00e3o mundial afetada",
-    "hero.stat.3.number": "24/7",
-    "hero.stat.3.label": "Recursos educacionais",
+        "hero.stat.3.number": "5ª",
+        "hero.stat.3.label": "Causa de morte até 2040",
 
     // Nossas Raízes
     "raices.label": "Nossas Ra\u00edzes",
