@@ -142,6 +142,9 @@ const translations = {
     "footer.contact.web": "Sitio web",
     "footer.copy": "\u00a9 2026 Ra\u00edces M\u00e9dicas. Todos los derechos reservados.",
 
+    // Visitor Counter
+    "counter.label": "Gracias por ser el visitante n\u00famero",
+
     // Meta
     "meta.title": "Ra\u00edces M\u00e9dicas | Educaci\u00f3n M\u00e9dica y Salud Renal",
     "meta.description": "Ra\u00edces M\u00e9dicas: plataforma de educaci\u00f3n m\u00e9dica, salud renal e innovaci\u00f3n en salud digital."
@@ -285,6 +288,9 @@ const translations = {
     "footer.contact.web": "Website",
     "footer.copy": "\u00a9 2026 Ra\u00edces M\u00e9dicas. All rights reserved.",
 
+    // Visitor Counter
+    "counter.label": "Thanks for being visitor number",
+
     // Meta
     "meta.title": "Ra\u00edces M\u00e9dicas | Medical Education & Renal Health",
     "meta.description": "Ra\u00edces M\u00e9dicas: medical education platform, renal health, and digital health innovation."
@@ -427,6 +433,9 @@ const translations = {
     "footer.contact.email": "E-mail",
     "footer.contact.web": "Site",
     "footer.copy": "\u00a9 2026 Ra\u00edces M\u00e9dicas. Todos os direitos reservados.",
+
+    // Visitor Counter
+    "counter.label": "Obrigado por ser o visitante n\u00famero",
 
     // Meta
     "meta.title": "Ra\u00edces M\u00e9dicas | Educa\u00e7\u00e3o M\u00e9dica e Sa\u00fade Renal",
