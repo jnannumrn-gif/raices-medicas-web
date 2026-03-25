@@ -8,7 +8,7 @@
   <meta name="robots" content="noindex, nofollow" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500&family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg:#f4f8fb;--card:#ffffff;--text:#17324d;--muted:#5f7387;
@@ -335,6 +335,53 @@
     .lang-btn:hover{border-color:var(--primary);color:var(--primary)}
     .lang-btn.active{background:var(--primary);color:white;border-color:var(--primary)}
     @media(max-width:640px){.lang-switcher{position:absolute;top:22px;right:52px}.lang-btn{padding:3px 6px;font-size:10px}.nav-brand{font-size:14px}}
+
+    /* Quiz de la Semana */
+    .quiz-section{background:#0f1a14;padding:80px 24px;font-family:'DM Sans','Inter',system-ui,sans-serif}
+    .quiz-inner{max-width:560px;margin:0 auto}
+    .quiz-header{text-align:center;margin-bottom:28px}
+    .quiz-eyebrow{font-family:'Cormorant Garamond','Playfair Display',serif;font-size:13px;color:#c97a45;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:4px}
+    .quiz-title{font-family:'Cormorant Garamond','Playfair Display',serif;font-size:26px;font-weight:700;color:#f0ead8;line-height:1.2}
+    .quiz-subtitle{font-family:'DM Sans','Inter',sans-serif;font-size:13px;color:#8aaa8e;margin-top:4px}
+    .quiz-card{background:#162019;border:1.5px solid #2a3d2e;border-radius:16px;padding:28px 24px}
+    .quiz-progress-row{display:flex;justify-content:space-between;margin-bottom:6px}
+    .quiz-progress-label{font-size:12px;color:#8aaa8e}
+    .quiz-progress-bar{height:4px;background:#2a3d2e;border-radius:4px;overflow:hidden;margin-bottom:22px}
+    .quiz-progress-fill{height:100%;background:linear-gradient(90deg,#4a9e6b,#5dba80);border-radius:4px;transition:width 0.4s ease}
+    .quiz-question{font-family:'Cormorant Garamond','Playfair Display',serif;font-size:21px;font-weight:600;color:#f0ead8;line-height:1.45;margin-bottom:22px}
+    .quiz-opt{width:100%;padding:16px 20px;border-radius:10px;border:1.5px solid #2a3d2e;background:#162019;color:#f0ead8;font-family:'DM Sans','Inter',sans-serif;font-size:15px;text-align:left;cursor:pointer;transition:all 0.18s ease;margin-bottom:10px;display:flex;align-items:center;gap:12px}
+    .quiz-opt:hover:not(:disabled){border-color:#4a9e6b;background:#1c2d22;transform:translateX(2px)}
+    .quiz-opt:disabled{cursor:default}
+    .quiz-opt-label{min-width:26px;height:26px;border-radius:6px;background:#2a3d2e;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#8aaa8e;transition:all 0.18s;flex-shrink:0}
+    .quiz-opt-check{margin-left:auto;flex-shrink:0}
+    .quiz-opt.correct{border-color:#4a9e6b;background:#162a1e}
+    .quiz-opt.correct .quiz-opt-label{background:#4a9e6b;color:#fff}
+    .quiz-opt.wrong{border-color:#c94545;background:#2a1616}
+    .quiz-opt.wrong .quiz-opt-label{background:#c94545;color:#fff}
+    .quiz-explanation{border-radius:10px;padding:14px 16px;margin-top:4px;margin-bottom:4px}
+    .quiz-explanation.correct{background:#162a1e;border:1px solid #4a9e6b}
+    .quiz-explanation.wrong{background:#2a1616;border:1px solid #c94545}
+    .quiz-explanation-title{font-size:13px;font-weight:500;margin-bottom:4px}
+    .quiz-explanation-title.correct{color:#5dba80}
+    .quiz-explanation-title.wrong{color:#e07070}
+    .quiz-explanation-text{font-size:13px;color:#f0ead8;line-height:1.6;opacity:0.9}
+    .quiz-stats{font-size:12px;color:#8aaa8e;margin-top:8px;font-style:italic}
+    .quiz-next{background:#4a9e6b;color:#fff;border:none;border-radius:10px;padding:14px 32px;font-family:'DM Sans','Inter',sans-serif;font-size:15px;font-weight:500;cursor:pointer;margin-top:18px;transition:background 0.18s;width:100%}
+    .quiz-next:hover{background:#5dba80}
+    .quiz-score{font-family:'Cormorant Garamond','Playfair Display',serif;font-size:64px;font-weight:700;color:#5dba80;line-height:1;margin-bottom:4px}
+    .quiz-score-msg{font-size:15px;line-height:1.5;padding:0 8px;margin-bottom:20px}
+    .quiz-recap-item{display:flex;align-items:flex-start;gap:10px;text-align:left;padding:10px 0;border-top:1px solid #2a3d2e}
+    .quiz-recap-icon{font-size:16px;margin-top:1px;flex-shrink:0}
+    .quiz-recap-q{font-size:13px;color:#f0ead8;line-height:1.4}
+    .quiz-recap-a{font-size:12px;color:#8aaa8e;margin-top:2px}
+    .quiz-recap-a span{color:#5dba80}
+    .quiz-comeback{margin-top:20px;padding:14px;background:#1a2a1e;border-radius:10px;border:1px solid #2a3d2e}
+    .quiz-comeback p{font-size:13px;color:#8aaa8e;margin:0}
+    .quiz-footer-text{margin-top:20px;font-size:12px;color:#8aaa8e;text-align:center}
+    .quiz-loading{text-align:center;color:#8aaa8e;padding:32px 0}
+    .quiz-loading .quiz-spinner{width:36px;height:36px;border:3px solid rgba(74,158,107,0.2);border-top-color:#4a9e6b;border-radius:50%;margin:0 auto 16px;animation:ue-spin 0.9s linear infinite}
+    .quiz-error{text-align:center;color:#8aaa8e;padding:32px 0}
+    @media(max-width:640px){.quiz-title{font-size:22px}.quiz-question{font-size:18px}.quiz-card{padding:20px 16px}.quiz-score{font-size:48px}}
   </style>
 </head>
 <body>
@@ -348,6 +395,7 @@
         <li><a href="#valores" data-i18n="nav.valores">Valores</a></li>
         <li><a href="#nuestras-raices" data-i18n="nav.raices">Nuestras Ra&iacute;ces</a></li>
         <li><a href="#ultimo-episodio" data-i18n="nav.episodio">Último Episodio</a></li>
+        <li><a href="#quiz" data-i18n="nav.quiz">Quiz</a></li>
         <li><a href="#contacto" data-i18n="nav.contacto">Contacto</a></li>
       </ul>
       <a href="#contacto" class="nav-cta" data-i18n="nav.cta">Contactar</a>
@@ -366,6 +414,7 @@
     <a href="#valores" onclick="toggleMenu()" data-i18n="nav.valores">Valores</a>
     <a href="#nuestras-raices" onclick="toggleMenu()" data-i18n="nav.raices">Nuestras Ra&iacute;ces</a>
     <a href="#ultimo-episodio" onclick="toggleMenu()" data-i18n="nav.episodio">Último Episodio</a>
+    <a href="#quiz" onclick="toggleMenu()" data-i18n="nav.quiz">Quiz</a>
     <a href="#contacto" onclick="toggleMenu()" data-i18n="nav.contacto">Contacto</a>
   </div>
 
@@ -496,6 +545,28 @@
           <span data-i18n="redes.qr.yt">Escanea para visitar nuestro canal</span>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Quiz de la Semana -->
+  <section class="quiz-section" id="quiz">
+    <div class="quiz-inner">
+      <div class="quiz-header">
+        <div class="quiz-eyebrow">Raíces Médicas</div>
+        <div class="quiz-title">Quiz de la Semana</div>
+        <div class="quiz-subtitle" id="quiz-subtitle"></div>
+      </div>
+      <div class="quiz-card" id="quiz-card">
+        <div class="quiz-loading" id="quiz-loading">
+          <div class="quiz-spinner"></div>
+          <p>Cargando quiz…</p>
+        </div>
+        <div class="quiz-error" id="quiz-error" hidden>
+          <p>No hay quiz disponible esta semana. ¡Regresa el próximo lunes!</p>
+        </div>
+        <div id="quiz-content" hidden></div>
+      </div>
+      <div class="quiz-footer-text">Donde la ciencia se encuentra con la compasión</div>
     </div>
   </section>
 
@@ -780,6 +851,234 @@
       } catch (err) {
         console.error("Visitor counter error:", err);
       }
+    })();
+
+    // Quiz de la Semana
+    (function() {
+      var quizData = null;
+      var currentIdx = 0;
+      var answers = [];  // array of booleans
+      var phase = 'loading'; // loading | error | question | feedback | done
+      var selectedIdx = null;
+      var feedbackData = null; // response from POST /api/quiz/answer
+
+      var subtitleEl = document.getElementById('quiz-subtitle');
+      var loadingEl = document.getElementById('quiz-loading');
+      var errorEl = document.getElementById('quiz-error');
+      var contentEl = document.getElementById('quiz-content');
+
+      function fetchQuiz() {
+        fetch('/api/quiz/current')
+          .then(function(res) {
+            if (!res.ok) throw new Error('HTTP ' + res.status);
+            return res.json();
+          })
+          .then(function(data) {
+            if (!data.quiz_id || !data.questions || data.questions.length === 0) throw new Error('No quiz data');
+            quizData = data;
+            subtitleEl.textContent = data.subtitle;
+            phase = 'question';
+            render();
+          })
+          .catch(function(err) {
+            console.error('Quiz load error:', err);
+            phase = 'error';
+            render();
+          });
+      }
+
+      function render() {
+        loadingEl.hidden = phase !== 'loading';
+        errorEl.hidden = phase !== 'error';
+        contentEl.hidden = (phase === 'loading' || phase === 'error');
+
+        if (phase === 'question' || phase === 'feedback') {
+          renderQuestion();
+        } else if (phase === 'done') {
+          renderResults();
+        }
+      }
+
+      function renderQuestion() {
+        var q = quizData.questions[currentIdx];
+        var progress = (currentIdx / quizData.questions.length) * 100;
+        var correctCount = answers.filter(Boolean).length;
+        var labels = ['A', 'B', 'C', 'D'];
+
+        var html = '';
+        // Progress
+        html += '<div class="quiz-progress-row">';
+        html += '<span class="quiz-progress-label">Pregunta ' + (currentIdx + 1) + ' de ' + quizData.questions.length + '</span>';
+        html += '<span class="quiz-progress-label">' + correctCount + ' correctas</span>';
+        html += '</div>';
+        html += '<div class="quiz-progress-bar"><div class="quiz-progress-fill" style="width:' + progress + '%"></div></div>';
+
+        // Question text
+        html += '<div class="quiz-question">' + escapeHtml(q.question) + '</div>';
+
+        // Options
+        for (var i = 0; i < q.options.length; i++) {
+          var cls = 'quiz-opt';
+          var labelCls = 'quiz-opt-label';
+          var checkHtml = '';
+
+          if (phase === 'feedback' && feedbackData) {
+            if (i === feedbackData.correct_index) {
+              cls += ' correct';
+              checkHtml = '<span class="quiz-opt-check" style="color:#4a9e6b">&check;</span>';
+            } else if (i === selectedIdx && i !== feedbackData.correct_index) {
+              cls += ' wrong';
+              checkHtml = '<span class="quiz-opt-check" style="color:#c94545">&cross;</span>';
+            }
+          }
+
+          html += '<button class="' + cls + '" data-idx="' + i + '"' + (phase === 'feedback' ? ' disabled' : '') + '>';
+          html += '<span class="' + labelCls + '">' + labels[i] + '</span>';
+          html += escapeHtml(q.options[i]);
+          html += checkHtml;
+          html += '</button>';
+        }
+
+        // Feedback explanation
+        if (phase === 'feedback' && feedbackData) {
+          var isCorrect = feedbackData.is_correct;
+          html += '<div class="quiz-explanation ' + (isCorrect ? 'correct' : 'wrong') + '">';
+          html += '<div class="quiz-explanation-title ' + (isCorrect ? 'correct' : 'wrong') + '">';
+          html += isCorrect ? '&check; \u00a1Correcto!' : '&cross; No exactamente';
+          html += '</div>';
+          html += '<div class="quiz-explanation-text">' + escapeHtml(feedbackData.explanation) + '</div>';
+          if (feedbackData.stats && feedbackData.stats.total_answers > 0) {
+            html += '<div class="quiz-stats">El ' + feedbackData.stats.correct_pct + '% de los visitantes respondi\u00f3 correctamente.</div>';
+          }
+          html += '</div>';
+
+          var btnText = (currentIdx + 1 < quizData.questions.length) ? 'Siguiente pregunta \u2192' : 'Ver mis resultados';
+          html += '<button class="quiz-next" id="quiz-next-btn">' + btnText + '</button>';
+        }
+
+        contentEl.innerHTML = html;
+
+        // Bind option click handlers
+        if (phase === 'question') {
+          var opts = contentEl.querySelectorAll('.quiz-opt');
+          for (var j = 0; j < opts.length; j++) {
+            opts[j].addEventListener('click', handleOptionClick);
+          }
+        }
+
+        // Bind next button
+        if (phase === 'feedback') {
+          var nextBtn = document.getElementById('quiz-next-btn');
+          if (nextBtn) nextBtn.addEventListener('click', handleNext);
+        }
+      }
+
+      function renderResults() {
+        var score = answers.filter(Boolean).length;
+        var total = quizData.questions.length;
+        var msg = getScoreMessage(score, total);
+
+        var html = '<div style="text-align:center">';
+        html += '<div class="quiz-score">' + score + '/' + total + '</div>';
+        html += '<div class="quiz-score-msg" style="color:' + msg.color + '">' + msg.text + '</div>';
+
+        // Per-question recap
+        for (var i = 0; i < quizData.questions.length; i++) {
+          var q = quizData.questions[i];
+          var icon = answers[i] ? '\u2705' : '\u274C';
+          html += '<div class="quiz-recap-item">';
+          html += '<span class="quiz-recap-icon">' + icon + '</span>';
+          html += '<div>';
+          html += '<div class="quiz-recap-q">' + escapeHtml(q.question) + '</div>';
+          html += '<div class="quiz-recap-a">Respuesta: <span>' + escapeHtml(q.options[q._correctIndex]) + '</span></div>';
+          html += '</div></div>';
+        }
+
+        html += '<div class="quiz-comeback"><p>\uD83D\uDCC5 Regresa el pr\u00f3ximo lunes para el nuevo Quiz de la Semana</p></div>';
+        html += '<button class="quiz-next" id="quiz-retry-btn" style="margin-top:16px">Volver a intentarlo</button>';
+        html += '</div>';
+
+        contentEl.innerHTML = html;
+
+        var retryBtn = document.getElementById('quiz-retry-btn');
+        if (retryBtn) retryBtn.addEventListener('click', handleRetry);
+      }
+
+      function handleOptionClick(e) {
+        if (phase !== 'question') return;
+        var btn = e.currentTarget;
+        var idx = parseInt(btn.getAttribute('data-idx'), 10);
+        selectedIdx = idx;
+        phase = 'feedback';
+
+        var q = quizData.questions[currentIdx];
+
+        // Disable buttons immediately while waiting for API
+        var opts = contentEl.querySelectorAll('.quiz-opt');
+        for (var k = 0; k < opts.length; k++) opts[k].disabled = true;
+
+        fetch('/api/quiz/answer', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            quiz_id: quizData.quiz_id,
+            question_id: q.id,
+            selected_index: idx
+          })
+        })
+        .then(function(res) { return res.json(); })
+        .then(function(data) {
+          feedbackData = data;
+          answers.push(data.is_correct);
+          // Store correct index for results recap
+          q._correctIndex = data.correct_index;
+          render();
+        })
+        .catch(function(err) {
+          console.error('Quiz answer error:', err);
+          // Fallback: still show feedback locally
+          feedbackData = { is_correct: false, correct_index: -1, explanation: 'No se pudo enviar la respuesta.', stats: null };
+          answers.push(false);
+          render();
+        });
+      }
+
+      function handleNext() {
+        if (currentIdx + 1 < quizData.questions.length) {
+          currentIdx++;
+          selectedIdx = null;
+          feedbackData = null;
+          phase = 'question';
+          render();
+        } else {
+          phase = 'done';
+          render();
+        }
+      }
+
+      function handleRetry() {
+        currentIdx = 0;
+        selectedIdx = null;
+        feedbackData = null;
+        answers = [];
+        phase = 'question';
+        render();
+      }
+
+      function getScoreMessage(score, total) {
+        if (score === total) return { text: '\u00a1Perfecto! Eres un guardi\u00e1n de la salud renal \uD83C\uDFC6', color: '#5dba80' };
+        if (score === total - 1) return { text: '\u00a1Muy bien! Sabes m\u00e1s de lo que crees \uD83D\uDCAA', color: '#4a9e6b' };
+        if (score >= 1) return { text: 'Buen comienzo \u2014 aprende y regresa la pr\u00f3xima semana \uD83D\uDCD6', color: '#c97a45' };
+        return { text: 'Aqu\u00ed empezamos \u2014 cada pregunta es una semilla de conocimiento \uD83C\uDF31', color: '#8aaa8e' };
+      }
+
+      function escapeHtml(str) {
+        var div = document.createElement('div');
+        div.appendChild(document.createTextNode(str));
+        return div.innerHTML;
+      }
+
+      fetchQuiz();
     })();
 
     function handleSubmit(e) {
