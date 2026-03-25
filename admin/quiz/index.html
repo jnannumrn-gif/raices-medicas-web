@@ -249,10 +249,10 @@
   (function() {
     var today = new Date();
     var day = today.getDay();
-    var diff = day === 0 ? 1 : (8 - day);
-    var nextMonday = new Date(today);
-    nextMonday.setDate(today.getDate() + diff);
-    var iso = nextMonday.toISOString().slice(0, 10);
+    var diff = day === 0 ? 1 : day === 1 ? 0 : (8 - day);
+    var monday = new Date(today);
+    monday.setDate(today.getDate() + diff);
+    var iso = monday.toISOString().slice(0, 10);
     document.getElementById('week_start').value = iso;
   })();
 
@@ -356,10 +356,10 @@
         // Re-set next Monday default
         var today = new Date();
         var day = today.getDay();
-        var diff = day === 0 ? 1 : (8 - day);
-        var nextMonday = new Date(today);
-        nextMonday.setDate(today.getDate() + diff);
-        document.getElementById('week_start').value = nextMonday.toISOString().slice(0, 10);
+        var diff = day === 0 ? 1 : day === 1 ? 0 : (8 - day);
+        var monday = new Date(today);
+        monday.setDate(today.getDate() + diff);
+        document.getElementById('week_start').value = monday.toISOString().slice(0, 10);
         loadQuizzes();
       }
     })
