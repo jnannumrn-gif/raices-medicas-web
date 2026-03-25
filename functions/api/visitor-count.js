@@ -9,7 +9,7 @@
 
 const KV_KEY = "total_visits";
 
-export async function onRequest(context) {
+export async function onRequestGet(context) {
   const { env } = context;
 
   const headers = {
