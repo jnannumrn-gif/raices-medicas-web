@@ -116,20 +116,17 @@ async function handlePost(db, request, headers) {
       });
     }
 
-    // Insert quiz + questions using db.batch() for atomicity
-    // Step 1: Insert quiz and get ID
+    // Insert quiz + all questions in a single db.batch() for true atomicity.
+    // Question inserts use a subquery to resolve the quiz_id by week_start.
     const quizStmt = db.prepare(
       'INSERT INTO quizzes (week_start, subtitle) VALUES (?, ?)'
     ).bind(week_start, subtitle);
-    const [quizResult] = await db.batch([quizStmt]);
-    const quizId = quizResult.meta.last_row_id;
 
-    // Step 2: Insert all 3 questions atomically
     const questionStmts = questions.map(function(q, i) {
       return db.prepare(
-        'INSERT INTO quiz_questions (quiz_id, position, question, option_a, option_b, option_c, option_d, correct_index, explanation) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)'
+        'INSERT INTO quiz_questions (quiz_id, position, question, option_a, option_b, option_c, option_d, correct_index, explanation) VALUES ((SELECT id FROM quizzes WHERE week_start = ?), ?, ?, ?, ?, ?, ?, ?, ?)'
       ).bind(
-        quizId,
+        week_start,
         q.position || (i + 1),
         q.question,
         q.option_a,
@@ -141,7 +138,8 @@ async function handlePost(db, request, headers) {
       );
     });
 
-    await db.batch(questionStmts);
+    const results = await db.batch([quizStmt, ...questionStmts]);
+    const quizId = results[0].meta.last_row_id;
 
     return new Response(JSON.stringify({
       success: true,
