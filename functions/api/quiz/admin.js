@@ -98,7 +98,7 @@ async function handlePost(db, request, headers) {
         headers,
       });
     }
-    if (q.correct_index < 0 || q.correct_index > 3) {
+    if (!Number.isInteger(q.correct_index) || q.correct_index < 0 || q.correct_index > 3) {
       return new Response(JSON.stringify({ error: 'Question ' + (i + 1) + ' correct_index must be 0-3' }), {
         status: 400,
         headers,
@@ -116,17 +116,17 @@ async function handlePost(db, request, headers) {
       });
     }
 
-    // Insert quiz
-    const quizResult = await db.prepare(
+    // Insert quiz + questions using db.batch() for atomicity
+    // Step 1: Insert quiz and get ID
+    const quizStmt = db.prepare(
       'INSERT INTO quizzes (week_start, subtitle) VALUES (?, ?)'
-    ).bind(week_start, subtitle).run();
-
+    ).bind(week_start, subtitle);
+    const [quizResult] = await db.batch([quizStmt]);
     const quizId = quizResult.meta.last_row_id;
 
-    // Insert questions
-    for (let i = 0; i < questions.length; i++) {
-      const q = questions[i];
-      await db.prepare(
+    // Step 2: Insert all 3 questions atomically
+    const questionStmts = questions.map(function(q, i) {
+      return db.prepare(
         'INSERT INTO quiz_questions (quiz_id, position, question, option_a, option_b, option_c, option_d, correct_index, explanation) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)'
       ).bind(
         quizId,
@@ -138,8 +138,10 @@ async function handlePost(db, request, headers) {
         q.option_d,
         q.correct_index,
         q.explanation
-      ).run();
-    }
+      );
+    });
+
+    await db.batch(questionStmts);
 
     return new Response(JSON.stringify({
       success: true,
