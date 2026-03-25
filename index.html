@@ -990,7 +990,8 @@
           html += '<span class="quiz-recap-icon">' + icon + '</span>';
           html += '<div>';
           html += '<div class="quiz-recap-q">' + escapeHtml(q.question) + '</div>';
-          html += '<div class="quiz-recap-a">Respuesta: <span>' + escapeHtml(q.options[q._correctIndex]) + '</span></div>';
+          var correctAnswer = (q._correctIndex != null && q.options[q._correctIndex]) ? q.options[q._correctIndex] : 'No disponible';
+          html += '<div class="quiz-recap-a">Respuesta: <span>' + escapeHtml(correctAnswer) + '</span></div>';
           html += '</div></div>';
         }
 
@@ -1038,6 +1039,7 @@
           console.error('Quiz answer error:', err);
           // Fallback: still show feedback locally
           feedbackData = { is_correct: false, correct_index: -1, explanation: 'No se pudo enviar la respuesta.', stats: null };
+          q._correctIndex = null;
           answers.push(false);
           render();
         });
