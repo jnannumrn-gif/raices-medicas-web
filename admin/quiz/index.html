@@ -252,7 +252,7 @@
     var diff = day === 0 ? 1 : day === 1 ? 0 : (8 - day);
     var monday = new Date(today);
     monday.setDate(today.getDate() + diff);
-    var iso = monday.toISOString().slice(0, 10);
+    var iso = monday.getFullYear() + '-' + String(monday.getMonth() + 1).padStart(2, '0') + '-' + String(monday.getDate()).padStart(2, '0');
     document.getElementById('week_start').value = iso;
   })();
 
@@ -359,7 +359,7 @@
         var diff = day === 0 ? 1 : day === 1 ? 0 : (8 - day);
         var monday = new Date(today);
         monday.setDate(today.getDate() + diff);
-        document.getElementById('week_start').value = monday.toISOString().slice(0, 10);
+        document.getElementById('week_start').value = monday.getFullYear() + '-' + String(monday.getMonth() + 1).padStart(2, '0') + '-' + String(monday.getDate()).padStart(2, '0');
         loadQuizzes();
       }
     })
