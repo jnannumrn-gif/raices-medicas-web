@@ -376,12 +376,23 @@
     fetch('/api/quiz/admin', {
       headers: { 'X-Admin-Password': adminPassword }
     })
-    .then(function(res) { return res.json(); })
+    .then(function(res) {
+      if (res.status === 401) {
+        showToast('Sesión expirada. Ingresa de nuevo.', 'error');
+        logout();
+        return null;
+      }
+      if (!res.ok) {
+        return res.json().then(function(d) { throw new Error(d.error || 'Server error'); });
+      }
+      return res.json();
+    })
     .then(function(data) {
+      if (!data) return;
       renderQuizzes(data.quizzes || []);
     })
-    .catch(function() {
-      document.getElementById('quizzes-list').innerHTML = '<p style="font-size:13px;color:#c94545;text-align:center;padding:20px 0">Error al cargar quizzes</p>';
+    .catch(function(err) {
+      document.getElementById('quizzes-list').innerHTML = '<p style="font-size:13px;color:#c94545;text-align:center;padding:20px 0">Error al cargar quizzes: ' + escapeHtml(err.message) + '</p>';
     });
   }
 
