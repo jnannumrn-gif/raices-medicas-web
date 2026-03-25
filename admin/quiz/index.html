@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — Quiz de la Semana | Raíces Médicas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:#0f1a14;color:#f0ead8;font-family:'DM Sans','Inter',system-ui,sans-serif;min-height:100vh}
+    .container{max-width:720px;margin:0 auto;padding:32px 20px}
+    .header{text-align:center;margin-bottom:32px}
+    .header .eyebrow{font-family:'Cormorant Garamond',serif;font-size:13px;color:#c97a45;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:4px}
+    .header h1{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:#f0ead8}
+    .header p{font-size:13px;color:#8aaa8e;margin-top:4px}
+
+    /* Login */
+    .login-card{background:#162019;border:1.5px solid #2a3d2e;border-radius:16px;padding:32px 28px;max-width:400px;margin:60px auto}
+    .login-card h2{font-family:'Cormorant Garamond',serif;font-size:22px;margin-bottom:16px;text-align:center}
+    .login-card input{width:100%;padding:12px 16px;border-radius:10px;border:1.5px solid #2a3d2e;background:#0f1a14;color:#f0ead8;font-family:'DM Sans',sans-serif;font-size:14px;margin-bottom:12px}
+    .login-card input:focus{outline:none;border-color:#4a9e6b}
+    .login-card button{width:100%;padding:12px;border-radius:10px;border:none;background:#4a9e6b;color:#fff;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:500;cursor:pointer;transition:background 0.18s}
+    .login-card button:hover{background:#5dba80}
+    .login-error{color:#c94545;font-size:13px;margin-bottom:8px;text-align:center;display:none}
+
+    /* Form */
+    .admin-panel{display:none}
+    label{display:block;font-size:13px;color:#8aaa8e;margin-bottom:4px;margin-top:14px}
+    input,textarea,select{width:100%;padding:10px 14px;border-radius:8px;border:1.5px solid #2a3d2e;background:#0f1a14;color:#f0ead8;font-family:'DM Sans',sans-serif;font-size:14px}
+    input:focus,textarea:focus,select:focus{outline:none;border-color:#4a9e6b}
+    textarea{resize:vertical;min-height:60px}
+    select{appearance:auto}
+
+    .card{background:#162019;border:1.5px solid #2a3d2e;border-radius:16px;padding:24px 20px;margin-bottom:20px}
+    .card h3{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;margin-bottom:4px}
+    .card .subtitle{font-size:12px;color:#8aaa8e;margin-bottom:12px}
+
+    .question-card{background:#1a2a1e;border:1px solid #2a3d2e;border-radius:12px;padding:20px 16px;margin-bottom:16px}
+    .question-card h4{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;color:#5dba80;margin-bottom:10px}
+    .options-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .option-group{display:flex;flex-direction:column}
+
+    .btn-submit{width:100%;padding:14px;border-radius:10px;border:none;background:#4a9e6b;color:#fff;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:500;cursor:pointer;transition:background 0.18s;margin-top:20px}
+    .btn-submit:hover{background:#5dba80}
+    .btn-submit:disabled{background:#2a3d2e;cursor:not-allowed}
+
+    .btn-secondary{background:#2a3d2e;color:#f0ead8;border:none;border-radius:8px;padding:10px 20px;font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer;transition:background 0.18s}
+    .btn-secondary:hover{background:#3a5d3e}
+
+    .toast{position:fixed;top:20px;right:20px;padding:14px 20px;border-radius:10px;font-size:14px;z-index:1000;opacity:0;transition:opacity 0.3s;pointer-events:none}
+    .toast.success{background:#162a1e;border:1px solid #4a9e6b;color:#5dba80}
+    .toast.error{background:#2a1616;border:1px solid #c94545;color:#e07070}
+    .toast.show{opacity:1}
+
+    .existing-quizzes{margin-top:32px}
+    .quiz-row{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:#1a2a1e;border:1px solid #2a3d2e;border-radius:10px;margin-bottom:8px}
+    .quiz-row .week{font-size:14px;font-weight:500}
+    .quiz-row .sub{font-size:12px;color:#8aaa8e}
+    .quiz-row .status{font-size:12px;padding:4px 10px;border-radius:6px}
+    .quiz-row .status.active{background:#162a1e;color:#5dba80;border:1px solid #4a9e6b}
+    .quiz-row .status.inactive{background:#1a1a1a;color:#8aaa8e;border:1px solid #2a3d2e}
+
+    .back-link{display:inline-block;color:#8aaa8e;font-size:13px;text-decoration:none;margin-bottom:16px}
+    .back-link:hover{color:#f0ead8}
+
+    .logout-btn{position:absolute;top:20px;right:20px;background:none;border:1px solid #2a3d2e;color:#8aaa8e;padding:6px 14px;border-radius:8px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif}
+    .logout-btn:hover{border-color:#c94545;color:#c94545}
+
+    @media(max-width:640px){
+      .options-grid{grid-template-columns:1fr}
+      .container{padding:20px 14px}
+    }
+  </style>
+</head>
+<body>
+
+<div id="toast" class="toast"></div>
+
+<!-- Login Screen -->
+<div id="login-screen">
+  <div class="login-card">
+    <div class="eyebrow" style="font-family:'Cormorant Garamond',serif;font-size:13px;color:#c97a45;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:4px;text-align:center">Raíces Médicas</div>
+    <h2>Admin — Quiz</h2>
+    <p style="font-size:13px;color:#8aaa8e;margin-bottom:20px;text-align:center">Ingresa la contraseña para administrar los quizzes semanales.</p>
+    <div id="login-error" class="login-error">Contraseña incorrecta</div>
+    <input type="password" id="password-input" placeholder="Contraseña" autocomplete="off">
+    <button id="login-btn" onclick="attemptLogin()">Entrar</button>
+  </div>
+</div>
+
+<!-- Admin Panel -->
+<div id="admin-panel" class="admin-panel" style="position:relative">
+  <button class="logout-btn" onclick="logout()">Cerrar sesión</button>
+  <div class="container">
+    <a href="/" class="back-link">← Volver al sitio</a>
+    <div class="header">
+      <div class="eyebrow">Raíces Médicas</div>
+      <h1>Admin — Quiz de la Semana</h1>
+      <p>Crea y administra los quizzes semanales</p>
+    </div>
+
+    <!-- New Quiz Form -->
+    <div class="card">
+      <h3>Crear nuevo quiz</h3>
+      <div class="subtitle">Completa los campos para agregar un nuevo quiz semanal</div>
+
+      <form id="quiz-form" onsubmit="submitQuiz(event)">
+        <label for="week_start">Fecha de inicio (lunes) *</label>
+        <input type="date" id="week_start" required>
+
+        <label for="subtitle">Subtítulo *</label>
+        <input type="text" id="subtitle" placeholder="Ej: Semana del 31 de marzo · Nutrición" required>
+
+        <!-- Question 1 -->
+        <div class="question-card" style="margin-top:20px">
+          <h4>Pregunta 1</h4>
+          <label for="q1_question">Pregunta *</label>
+          <textarea id="q1_question" placeholder="Escribe la pregunta..." required></textarea>
+
+          <div class="options-grid">
+            <div class="option-group">
+              <label for="q1_a">Opción A *</label>
+              <input type="text" id="q1_a" required>
+            </div>
+            <div class="option-group">
+              <label for="q1_b">Opción B *</label>
+              <input type="text" id="q1_b" required>
+            </div>
+            <div class="option-group">
+              <label for="q1_c">Opción C *</label>
+              <input type="text" id="q1_c" required>
+            </div>
+            <div class="option-group">
+              <label for="q1_d">Opción D *</label>
+              <input type="text" id="q1_d" required>
+            </div>
+          </div>
+
+          <label for="q1_correct">Respuesta correcta *</label>
+          <select id="q1_correct" required>
+            <option value="">Selecciona...</option>
+            <option value="0">A</option>
+            <option value="1">B</option>
+            <option value="2">C</option>
+            <option value="3">D</option>
+          </select>
+
+          <label for="q1_explanation">Explicación *</label>
+          <textarea id="q1_explanation" placeholder="Explica por qué es la respuesta correcta..." required></textarea>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="question-card">
+          <h4>Pregunta 2</h4>
+          <label for="q2_question">Pregunta *</label>
+          <textarea id="q2_question" placeholder="Escribe la pregunta..." required></textarea>
+
+          <div class="options-grid">
+            <div class="option-group">
+              <label for="q2_a">Opción A *</label>
+              <input type="text" id="q2_a" required>
+            </div>
+            <div class="option-group">
+              <label for="q2_b">Opción B *</label>
+              <input type="text" id="q2_b" required>
+            </div>
+            <div class="option-group">
+              <label for="q2_c">Opción C *</label>
+              <input type="text" id="q2_c" required>
+            </div>
+            <div class="option-group">
+              <label for="q2_d">Opción D *</label>
+              <input type="text" id="q2_d" required>
+            </div>
+          </div>
+
+          <label for="q2_correct">Respuesta correcta *</label>
+          <select id="q2_correct" required>
+            <option value="">Selecciona...</option>
+            <option value="0">A</option>
+            <option value="1">B</option>
+            <option value="2">C</option>
+            <option value="3">D</option>
+          </select>
+
+          <label for="q2_explanation">Explicación *</label>
+          <textarea id="q2_explanation" placeholder="Explica por qué es la respuesta correcta..." required></textarea>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="question-card">
+          <h4>Pregunta 3</h4>
+          <label for="q3_question">Pregunta *</label>
+          <textarea id="q3_question" placeholder="Escribe la pregunta..." required></textarea>
+
+          <div class="options-grid">
+            <div class="option-group">
+              <label for="q3_a">Opción A *</label>
+              <input type="text" id="q3_a" required>
+            </div>
+            <div class="option-group">
+              <label for="q3_b">Opción B *</label>
+              <input type="text" id="q3_b" required>
+            </div>
+            <div class="option-group">
+              <label for="q3_c">Opción C *</label>
+              <input type="text" id="q3_c" required>
+            </div>
+            <div class="option-group">
+              <label for="q3_d">Opción D *</label>
+              <input type="text" id="q3_d" required>
+            </div>
+          </div>
+
+          <label for="q3_correct">Respuesta correcta *</label>
+          <select id="q3_correct" required>
+            <option value="">Selecciona...</option>
+            <option value="0">A</option>
+            <option value="1">B</option>
+            <option value="2">C</option>
+            <option value="3">D</option>
+          </select>
+
+          <label for="q3_explanation">Explicación *</label>
+          <textarea id="q3_explanation" placeholder="Explica por qué es la respuesta correcta..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit" id="submit-btn">Crear Quiz</button>
+      </form>
+    </div>
+
+    <!-- Existing Quizzes -->
+    <div class="card existing-quizzes">
+      <h3>Quizzes existentes</h3>
+      <div class="subtitle">Lista de todos los quizzes creados</div>
+      <div id="quizzes-list">
+        <p style="font-size:13px;color:#8aaa8e;text-align:center;padding:20px 0">Cargando...</p>
+      </div>
+    </div>
+
+    <p style="font-size:12px;color:#8aaa8e;text-align:center;margin-top:20px">Donde la ciencia se encuentra con la compasión</p>
+  </div>
+</div>
+
+<script>
+  var adminPassword = '';
+
+  // Auto-set next Monday as default date
+  (function() {
+    var today = new Date();
+    var day = today.getDay();
+    var diff = day === 0 ? 1 : (8 - day);
+    var nextMonday = new Date(today);
+    nextMonday.setDate(today.getDate() + diff);
+    var iso = nextMonday.toISOString().slice(0, 10);
+    document.getElementById('week_start').value = iso;
+  })();
+
+  // Password input enter key
+  document.getElementById('password-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') attemptLogin();
+  });
+
+  function attemptLogin() {
+    var pw = document.getElementById('password-input').value.trim();
+    if (!pw) return;
+    adminPassword = pw;
+
+    // Verify password by trying to fetch quizzes
+    fetch('/api/quiz/admin', {
+      headers: { 'X-Admin-Password': pw }
+    })
+    .then(function(res) {
+      if (res.status === 401) {
+        document.getElementById('login-error').style.display = 'block';
+        adminPassword = '';
+        return null;
+      }
+      return res.json();
+    })
+    .then(function(data) {
+      if (!data) return;
+      document.getElementById('login-screen').style.display = 'none';
+      document.getElementById('admin-panel').style.display = 'block';
+      renderQuizzes(data.quizzes || []);
+    })
+    .catch(function() {
+      document.getElementById('login-error').style.display = 'block';
+      adminPassword = '';
+    });
+  }
+
+  function logout() {
+    adminPassword = '';
+    document.getElementById('admin-panel').style.display = 'none';
+    document.getElementById('login-screen').style.display = '';
+    document.getElementById('password-input').value = '';
+    document.getElementById('login-error').style.display = 'none';
+  }
+
+  function showToast(msg, type) {
+    var toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.className = 'toast ' + type + ' show';
+    setTimeout(function() { toast.className = 'toast'; }, 4000);
+  }
+
+  function submitQuiz(e) {
+    e.preventDefault();
+    var btn = document.getElementById('submit-btn');
+    btn.disabled = true;
+    btn.textContent = 'Creando...';
+
+    var payload = {
+      week_start: document.getElementById('week_start').value,
+      subtitle: document.getElementById('subtitle').value.trim(),
+      questions: []
+    };
+
+    for (var i = 1; i <= 3; i++) {
+      payload.questions.push({
+        position: i,
+        question: document.getElementById('q' + i + '_question').value.trim(),
+        option_a: document.getElementById('q' + i + '_a').value.trim(),
+        option_b: document.getElementById('q' + i + '_b').value.trim(),
+        option_c: document.getElementById('q' + i + '_c').value.trim(),
+        option_d: document.getElementById('q' + i + '_d').value.trim(),
+        correct_index: parseInt(document.getElementById('q' + i + '_correct').value, 10),
+        explanation: document.getElementById('q' + i + '_explanation').value.trim()
+      });
+    }
+
+    fetch('/api/quiz/admin', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Admin-Password': adminPassword
+      },
+      body: JSON.stringify(payload)
+    })
+    .then(function(res) {
+      if (res.status === 401) {
+        showToast('Sesión expirada. Ingresa de nuevo.', 'error');
+        logout();
+        return null;
+      }
+      return res.json();
+    })
+    .then(function(data) {
+      if (!data) return;
+      if (data.error) {
+        showToast('Error: ' + data.error, 'error');
+      } else {
+        showToast('Quiz creado exitosamente para ' + payload.week_start, 'success');
+        document.getElementById('quiz-form').reset();
+        // Re-set next Monday default
+        var today = new Date();
+        var day = today.getDay();
+        var diff = day === 0 ? 1 : (8 - day);
+        var nextMonday = new Date(today);
+        nextMonday.setDate(today.getDate() + diff);
+        document.getElementById('week_start').value = nextMonday.toISOString().slice(0, 10);
+        loadQuizzes();
+      }
+    })
+    .catch(function(err) {
+      showToast('Error de red: ' + err.message, 'error');
+    })
+    .finally(function() {
+      btn.disabled = false;
+      btn.textContent = 'Crear Quiz';
+    });
+  }
+
+  function loadQuizzes() {
+    fetch('/api/quiz/admin', {
+      headers: { 'X-Admin-Password': adminPassword }
+    })
+    .then(function(res) { return res.json(); })
+    .then(function(data) {
+      renderQuizzes(data.quizzes || []);
+    })
+    .catch(function() {
+      document.getElementById('quizzes-list').innerHTML = '<p style="font-size:13px;color:#c94545;text-align:center;padding:20px 0">Error al cargar quizzes</p>';
+    });
+  }
+
+  function renderQuizzes(quizzes) {
+    var el = document.getElementById('quizzes-list');
+    if (quizzes.length === 0) {
+      el.innerHTML = '<p style="font-size:13px;color:#8aaa8e;text-align:center;padding:20px 0">No hay quizzes creados aún</p>';
+      return;
+    }
+    var html = '';
+    for (var i = 0; i < quizzes.length; i++) {
+      var q = quizzes[i];
+      var statusCls = q.active ? 'active' : 'inactive';
+      var statusText = q.active ? 'Activo' : 'Inactivo';
+      html += '<div class="quiz-row">';
+      html += '<div><div class="week">' + escapeHtml(q.week_start) + '</div>';
+      html += '<div class="sub">' + escapeHtml(q.subtitle) + ' · ' + q.question_count + ' preguntas</div></div>';
+      html += '<span class="status ' + statusCls + '">' + statusText + '</span>';
+      html += '</div>';
+    }
+    el.innerHTML = html;
+  }
+
+  function escapeHtml(str) {
+    var div = document.createElement('div');
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+  }
+</script>
+</body>
+</html>
