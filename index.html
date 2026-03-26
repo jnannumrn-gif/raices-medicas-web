@@ -1111,5 +1111,80 @@
     }
   </script>
   <script src="i18n.js"></script>
+
+  <!-- Cookie Consent Banner -->
+  <div id="cookie-banner" style="
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    max-width: 900px;
+    margin: auto;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+    padding: 16px 18px;
+    z-index: 9999;
+    display: none;
+    font-family: Arial, sans-serif;
+  ">
+    <p style="margin: 0 0 12px 0; color: #1f2937; line-height: 1.5;">
+      Este sitio utiliza cookies para mejorar la experiencia del usuario, analizar el tráfico
+      y medir el rendimiento de campañas publicitarias. Al continuar navegando, usted acepta
+      nuestro uso de cookies. Lea nuestra
+      <a href="/politica-privacidad.html" style="color: #166534; text-decoration: none;">Política de Privacidad</a>.
+    </p>
+
+    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+      <button id="accept-cookies" style="
+        background: #166534;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 10px 16px;
+        cursor: pointer;
+        font-size: 14px;
+      ">
+        Aceptar
+      </button>
+
+      <button id="reject-cookies" style="
+        background: #f3f4f6;
+        color: #111827;
+        border: 1px solid #d1d5db;
+        border-radius: 8px;
+        padding: 10px 16px;
+        cursor: pointer;
+        font-size: 14px;
+      ">
+        Rechazar
+      </button>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var banner = document.getElementById("cookie-banner");
+      var acceptBtn = document.getElementById("accept-cookies");
+      var rejectBtn = document.getElementById("reject-cookies");
+
+      var cookieChoice = localStorage.getItem("rm_cookie_choice");
+
+      if (!cookieChoice) {
+        banner.style.display = "block";
+      }
+
+      acceptBtn.addEventListener("click", function () {
+        localStorage.setItem("rm_cookie_choice", "accepted");
+        banner.style.display = "none";
+      });
+
+      rejectBtn.addEventListener("click", function () {
+        localStorage.setItem("rm_cookie_choice", "rejected");
+        banner.style.display = "none";
+      });
+    });
+  </script>
 </body>
 </html>
