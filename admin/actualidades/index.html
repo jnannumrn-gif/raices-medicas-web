@@ -226,6 +226,11 @@
   var uploadedImageUrl = '';
   var isEditing = false;
 
+  function escapeHtml(str) {
+    if (!str) return '';
+    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
   // Auto-set today as default date
   (function() {
     var today = new Date();
@@ -428,8 +433,10 @@
   }
 
   function editEntry(id) {
-    // Find entry data from the list
-    fetch('/api/actualidades?limit=50')
+    // Find entry data from the list (including inactive entries)
+    fetch('/api/actualidades?limit=50', {
+      headers: { 'X-Admin-Password': adminPassword }
+    })
     .then(function(res) { return res.json(); })
     .then(function(data) {
       var entry = null;
@@ -524,8 +531,9 @@
     listEl.innerHTML = '<p style="font-size:13px;color:#8aaa8e;text-align:center;padding:20px 0">Cargando...</p>';
 
     // Fetch ALL entries (including inactive) for admin view
-    // We need a special admin endpoint or just use the public one with a high limit
-    fetch('/api/actualidades?limit=50')
+    fetch('/api/actualidades?limit=50', {
+      headers: { 'X-Admin-Password': adminPassword }
+    })
     .then(function(res) { return res.json(); })
     .then(function(data) {
       if (!data.entries || data.entries.length === 0) {
@@ -552,11 +560,11 @@
       var isActive = e.activo !== 0;
       html += '<div class="entry-row">' +
         '<div class="entry-info">' +
-          '<div class="entry-title">' + e.titulo + '</div>' +
-          '<div class="entry-meta">' + formatDate(e.fecha_publicacion) + ' · ' + e.autor + '</div>' +
+          '<div class="entry-title">' + escapeHtml(e.titulo) + (isActive ? '' : ' <span class="status inactive">Inactiva</span>') + '</div>' +
+          '<div class="entry-meta">' + formatDate(e.fecha_publicacion) + ' · ' + escapeHtml(e.autor) + '</div>' +
           '<div class="entry-badges">' +
-            '<span class="badge badge-cat">' + e.categoria + '</span>' +
-            '<span class="badge badge-source">' + e.fuente + '</span>' +
+            '<span class="badge badge-cat">' + escapeHtml(e.categoria) + '</span>' +
+            '<span class="badge badge-source">' + escapeHtml(e.fuente) + '</span>' +
           '</div>' +
         '</div>' +
         '<div class="actions">' +
@@ -590,17 +598,17 @@
     var html = '<div style="margin-top:16px">';
 
     if (imgUrl && imgUrl !== '') {
-      html += '<div style="border-radius:12px;overflow:hidden;margin-bottom:16px;max-height:260px"><img src="' + imgUrl + '" style="width:100%;height:auto;max-height:260px;object-fit:cover" alt="Preview" /></div>';
+      html += '<div style="border-radius:12px;overflow:hidden;margin-bottom:16px;max-height:260px"><img src="' + escapeHtml(imgUrl) + '" style="width:100%;height:auto;max-height:260px;object-fit:cover" alt="Preview" /></div>';
     }
 
     html += '<div style="display:flex;gap:8px;margin-bottom:10px">';
-    if (categoria) html += '<span style="display:inline-block;padding:4px 12px;border-radius:999px;background:#162a1e;color:#5dba80;font-size:11px;font-weight:600;text-transform:uppercase">' + categoria + '</span>';
-    if (fuente) html += '<span style="display:inline-block;padding:4px 12px;border-radius:999px;background:#1a2016;color:#c97a45;font-size:11px;font-weight:600;border:1px solid #3a2d1e">' + fuente + '</span>';
+    if (categoria) html += '<span style="display:inline-block;padding:4px 12px;border-radius:999px;background:#162a1e;color:#5dba80;font-size:11px;font-weight:600;text-transform:uppercase">' + escapeHtml(categoria) + '</span>';
+    if (fuente) html += '<span style="display:inline-block;padding:4px 12px;border-radius:999px;background:#1a2016;color:#c97a45;font-size:11px;font-weight:600;border:1px solid #3a2d1e">' + escapeHtml(fuente) + '</span>';
     html += '</div>';
 
-    html += '<h2 style="font-family:Cormorant Garamond,serif;font-size:24px;font-weight:700;margin-bottom:8px;color:#f0ead8">' + titulo + '</h2>';
-    html += '<p style="font-size:12px;color:#8aaa8e;margin-bottom:12px">' + fecha + ' · ' + autor + '</p>';
-    if (resumen) html += '<p style="font-size:14px;color:#c8d8c0;line-height:1.7;margin-bottom:16px">' + resumen + '</p>';
+    html += '<h2 style="font-family:Cormorant Garamond,serif;font-size:24px;font-weight:700;margin-bottom:8px;color:#f0ead8">' + escapeHtml(titulo) + '</h2>';
+    html += '<p style="font-size:12px;color:#8aaa8e;margin-bottom:12px">' + escapeHtml(fecha) + ' · ' + escapeHtml(autor) + '</p>';
+    if (resumen) html += '<p style="font-size:14px;color:#c8d8c0;line-height:1.7;margin-bottom:16px">' + escapeHtml(resumen) + '</p>';
 
     html += '<hr style="border:none;border-top:1px solid #2a3d2e;margin:16px 0" />';
     html += '<p style="font-size:12px;color:#5a7a5e;line-height:1.5">' + disclaimer + '</p>';

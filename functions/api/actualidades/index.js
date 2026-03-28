@@ -35,7 +35,11 @@ export async function onRequest(context) {
   var db = env.QUIZ_DB;
 
   if (method === 'GET') {
-    return handleGet(db, request, corsHeaders);
+    // Check if admin is requesting all entries (including inactive)
+    var adminPasswordGet = request.headers.get('X-Admin-Password') || '';
+    var expectedGet = env.QUIZ_ADMIN_PASSWORD || '';
+    var isAdmin = expectedGet && adminPasswordGet === expectedGet;
+    return handleGet(db, request, corsHeaders, isAdmin);
   }
 
   // Admin-only methods
@@ -66,7 +70,7 @@ export async function onRequest(context) {
   });
 }
 
-async function handleGet(db, request, headers) {
+async function handleGet(db, request, headers, isAdmin) {
   try {
     var url = new URL(request.url);
     var categoria = url.searchParams.get('categoria') || '';
@@ -76,13 +80,17 @@ async function handleGet(db, request, headers) {
     if (page < 1) page = 1;
     var offset = (page - 1) * limit;
 
-    var countQuery = 'SELECT COUNT(*) as total FROM actualidades WHERE activo = 1';
-    var dataQuery = 'SELECT id, titulo, fuente, url_original, categoria, autor, resumen, imagen_url, numero_edicion, fecha_publicacion, created_at FROM actualidades WHERE activo = 1';
-
-    if (categoria) {
-      countQuery += ' AND categoria = ?';
-      dataQuery += ' AND categoria = ?';
+    var conditions = [];
+    if (!isAdmin) {
+      conditions.push('activo = 1');
     }
+    if (categoria) {
+      conditions.push('categoria = ?');
+    }
+    var whereClause = conditions.length > 0 ? ' WHERE ' + conditions.join(' AND ') : '';
+
+    var countQuery = 'SELECT COUNT(*) as total FROM actualidades' + whereClause;
+    var dataQuery = 'SELECT id, titulo, fuente, url_original, categoria, autor, resumen, imagen_url, numero_edicion, fecha_publicacion, activo, created_at FROM actualidades' + whereClause;
 
     dataQuery += ' ORDER BY fecha_publicacion DESC, id DESC LIMIT ? OFFSET ?';
 
