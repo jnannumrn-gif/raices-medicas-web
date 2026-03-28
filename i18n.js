@@ -201,6 +201,8 @@ const translations = {
     "actualidades.disclaimer": "Ra\u00edces M\u00e9dicas no es autora de este art\u00edculo. El resumen presentado aqu\u00ed es de car\u00e1cter educativo e informativo. Para acceder al contenido completo, visita la fuente original. Ra\u00edces M\u00e9dicas no se responsabiliza por cambios en el contenido externo despu\u00e9s de la fecha de publicaci\u00f3n.",
     "actualidades.prev": "\u00ab Anterior",
     "actualidades.next": "Siguiente \u00bb",
+    "actualidades.meta.title": "Actualidades de Salud Renal | Ra\u00edces M\u00e9dicas",
+    "actualidades.meta.description": "Noticias y actualidades sobre salud renal, nefrolog\u00eda e investigaci\u00f3n m\u00e9dica curadas por Ra\u00edces M\u00e9dicas.",
 
     // Meta
     "meta.title": "Ra\u00edces M\u00e9dicas | Educaci\u00f3n M\u00e9dica y Salud Renal",
@@ -404,6 +406,8 @@ const translations = {
     "actualidades.disclaimer": "Ra\u00edces M\u00e9dicas is not the author of this article. The summary presented here is for educational and informational purposes. To access the full content, visit the original source. Ra\u00edces M\u00e9dicas is not responsible for changes to external content after the publication date.",
     "actualidades.prev": "\u00ab Previous",
     "actualidades.next": "Next \u00bb",
+    "actualidades.meta.title": "Renal Health News | Ra\u00edces M\u00e9dicas",
+    "actualidades.meta.description": "News and updates on renal health, nephrology, and medical research curated by Ra\u00edces M\u00e9dicas.",
 
     // Meta
     "meta.title": "Ra\u00edces M\u00e9dicas | Medical Education & Renal Health",
@@ -607,6 +611,8 @@ const translations = {
     "actualidades.disclaimer": "Ra\u00edces M\u00e9dicas n\u00e3o \u00e9 autora deste artigo. O resumo apresentado aqui \u00e9 de car\u00e1ter educativo e informativo. Para acessar o conte\u00fado completo, visite a fonte original. Ra\u00edces M\u00e9dicas n\u00e3o se responsabiliza por altera\u00e7\u00f5es no conte\u00fado externo ap\u00f3s a data de publica\u00e7\u00e3o.",
     "actualidades.prev": "\u00ab Anterior",
     "actualidades.next": "Pr\u00f3ximo \u00bb",
+    "actualidades.meta.title": "Atualidades de Sa\u00fade Renal | Ra\u00edces M\u00e9dicas",
+    "actualidades.meta.description": "Not\u00edcias e atualidades sobre sa\u00fade renal, nefrologia e pesquisa m\u00e9dica curadas por Ra\u00edces M\u00e9dicas.",
 
     // Meta
     "meta.title": "Ra\u00edces M\u00e9dicas | Educa\u00e7\u00e3o M\u00e9dica e Sa\u00fade Renal",
@@ -625,10 +631,12 @@ function setLang(lang) {
   localStorage.setItem("rm-lang", lang);
   document.documentElement.lang = lang;
 
-  // Update page title and meta description
-  document.title = translations[lang]["meta.title"];
+  // Update page title and meta description (page-aware)
+  var pageTitleKey = document.documentElement.getAttribute("data-i18n-title") || "meta.title";
+  var pageDescKey = document.documentElement.getAttribute("data-i18n-desc") || "meta.description";
+  if (translations[lang][pageTitleKey]) document.title = translations[lang][pageTitleKey];
   var metaDesc = document.querySelector('meta[name="description"]');
-  if (metaDesc) metaDesc.setAttribute("content", translations[lang]["meta.description"]);
+  if (metaDesc && translations[lang][pageDescKey]) metaDesc.setAttribute("content", translations[lang][pageDescKey]);
 
   // Update all elements with data-i18n attribute
   document.querySelectorAll("[data-i18n]").forEach(function(el) {
