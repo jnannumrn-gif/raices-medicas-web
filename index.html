@@ -173,6 +173,17 @@
     .led-digit.loading{color:#1a3a1a;text-shadow:none}
     @media(max-width:480px){.led-digit{width:28px;height:44px;font-size:30px}.led-display{gap:4px;padding:12px 16px}.visitor-counter-label{font-size:15px}}
 
+    /* Welcome Visitor Banner */
+    .welcome-banner{margin-top:72px;background:linear-gradient(90deg,#0b1e36 0%,#163a5f 50%,#1a5276 100%);padding:10px 0;text-align:center;position:relative;overflow:hidden;opacity:0;max-height:0;transition:opacity .6s ease,max-height .6s ease}
+    .welcome-banner.visible{opacity:1;max-height:60px}
+    .welcome-banner.visible+.hero{margin-top:0}
+    .welcome-banner::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:repeating-linear-gradient(90deg,transparent,transparent 20px,rgba(127,181,158,0.03) 20px,rgba(127,181,158,0.03) 40px)}
+    .welcome-banner-inner{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:8px}
+    .welcome-text{font-family:'DM Sans','Inter',sans-serif;font-size:14px;color:rgba(255,255,255,0.85);font-weight:400;letter-spacing:.3px}
+    .welcome-number{font-family:'Playfair Display',serif;font-weight:700;font-size:18px;color:var(--accent);letter-spacing:.5px}
+    .welcome-sparkle{font-size:14px;opacity:.7}
+    @media(max-width:640px){.welcome-text{font-size:12px}.welcome-number{font-size:15px}}
+
     /* Último Episodio Section */
     .ultimo-episodio {
       background: #0d1b1e;
@@ -426,6 +437,16 @@
     <a href="#quiz" onclick="toggleMenu()" data-i18n="nav.quiz">Quiz</a>
     <a href="/actualidades.html" onclick="toggleMenu()" data-i18n="nav.actualidades">Actualidades</a>
     <a href="#contacto" onclick="toggleMenu()" data-i18n="nav.contacto">Contacto</a>
+  </div>
+
+  <!-- Welcome Visitor Banner -->
+  <div class="welcome-banner" id="welcome-banner">
+    <div class="container welcome-banner-inner">
+      <span class="welcome-sparkle">✨</span>
+      <span class="welcome-text" data-i18n="welcome.text">¡Bienvenido! Eres el visitante número</span>
+      <span class="welcome-number" id="welcome-count">---</span>
+      <span class="welcome-sparkle">✨</span>
+    </div>
   </div>
 
   <section class="hero" id="inicio">
@@ -849,22 +870,32 @@
       }
     })();
 
-    // Visitor Counter
+    // Visitor Counter + Welcome Banner
     (async () => {
       try {
         var res = await fetch("/api/visitor-count");
         if (!res.ok) throw new Error("HTTP " + res.status);
         var data = await res.json();
         var count = String(data.count);
+
+        // Update bottom LED display
         var display = document.getElementById("led-display");
-        // Pad to at least 8 digits
-        while (count.length < 8) count = "0" + count;
+        var padded = count;
+        while (padded.length < 8) padded = "0" + padded;
         display.innerHTML = "";
-        for (var i = 0; i < count.length; i++) {
+        for (var i = 0; i < padded.length; i++) {
           var d = document.createElement("div");
           d.className = "led-digit";
-          d.textContent = count[i];
+          d.textContent = padded[i];
           display.appendChild(d);
+        }
+
+        // Update welcome banner at top
+        var welcomeCount = document.getElementById("welcome-count");
+        var welcomeBanner = document.getElementById("welcome-banner");
+        if (welcomeCount && welcomeBanner) {
+          welcomeCount.textContent = "#" + Number(count).toLocaleString();
+          welcomeBanner.classList.add("visible");
         }
       } catch (err) {
         console.error("Visitor counter error:", err);
