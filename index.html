@@ -583,21 +583,21 @@
   <section class="quiz-section" id="quiz">
     <div class="quiz-inner">
       <div class="quiz-header">
-        <div class="quiz-eyebrow">Raíces Médicas</div>
-        <div class="quiz-title">Quiz de la Semana</div>
+        <div class="quiz-eyebrow" data-i18n="quiz.eyebrow">Raíces Médicas</div>
+        <div class="quiz-title" data-i18n="quiz.title">Quiz de la Semana</div>
         <div class="quiz-subtitle" id="quiz-subtitle"></div>
       </div>
       <div class="quiz-card" id="quiz-card">
         <div class="quiz-loading" id="quiz-loading">
           <div class="quiz-spinner"></div>
-          <p>Cargando quiz…</p>
+          <p data-i18n="quiz.loading">Cargando quiz…</p>
         </div>
         <div class="quiz-error" id="quiz-error" hidden>
-          <p>No hay quiz disponible esta semana. ¡Regresa el próximo lunes!</p>
+          <p data-i18n="quiz.error">No hay quiz disponible esta semana. ¡Regresa el próximo lunes!</p>
         </div>
         <div id="quiz-content" hidden></div>
       </div>
-      <div class="quiz-footer-text">Donde la ciencia se encuentra con la compasión</div>
+      <div class="quiz-footer-text" data-i18n="quiz.footer">Donde la ciencia se encuentra con la compasión</div>
     </div>
   </section>
 
@@ -798,15 +798,15 @@
           </ul>
         </div>
       </div>
-      <div class="footer-disclaimer" style="text-align:center;padding:18px 24px 0;font-size:13px;color:var(--muted);line-height:1.6;max-width:700px;margin:0 auto;">
+      <div class="footer-disclaimer" style="text-align:center;padding:18px 24px 0;font-size:13px;color:var(--muted);line-height:1.6;max-width:700px;margin:0 auto;" data-i18n="footer.disclaimer">
         Este sitio ofrece contenido educativo e informativo únicamente y no sustituye la evaluación médica profesional. Consulte siempre a su proveedor de salud.
       </div>
       <div class="footer-bottom">
         <span data-i18n="footer.copy">&copy; 2026 Raíces Médicas. Todos los derechos reservados.</span>
         <span class="footer-legal-links" style="display:block;margin-top:6px;font-size:13px;">
-          <a href="/aviso-legal.html" style="color:var(--muted);margin:0 6px;">Aviso legal</a> |
-          <a href="/politica-privacidad.html" style="color:var(--muted);margin:0 6px;">Privacidad</a> |
-          <a href="/cookies.html" style="color:var(--muted);margin:0 6px;">Cookies</a>
+          <a href="/aviso-legal.html" style="color:var(--muted);margin:0 6px;" data-i18n="footer.legal.aviso">Aviso legal</a> |
+          <a href="/politica-privacidad.html" style="color:var(--muted);margin:0 6px;" data-i18n="footer.legal.privacidad">Privacidad</a> |
+          <a href="/cookies.html" style="color:var(--muted);margin:0 6px;" data-i18n="footer.legal.cookies">Cookies</a>
         </span>
         <div class="footer-social">
           <a href="https://www.youtube.com/@RaicesMedicas" target="_blank" aria-label="YouTube"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
@@ -957,8 +957,11 @@
         var html = '';
         // Progress
         html += '<div class="quiz-progress-row">';
-        html += '<span class="quiz-progress-label">Pregunta ' + (currentIdx + 1) + ' de ' + quizData.questions.length + '</span>';
-        html += '<span class="quiz-progress-label">' + correctCount + ' correctas</span>';
+        var t = typeof translations !== 'undefined' && translations[getCurrentLang()] ? translations[getCurrentLang()] : {};
+        var progressText = (t['quiz.progress'] || 'Pregunta {current} de {total}').replace('{current}', currentIdx + 1).replace('{total}', quizData.questions.length);
+        var correctText = (t['quiz.correct_count'] || '{n} correctas').replace('{n}', correctCount);
+        html += '<span class="quiz-progress-label">' + progressText + '</span>';
+        html += '<span class="quiz-progress-label">' + correctText + '</span>';
         html += '</div>';
         html += '<div class="quiz-progress-bar"><div class="quiz-progress-fill" style="width:' + progress + '%"></div></div>';
 
@@ -993,15 +996,15 @@
           var isCorrect = feedbackData.is_correct;
           html += '<div class="quiz-explanation ' + (isCorrect ? 'correct' : 'wrong') + '">';
           html += '<div class="quiz-explanation-title ' + (isCorrect ? 'correct' : 'wrong') + '">';
-          html += isCorrect ? '&check; \u00a1Correcto!' : '&cross; No exactamente';
+          html += isCorrect ? '&check; ' + (t['quiz.correct'] || '\u00a1Correcto!') : '&cross; ' + (t['quiz.incorrect'] || 'No exactamente');
           html += '</div>';
           html += '<div class="quiz-explanation-text">' + escapeHtml(feedbackData.explanation) + '</div>';
           if (feedbackData.stats && feedbackData.stats.total_answers > 0) {
-            html += '<div class="quiz-stats">El ' + feedbackData.stats.correct_pct + '% de los visitantes respondi\u00f3 correctamente.</div>';
+            html += '<div class="quiz-stats">' + (t['quiz.stats'] || 'El {pct}% de los visitantes respondi\u00f3 correctamente.').replace('{pct}', feedbackData.stats.correct_pct) + '</div>';
           }
           html += '</div>';
 
-          var btnText = (currentIdx + 1 < quizData.questions.length) ? 'Siguiente pregunta \u2192' : 'Ver mis resultados';
+          var btnText = (currentIdx + 1 < quizData.questions.length) ? (t['quiz.next'] || 'Siguiente pregunta \u2192') : (t['quiz.results'] || 'Ver mis resultados');
           html += '<button class="quiz-next" id="quiz-next-btn">' + btnText + '</button>';
         }
 
@@ -1026,6 +1029,7 @@
         var score = answers.filter(Boolean).length;
         var total = quizData.questions.length;
         var msg = getScoreMessage(score, total);
+        var t = typeof translations !== 'undefined' && translations[getCurrentLang()] ? translations[getCurrentLang()] : {};
 
         var html = '<div style="text-align:center">';
         html += '<div class="quiz-score">' + score + '/' + total + '</div>';
@@ -1039,13 +1043,13 @@
           html += '<span class="quiz-recap-icon">' + icon + '</span>';
           html += '<div>';
           html += '<div class="quiz-recap-q">' + escapeHtml(q.question) + '</div>';
-          var correctAnswer = (q._correctIndex != null && q.options[q._correctIndex]) ? q.options[q._correctIndex] : 'No disponible';
-          html += '<div class="quiz-recap-a">Respuesta: <span>' + escapeHtml(correctAnswer) + '</span></div>';
+          var correctAnswer = (q._correctIndex != null && q.options[q._correctIndex]) ? q.options[q._correctIndex] : '';
+          html += '<div class="quiz-recap-a">' + (t['quiz.answer'] || 'Respuesta:') + ' <span>' + escapeHtml(correctAnswer) + '</span></div>';
           html += '</div></div>';
         }
 
-        html += '<div class="quiz-comeback"><p>\uD83D\uDCC5 Regresa el pr\u00f3ximo lunes para el nuevo Quiz de la Semana</p></div>';
-        html += '<button class="quiz-next" id="quiz-retry-btn" style="margin-top:16px">Volver a intentarlo</button>';
+        html += '<div class="quiz-comeback"><p>' + (t['quiz.comeback'] || '\uD83D\uDCC5 Regresa el pr\u00f3ximo lunes para el nuevo Quiz de la Semana') + '</p></div>';
+        html += '<button class="quiz-next" id="quiz-retry-btn" style="margin-top:16px">' + (t['quiz.retry'] || 'Volver a intentarlo') + '</button>';
         html += '</div>';
 
         contentEl.innerHTML = html;
@@ -1087,7 +1091,8 @@
         .catch(function(err) {
           console.error('Quiz answer error:', err);
           // Fallback: still show feedback locally
-          feedbackData = { is_correct: false, correct_index: -1, explanation: 'No se pudo enviar la respuesta.', stats: null };
+          var t = typeof translations !== 'undefined' && translations[getCurrentLang()] ? translations[getCurrentLang()] : {};
+          feedbackData = { is_correct: false, correct_index: -1, explanation: t['quiz.error.submit'] || 'No se pudo enviar la respuesta.', stats: null };
           q._correctIndex = null;
           answers.push(false);
           render();
@@ -1117,10 +1122,11 @@
       }
 
       function getScoreMessage(score, total) {
-        if (score === total) return { text: '\u00a1Perfecto! Eres un guardi\u00e1n de la salud renal \uD83C\uDFC6', color: '#5dba80' };
-        if (score === total - 1) return { text: '\u00a1Muy bien! Sabes m\u00e1s de lo que crees \uD83D\uDCAA', color: '#4a9e6b' };
-        if (score >= 1) return { text: 'Buen comienzo \u2014 aprende y regresa la pr\u00f3xima semana \uD83D\uDCD6', color: '#c97a45' };
-        return { text: 'Aqu\u00ed empezamos \u2014 cada pregunta es una semilla de conocimiento \uD83C\uDF31', color: '#8aaa8e' };
+        var t = typeof translations !== 'undefined' && translations[getCurrentLang()] ? translations[getCurrentLang()] : {};
+        if (score === total) return { text: t['quiz.score.perfect'] || '\u00a1Perfecto! Eres un guardi\u00e1n de la salud renal \uD83C\uDFC6', color: '#5dba80' };
+        if (score === total - 1) return { text: t['quiz.score.great'] || '\u00a1Muy bien! Sabes m\u00e1s de lo que crees \uD83D\uDCAA', color: '#4a9e6b' };
+        if (score >= 1) return { text: t['quiz.score.good'] || 'Buen comienzo \u2014 aprende y regresa la pr\u00f3xima semana \uD83D\uDCD6', color: '#c97a45' };
+        return { text: t['quiz.score.start'] || 'Aqu\u00ed empezamos \u2014 cada pregunta es una semilla de conocimiento \uD83C\uDF31', color: '#8aaa8e' };
       }
 
       function escapeHtml(str) {
@@ -1162,11 +1168,11 @@
     display: none;
     font-family: Arial, sans-serif;
   ">
-    <p style="margin: 0 0 12px 0; color: #1f2937; line-height: 1.5;">
-      Este sitio utiliza cookies para mejorar la experiencia del usuario, analizar el tráfico
+    <p id="cookie-text" style="margin: 0 0 12px 0; color: #1f2937; line-height: 1.5;">
+      <span data-i18n="cookie.text">Este sitio utiliza cookies para mejorar la experiencia del usuario, analizar el tráfico
       y medir el rendimiento de campañas publicitarias. Al continuar navegando, usted acepta
-      nuestro uso de cookies. Lea nuestra
-      <a href="/politica-privacidad.html" style="color: #166534; text-decoration: none;">Política de Privacidad</a>.
+      nuestro uso de cookies. Lea nuestra</span>
+      <a href="/politica-privacidad.html" style="color: #166534; text-decoration: none;" data-i18n="cookie.policy.link">Política de Privacidad</a>.
     </p>
 
     <div style="display: flex; gap: 10px; flex-wrap: wrap;">
@@ -1178,7 +1184,7 @@
         padding: 10px 16px;
         cursor: pointer;
         font-size: 14px;
-      ">
+      " data-i18n="cookie.accept">
         Aceptar
       </button>
 
@@ -1190,7 +1196,7 @@
         padding: 10px 16px;
         cursor: pointer;
         font-size: 14px;
-      ">
+      " data-i18n="cookie.reject">
         Rechazar
       </button>
     </div>
