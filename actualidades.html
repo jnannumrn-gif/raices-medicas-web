@@ -163,11 +163,11 @@
     var currentCategory = '';
     var LIMIT = 10;
 
-    // Disclaimer text — use i18n if available
+    // i18n helper — returns current language translations or empty object
     function getT() {
       return (typeof translations !== 'undefined' && typeof getCurrentLang === 'function' && translations[getCurrentLang()]) ? translations[getCurrentLang()] : {};
     }
-    var DISCLAIMER = (getT()['actualidades.disclaimer']) || 'Ra\u00edces M\u00e9dicas no es autora de este art\u00edculo. El resumen presentado aqu\u00ed es de car\u00e1cter educativo e informativo. Para acceder al contenido completo, visita la fuente original. Ra\u00edces M\u00e9dicas no se responsabiliza por cambios en el contenido externo despu\u00e9s de la fecha de publicaci\u00f3n.';
+    var DISCLAIMER_FALLBACK = 'Ra\u00edces M\u00e9dicas no es autora de este art\u00edculo. El resumen presentado aqu\u00ed es de car\u00e1cter educativo e informativo. Para acceder al contenido completo, visita la fuente original. Ra\u00edces M\u00e9dicas no se responsabiliza por cambios en el contenido externo despu\u00e9s de la fecha de publicaci\u00f3n.';
 
     // Category filter click handlers
     document.getElementById('category-filters').addEventListener('click', function(e) {
@@ -230,7 +230,7 @@
           '<a href="' + safeUrl + '" target="_blank" rel="noopener noreferrer" class="entry-cta">' +
             (getT()['actualidades.read'] || 'Leer art\u00edculo completo') + ' <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>' +
           '</a>' +
-          '<div class="entry-disclaimer">' + DISCLAIMER + '</div>' +
+          '<div class="entry-disclaimer">' + (getT()['actualidades.disclaimer'] || DISCLAIMER_FALLBACK) + '</div>' +
         '</div>' +
       '</article>';
     }
@@ -277,7 +277,9 @@
 
       loadingEl.style.display = 'block';
       emptyEl.style.display = 'none';
+      emptyEl.querySelector('h3').setAttribute('data-i18n', 'actualidades.empty.title');
       emptyEl.querySelector('h3').textContent = getT()['actualidades.empty.title'] || 'No hay actualidades disponibles';
+      emptyEl.querySelector('p').setAttribute('data-i18n', 'actualidades.empty.desc');
       emptyEl.querySelector('p').textContent = getT()['actualidades.empty.desc'] || 'Pronto publicaremos nuevas noticias sobre salud renal. \u00a1Regresa pronto!';
       gridEl.innerHTML = '';
       paginationEl.style.display = 'none';
@@ -310,7 +312,9 @@
         .catch(function(err) {
           loadingEl.style.display = 'none';
           emptyEl.style.display = 'block';
+          emptyEl.querySelector('h3').setAttribute('data-i18n', 'actualidades.error.title');
           emptyEl.querySelector('h3').textContent = getT()['actualidades.error.title'] || 'Error al cargar';
+          emptyEl.querySelector('p').setAttribute('data-i18n', 'actualidades.error.desc');
           emptyEl.querySelector('p').textContent = getT()['actualidades.error.desc'] || 'No pudimos cargar las actualidades. Intenta de nuevo más tarde.';
         });
     }
