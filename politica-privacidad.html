@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-i18n-title="privacidad.meta.title" data-i18n-desc="privacidad.meta.description">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -46,123 +46,170 @@
       padding: 28px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     }
+
+    .legal-top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .lang-switcher {
+      display: flex;
+      gap: 6px;
+    }
+
+    .lang-btn {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #166534;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .lang-btn:hover {
+      background: #dcfce7;
+    }
+
+    .lang-btn.active {
+      background: #166534;
+      color: white;
+      border-color: #166534;
+    }
   </style>
 </head>
 
 <body>
   <div class="container">
 
-    <a href="/">← Volver al inicio</a>
+    <div class="legal-top-bar">
+      <a href="/" data-i18n="legal.back">← Volver al inicio</a>
+      <div class="lang-switcher">
+        <a href="#" class="lang-btn active" data-lang="es">ES</a>
+        <a href="#" class="lang-btn" data-lang="en">EN</a>
+        <a href="#" class="lang-btn" data-lang="pt">PT</a>
+      </div>
+    </div>
 
     <div class="box">
-      <h1>Política de Privacidad</h1>
+      <h1 data-i18n="privacidad.title">Política de Privacidad</h1>
 
-      <p>
+      <p data-i18n="privacidad.intro">
         En Raíces Médicas respetamos su privacidad y nos comprometemos a proteger
         la información personal de los usuarios que visitan este sitio web.
       </p>
 
-      <h2>1. Información que recopilamos</h2>
-      <p>
+      <h2 data-i18n="privacidad.s1.title">1. Información que recopilamos</h2>
+      <p data-i18n="privacidad.s1.p1">
         Podemos recopilar información de forma automática cuando usted visita
         nuestro sitio, incluyendo:
       </p>
       <ul>
-        <li>Dirección IP</li>
-        <li>Ubicación aproximada</li>
-        <li>Tipo de dispositivo y navegador</li>
-        <li>Páginas visitadas y tiempo de navegación</li>
+        <li data-i18n="privacidad.s1.li1">Dirección IP</li>
+        <li data-i18n="privacidad.s1.li2">Ubicación aproximada</li>
+        <li data-i18n="privacidad.s1.li3">Tipo de dispositivo y navegador</li>
+        <li data-i18n="privacidad.s1.li4">Páginas visitadas y tiempo de navegación</li>
       </ul>
 
-      <p>
+      <p data-i18n="privacidad.s1.p2">
         Si el usuario interactúa con formularios, quizzes o canales de contacto,
         puede proporcionar información adicional de forma voluntaria.
       </p>
 
-      <h2>2. Uso de la información</h2>
-      <p>
+      <h2 data-i18n="privacidad.s2.title">2. Uso de la información</h2>
+      <p data-i18n="privacidad.s2.p1">
         La información recopilada se utiliza para:
       </p>
       <ul>
-        <li>Mejorar la experiencia del usuario</li>
-        <li>Analizar el tráfico del sitio web</li>
-        <li>Optimizar contenido educativo</li>
-        <li>Medir el rendimiento de campañas publicitarias</li>
+        <li data-i18n="privacidad.s2.li1">Mejorar la experiencia del usuario</li>
+        <li data-i18n="privacidad.s2.li2">Analizar el tráfico del sitio web</li>
+        <li data-i18n="privacidad.s2.li3">Optimizar contenido educativo</li>
+        <li data-i18n="privacidad.s2.li4">Medir el rendimiento de campañas publicitarias</li>
       </ul>
 
-      <h2>3. Cookies y tecnologías de seguimiento</h2>
-      <p>
+      <h2 data-i18n="privacidad.s3.title">3. Cookies y tecnologías de seguimiento</h2>
+      <p data-i18n="privacidad.s3.p1">
         Este sitio utiliza cookies y tecnologías similares para analizar el
         comportamiento de los usuarios y mejorar la funcionalidad del sitio.
       </p>
 
-      <p>
+      <p data-i18n="privacidad.s3.p2">
         Estas tecnologías pueden ser utilizadas por terceros como:
       </p>
       <ul>
-        <li>Google (Google Analytics, Google Ads)</li>
-        <li>Meta (Facebook Pixel)</li>
+        <li data-i18n="privacidad.s3.li1">Google (Google Analytics, Google Ads)</li>
+        <li data-i18n="privacidad.s3.li2">Meta (Facebook Pixel)</li>
       </ul>
 
-      <p>
+      <p data-i18n="privacidad.s3.p3">
         Usted puede desactivar las cookies desde la configuración de su navegador.
       </p>
 
-      <h2>4. Publicidad y terceros</h2>
-      <p>
+      <h2 data-i18n="privacidad.s4.title">4. Publicidad y terceros</h2>
+      <p data-i18n="privacidad.s4.p1">
         Podemos utilizar plataformas publicitarias como Google Ads y Meta Ads,
         las cuales pueden recopilar información para mostrar anuncios relevantes.
       </p>
 
-      <p>
+      <p data-i18n="privacidad.s4.p2">
         Estas plataformas pueden utilizar cookies y tecnologías de seguimiento
         para personalizar anuncios basados en su comportamiento en línea.
       </p>
 
-      <h2>5. Compartición de información</h2>
-      <p>
+      <h2 data-i18n="privacidad.s5.title">5. Compartición de información</h2>
+      <p data-i18n="privacidad.s5.p1">
         No vendemos, alquilamos ni compartimos información personal identificable
         con terceros, excepto cuando sea requerido por ley o necesario para el
         funcionamiento del sitio.
       </p>
 
-      <h2>6. Seguridad</h2>
-      <p>
+      <h2 data-i18n="privacidad.s6.title">6. Seguridad</h2>
+      <p data-i18n="privacidad.s6.p1">
         Implementamos medidas razonables para proteger la información del usuario,
         aunque no podemos garantizar seguridad absoluta en internet.
       </p>
 
-      <h2>7. Enlaces externos</h2>
-      <p>
+      <h2 data-i18n="privacidad.s7.title">7. Enlaces externos</h2>
+      <p data-i18n="privacidad.s7.p1">
         Este sitio puede contener enlaces a plataformas externas como YouTube,
         WhatsApp o redes sociales. No somos responsables por las políticas de
         privacidad de dichos servicios.
       </p>
 
-      <h2>8. Derechos del usuario</h2>
-      <p>
+      <h2 data-i18n="privacidad.s8.title">8. Derechos del usuario</h2>
+      <p data-i18n="privacidad.s8.p1">
         Dependiendo de su ubicación, usted puede tener derecho a acceder,
         modificar o eliminar su información personal.
       </p>
 
-      <h2>9. Cambios en esta política</h2>
-      <p>
+      <h2 data-i18n="privacidad.s9.title">9. Cambios en esta política</h2>
+      <p data-i18n="privacidad.s9.p1">
         Raíces Médicas puede actualizar esta política en cualquier momento.
         Se recomienda revisar esta página periódicamente.
       </p>
 
-      <h2>10. Contacto</h2>
-      <p>
+      <h2 data-i18n="privacidad.s10.title">10. Contacto</h2>
+      <p data-i18n="privacidad.s10.p1">
         Si tiene preguntas sobre esta política, puede contactarnos a través de
         los medios disponibles en el sitio web.
       </p>
 
     </div>
 
-    <p style="margin-top:30px; color:#6b7280;">
+    <p style="margin-top:30px; color:#6b7280;" data-i18n="legal.copyright">
       © 2026 Raíces Médicas
     </p>
 
   </div>
+
+  <script src="i18n.js"></script>
 </body>
 </html>
