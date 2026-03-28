@@ -1,4 +1,8 @@
--- Seed Data — First Quiz (Week of March 24, 2026)
+-- Seed Data — Raíces Médicas
+
+-- ============================================================
+-- Quiz: First Quiz (Week of March 24, 2026)
+-- ============================================================
 
 INSERT INTO quizzes (week_start, subtitle) VALUES ('2026-03-24', 'Semana del 24 de marzo · Salud Renal');
 
@@ -20,4 +24,19 @@ INSERT INTO quiz_questions (quiz_id, position, question, option_a, option_b, opt
   'Dolor de cabeza frecuente', 'Visión borrosa', 'Espuma en la orina', 'Pérdida del apetito',
   2,
   'La espuma en la orina puede ser señal de proteinuria — proteína que se filtra a la orina cuando los riñones están dañados. Es uno de los primeros síntomas de enfermedad renal y muchas veces se ignora.'
+);
+
+-- ============================================================
+-- Actualidades: First Entry (Día Mundial del Riñón 2026)
+-- ============================================================
+
+INSERT INTO actualidades (titulo, fuente, url_original, categoria, autor, resumen, imagen_url, fecha_publicacion) VALUES (
+  'El Día Mundial del Riñón 2026: Cuidar tus Riñones es Cuidar tu Vida',
+  'NKF / World Kidney Day Organization',
+  'https://www.worldkidneyday.org',
+  'Comunidad',
+  'Equipo Raíces Médicas',
+  'El pasado 12 de marzo de 2026 se celebró el Día Mundial del Riñón, una iniciativa global que busca crear conciencia sobre la importancia de la salud renal y la prevención de la enfermedad renal crónica. Este año, el tema central fue la detección temprana — recordándonos que millones de personas en el mundo viven con daño renal sin saberlo, ya que la enfermedad frecuentemente no presenta síntomas hasta etapas avanzadas. Desde Raíces Médicas, nos unimos a este mensaje: hazte revisar la función de tus riñones con tu médico, especialmente si tienes diabetes, hipertensión, o antecedentes familiares de enfermedad renal.',
+  '/assets/images/dia-mundial-rinon-2026.jpg',
+  '2026-03-27'
 );

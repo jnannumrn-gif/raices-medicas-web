@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Actualidades de Salud Renal | Raíces Médicas</title>
+  <meta name="description" content="Noticias y actualidades sobre salud renal, nefrología e investigación médica curadas por Raíces Médicas." />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18020189394"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-18020189394');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:#f4f8fb;--card:#ffffff;--text:#17324d;--muted:#5f7387;
+      --line:#d9e4ee;--primary:#2f6f9f;--primary-dark:#1f5278;
+      --primary-light:#e8f1f8;--accent:#7fb59e;--accent-dark:#5a9a7d;
+      --shadow:0 12px 32px rgba(20,49,74,0.08);--radius:20px;--max:1120px;
+      --gradient-hero:linear-gradient(135deg,#0b1e36 0%,#163a5f 40%,#1a5276 70%,#1f6f8b 100%);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',system-ui,-apple-system,sans-serif;color:var(--text);background:var(--bg);line-height:1.7;-webkit-font-smoothing:antialiased}
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
+
+    /* Header */
+    .page-header{background:var(--gradient-hero);color:white;padding:48px 0 40px;text-align:center}
+    .page-header .container{max-width:var(--max);margin:0 auto;padding:0 24px}
+    .page-header .back-link{display:inline-flex;align-items:center;gap:6px;color:rgba(255,255,255,0.7);font-size:14px;margin-bottom:20px;transition:color 0.2s}
+    .page-header .back-link:hover{color:white}
+    .page-header h1{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,42px);font-weight:700;margin-bottom:8px}
+    .page-header p{font-size:16px;color:rgba(255,255,255,0.75);max-width:600px;margin:0 auto}
+
+    /* Main content */
+    .main-content{max-width:var(--max);margin:0 auto;padding:32px 24px 60px}
+
+    /* Category filters */
+    .category-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px;justify-content:center}
+    .cat-btn{padding:8px 18px;border-radius:999px;border:1.5px solid var(--line);background:white;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;transition:all 0.2s}
+    .cat-btn:hover{border-color:var(--primary);color:var(--primary)}
+    .cat-btn.active{background:var(--primary);color:white;border-color:var(--primary)}
+
+    /* Entries grid */
+    .entries-grid{display:grid;grid-template-columns:1fr;gap:28px}
+
+    /* Entry card */
+    .entry-card{background:white;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:transform 0.3s,box-shadow 0.3s;display:grid;grid-template-columns:320px 1fr}
+    .entry-card:hover{transform:translateY(-4px);box-shadow:0 20px 50px rgba(20,49,74,0.14)}
+    .entry-card-img{height:100%;min-height:220px;overflow:hidden;position:relative;background:#e8f1f8}
+    .entry-card-img img{width:100%;height:100%;object-fit:cover}
+    .entry-card-img .placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#e8f1f8,#d4e6f1);padding:20px}
+    .entry-card-img .placeholder img{width:80px;height:80px;opacity:0.3}
+    .entry-card-body{padding:28px;display:flex;flex-direction:column}
+    .entry-badges{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+    .badge{display:inline-block;padding:4px 12px;border-radius:999px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px}
+    .badge-cat{background:var(--primary-light);color:var(--primary)}
+    .badge-source{background:#f0fdf4;color:#166534;border:1px solid #bbf7d0}
+    .entry-card-body h2{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;line-height:1.3;margin-bottom:8px;color:var(--text)}
+    .entry-meta{font-size:13px;color:var(--muted);margin-bottom:12px;display:flex;gap:16px;flex-wrap:wrap}
+    .entry-meta span{display:inline-flex;align-items:center;gap:4px}
+    .entry-summary{font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:16px;flex:1}
+    .entry-cta{display:inline-flex;align-items:center;gap:6px;color:var(--primary);font-weight:600;font-size:14px;transition:gap 0.2s}
+    .entry-cta:hover{gap:10px}
+
+    /* Disclaimer */
+    .entry-disclaimer{margin-top:16px;padding-top:14px;border-top:1px solid var(--line);font-size:12px;color:#9ca3af;line-height:1.5}
+
+    /* Pagination */
+    .pagination{display:flex;justify-content:center;gap:8px;margin-top:40px}
+    .page-btn{padding:10px 18px;border-radius:10px;border:1.5px solid var(--line);background:white;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;cursor:pointer;transition:all 0.2s}
+    .page-btn:hover{border-color:var(--primary);color:var(--primary)}
+    .page-btn.active{background:var(--primary);color:white;border-color:var(--primary)}
+    .page-btn:disabled{opacity:0.4;cursor:not-allowed}
+
+    /* Loading & empty states */
+    .loading-state{text-align:center;padding:60px 20px;color:var(--muted)}
+    .loading-spinner{width:40px;height:40px;border:3px solid var(--line);border-top-color:var(--primary);border-radius:50%;margin:0 auto 16px;animation:spin 0.8s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .empty-state{text-align:center;padding:80px 20px;color:var(--muted)}
+    .empty-state h3{font-family:'Playfair Display',serif;font-size:24px;color:var(--text);margin-bottom:8px}
+
+    /* Footer */
+    .page-footer{background:var(--gradient-hero);color:white;text-align:center;padding:32px 20px}
+    .page-footer p{font-size:13px;color:rgba(255,255,255,0.6)}
+    .page-footer a{color:rgba(255,255,255,0.8);transition:color 0.2s}
+    .page-footer a:hover{color:white}
+
+    /* Responsive */
+    @media(max-width:768px){
+      .entry-card{grid-template-columns:1fr}
+      .entry-card-img{min-height:200px;max-height:240px}
+      .entry-card-body{padding:20px}
+      .entry-card-body h2{font-size:19px}
+      .category-filters{justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap;-webkit-overflow-scrolling:touch;padding-bottom:4px}
+      .cat-btn{white-space:nowrap;flex-shrink:0}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="page-header">
+    <div class="container">
+      <a href="/" class="back-link">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Volver al inicio
+      </a>
+      <h1>Actualidades de Salud Renal</h1>
+      <p>Noticias, investigación y avances en nefrología curados por el equipo de Raíces Médicas</p>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Category Filters -->
+    <div class="category-filters" id="category-filters">
+      <button class="cat-btn active" data-cat="">Todas</button>
+      <button class="cat-btn" data-cat="Prevención">Prevención</button>
+      <button class="cat-btn" data-cat="Nutrición Renal">Nutrición Renal</button>
+      <button class="cat-btn" data-cat="Diálisis">Diálisis</button>
+      <button class="cat-btn" data-cat="Investigación">Investigación</button>
+      <button class="cat-btn" data-cat="Comunidad">Comunidad</button>
+    </div>
+
+    <!-- Loading state -->
+    <div class="loading-state" id="loading-state">
+      <div class="loading-spinner"></div>
+      <p>Cargando actualidades...</p>
+    </div>
+
+    <!-- Empty state -->
+    <div class="empty-state" id="empty-state" style="display:none">
+      <h3>No hay actualidades disponibles</h3>
+      <p>Pronto publicaremos nuevas noticias sobre salud renal. ¡Regresa pronto!</p>
+    </div>
+
+    <!-- Entries -->
+    <div class="entries-grid" id="entries-grid"></div>
+
+    <!-- Pagination -->
+    <div class="pagination" id="pagination" style="display:none"></div>
+  </div>
+
+  <!-- Footer -->
+  <div class="page-footer">
+    <p>&copy; 2026 Raíces Médicas. Todos los derechos reservados.</p>
+    <p style="margin-top:6px">
+      <a href="/aviso-legal.html">Aviso legal</a> |
+      <a href="/politica-privacidad.html">Privacidad</a> |
+      <a href="/cookies.html">Cookies</a>
+    </p>
+  </div>
+
+  <script>
+    var currentPage = 1;
+    var currentCategory = '';
+    var LIMIT = 10;
+
+    // Disclaimer text
+    var DISCLAIMER = 'Raíces Médicas no es autora de este artículo. El resumen presentado aquí es de carácter educativo e informativo. Para acceder al contenido completo, visita la fuente original. Raíces Médicas no se responsabiliza por cambios en el contenido externo después de la fecha de publicación.';
+
+    // Category filter click handlers
+    document.getElementById('category-filters').addEventListener('click', function(e) {
+      var btn = e.target.closest('.cat-btn');
+      if (!btn) return;
+
+      var buttons = document.querySelectorAll('.cat-btn');
+      for (var i = 0; i < buttons.length; i++) {
+        buttons[i].classList.remove('active');
+      }
+      btn.classList.add('active');
+
+      currentCategory = btn.getAttribute('data-cat');
+      currentPage = 1;
+      loadEntries();
+    });
+
+    function formatDate(dateStr) {
+      if (!dateStr) return '';
+      var parts = dateStr.split('-');
+      var months = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+      var day = parseInt(parts[2], 10);
+      var month = months[parseInt(parts[1], 10) - 1] || '';
+      var year = parts[0];
+      return day + ' de ' + month + ' de ' + year;
+    }
+
+    function renderEntry(entry) {
+      var imgHtml;
+      if (entry.imagen_url) {
+        imgHtml = '<div class="entry-card-img"><img src="' + entry.imagen_url + '" alt="' + entry.titulo.replace(/"/g, '&quot;') + '" loading="lazy" /></div>';
+      } else {
+        imgHtml = '<div class="entry-card-img"><div class="placeholder"><img src="/logo.svg" alt="Raíces Médicas" /></div></div>';
+      }
+
+      return '<article class="entry-card">' +
+        imgHtml +
+        '<div class="entry-card-body">' +
+          '<div class="entry-badges">' +
+            '<span class="badge badge-cat">' + entry.categoria + '</span>' +
+            '<span class="badge badge-source">' + entry.fuente + '</span>' +
+          '</div>' +
+          '<h2>' + entry.titulo + '</h2>' +
+          '<div class="entry-meta">' +
+            '<span><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg> ' + formatDate(entry.fecha_publicacion) + '</span>' +
+            '<span><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> ' + entry.autor + '</span>' +
+          '</div>' +
+          '<p class="entry-summary">' + entry.resumen + '</p>' +
+          '<a href="' + entry.url_original + '" target="_blank" rel="noopener noreferrer" class="entry-cta">' +
+            'Leer artículo completo <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>' +
+          '</a>' +
+          '<div class="entry-disclaimer">' + DISCLAIMER + '</div>' +
+        '</div>' +
+      '</article>';
+    }
+
+    function renderPagination(pagination) {
+      var container = document.getElementById('pagination');
+      if (pagination.totalPages <= 1) {
+        container.style.display = 'none';
+        return;
+      }
+
+      container.style.display = 'flex';
+      var html = '';
+
+      // Previous button
+      html += '<button class="page-btn" onclick="goToPage(' + (pagination.page - 1) + ')"' + (pagination.page <= 1 ? ' disabled' : '') + '>&laquo; Anterior</button>';
+
+      // Page numbers
+      for (var i = 1; i <= pagination.totalPages; i++) {
+        if (i === pagination.page) {
+          html += '<button class="page-btn active">' + i + '</button>';
+        } else {
+          html += '<button class="page-btn" onclick="goToPage(' + i + ')">' + i + '</button>';
+        }
+      }
+
+      // Next button
+      html += '<button class="page-btn" onclick="goToPage(' + (pagination.page + 1) + ')"' + (pagination.page >= pagination.totalPages ? ' disabled' : '') + '>Siguiente &raquo;</button>';
+
+      container.innerHTML = html;
+    }
+
+    function goToPage(page) {
+      currentPage = page;
+      loadEntries();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function loadEntries() {
+      var loadingEl = document.getElementById('loading-state');
+      var emptyEl = document.getElementById('empty-state');
+      var gridEl = document.getElementById('entries-grid');
+      var paginationEl = document.getElementById('pagination');
+
+      loadingEl.style.display = 'block';
+      emptyEl.style.display = 'none';
+      gridEl.innerHTML = '';
+      paginationEl.style.display = 'none';
+
+      var url = '/api/actualidades?page=' + currentPage + '&limit=' + LIMIT;
+      if (currentCategory) {
+        url += '&categoria=' + encodeURIComponent(currentCategory);
+      }
+
+      fetch(url)
+        .then(function(res) {
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          return res.json();
+        })
+        .then(function(data) {
+          loadingEl.style.display = 'none';
+
+          if (!data.entries || data.entries.length === 0) {
+            emptyEl.style.display = 'block';
+            return;
+          }
+
+          var html = '';
+          for (var i = 0; i < data.entries.length; i++) {
+            html += renderEntry(data.entries[i]);
+          }
+          gridEl.innerHTML = html;
+          renderPagination(data.pagination);
+        })
+        .catch(function(err) {
+          loadingEl.style.display = 'none';
+          emptyEl.style.display = 'block';
+          emptyEl.querySelector('h3').textContent = 'Error al cargar';
+          emptyEl.querySelector('p').textContent = 'No pudimos cargar las actualidades. Intenta de nuevo más tarde.';
+        });
+    }
+
+    // Initial load
+    loadEntries();
+  </script>
+
+</body>
+</html>
