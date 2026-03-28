@@ -306,19 +306,21 @@
     if (!pw) return;
     adminPassword = pw;
 
-    // Verify by fetching entries
+    // Verify password by attempting an admin-only operation (dummy POST with empty body)
+    // This will return 400 (missing fields) if auth is valid, or 401 if password is wrong
     fetch('/api/actualidades', {
-      headers: { 'X-Admin-Password': pw }
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Admin-Password': pw
+      },
+      body: JSON.stringify({})
     })
     .then(function(res) {
-      // The GET endpoint is public, so we verify with a different approach
-      // Just check if the API works at all
-      if (!res.ok) throw new Error('API error');
-      return res.json();
-    })
-    .then(function(data) {
-      // Test admin access by trying to fetch with auth header
-      // Since GET is public, we'll accept any valid response
+      if (res.status === 401) {
+        throw new Error('Unauthorized');
+      }
+      // Any other response (400 for missing fields, etc.) means password was accepted
       document.getElementById('login-screen').style.display = 'none';
       document.getElementById('admin-panel').style.display = 'block';
       loadEntries();

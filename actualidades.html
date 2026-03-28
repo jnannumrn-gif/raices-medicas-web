@@ -192,10 +192,23 @@
       return day + ' de ' + month + ' de ' + year;
     }
 
+    function escapeHtml(str) {
+      if (!str) return '';
+      return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
     function renderEntry(entry) {
+      var safeTitle = escapeHtml(entry.titulo);
+      var safeFuente = escapeHtml(entry.fuente);
+      var safeCategoria = escapeHtml(entry.categoria);
+      var safeAutor = escapeHtml(entry.autor);
+      var safeResumen = escapeHtml(entry.resumen);
+      var safeUrl = escapeHtml(entry.url_original);
+      var safeImgUrl = escapeHtml(entry.imagen_url);
+
       var imgHtml;
       if (entry.imagen_url) {
-        imgHtml = '<div class="entry-card-img"><img src="' + entry.imagen_url + '" alt="' + entry.titulo.replace(/"/g, '&quot;') + '" loading="lazy" /></div>';
+        imgHtml = '<div class="entry-card-img"><img src="' + safeImgUrl + '" alt="' + safeTitle + '" loading="lazy" /></div>';
       } else {
         imgHtml = '<div class="entry-card-img"><div class="placeholder"><img src="/logo.svg" alt="Raíces Médicas" /></div></div>';
       }
@@ -204,16 +217,16 @@
         imgHtml +
         '<div class="entry-card-body">' +
           '<div class="entry-badges">' +
-            '<span class="badge badge-cat">' + entry.categoria + '</span>' +
-            '<span class="badge badge-source">' + entry.fuente + '</span>' +
+            '<span class="badge badge-cat">' + safeCategoria + '</span>' +
+            '<span class="badge badge-source">' + safeFuente + '</span>' +
           '</div>' +
-          '<h2>' + entry.titulo + '</h2>' +
+          '<h2>' + safeTitle + '</h2>' +
           '<div class="entry-meta">' +
             '<span><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg> ' + formatDate(entry.fecha_publicacion) + '</span>' +
-            '<span><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> ' + entry.autor + '</span>' +
+            '<span><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> ' + safeAutor + '</span>' +
           '</div>' +
-          '<p class="entry-summary">' + entry.resumen + '</p>' +
-          '<a href="' + entry.url_original + '" target="_blank" rel="noopener noreferrer" class="entry-cta">' +
+          '<p class="entry-summary">' + safeResumen + '</p>' +
+          '<a href="' + safeUrl + '" target="_blank" rel="noopener noreferrer" class="entry-cta">' +
             'Leer artículo completo <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>' +
           '</a>' +
           '<div class="entry-disclaimer">' + DISCLAIMER + '</div>' +
@@ -301,6 +314,46 @@
 
     // Initial load
     loadEntries();
+  </script>
+
+  <!-- Cookie Banner -->
+  <div id="cookie-banner" style="
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    max-width: 900px;
+    margin: auto;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+    padding: 16px 18px;
+    z-index: 9999;
+    display: none;
+    font-family: Arial, sans-serif;
+  ">
+    <p style="margin: 0 0 12px 0; color: #1f2937; line-height: 1.5;">
+      Este sitio utiliza cookies para mejorar la experiencia del usuario, analizar el tráfico
+      y medir el rendimiento de campañas publicitarias. Al continuar navegando, usted acepta
+      nuestro uso de cookies. Lea nuestra
+      <a href="/politica-privacidad.html" style="color: #166534; text-decoration: none;">Política de Privacidad</a>.
+    </p>
+    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+      <button id="accept-cookies" style="background: #166534; color: white; border: none; border-radius: 8px; padding: 10px 16px; cursor: pointer; font-size: 14px;">Aceptar</button>
+      <button id="reject-cookies" style="background: #f3f4f6; color: #111827; border: 1px solid #d1d5db; border-radius: 8px; padding: 10px 16px; cursor: pointer; font-size: 14px;">Rechazar</button>
+    </div>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var banner = document.getElementById("cookie-banner");
+      var acceptBtn = document.getElementById("accept-cookies");
+      var rejectBtn = document.getElementById("reject-cookies");
+      var cookieChoice = localStorage.getItem("rm_cookie_choice");
+      if (!cookieChoice) { banner.style.display = "block"; }
+      acceptBtn.addEventListener("click", function () { localStorage.setItem("rm_cookie_choice", "accepted"); banner.style.display = "none"; });
+      rejectBtn.addEventListener("click", function () { localStorage.setItem("rm_cookie_choice", "rejected"); banner.style.display = "none"; });
+    });
   </script>
 
 </body>
