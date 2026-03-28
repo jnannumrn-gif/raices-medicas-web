@@ -110,10 +110,10 @@
     <div class="container">
       <a href="/" class="back-link">
         <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-        Volver al inicio
+        <span data-i18n="actualidades.back">Volver al inicio</span>
       </a>
-      <h1>Actualidades de Salud Renal</h1>
-      <p>Noticias, investigación y avances en nefrología curados por el equipo de Raíces Médicas</p>
+      <h1 data-i18n="actualidades.title">Actualidades de Salud Renal</h1>
+      <p data-i18n="actualidades.desc">Noticias, investigación y avances en nefrología curados por el equipo de Raíces Médicas</p>
     </div>
   </div>
 
@@ -121,24 +121,24 @@
   <div class="main-content">
     <!-- Category Filters -->
     <div class="category-filters" id="category-filters">
-      <button class="cat-btn active" data-cat="">Todas</button>
-      <button class="cat-btn" data-cat="Prevención">Prevención</button>
-      <button class="cat-btn" data-cat="Nutrición Renal">Nutrición Renal</button>
-      <button class="cat-btn" data-cat="Diálisis">Diálisis</button>
-      <button class="cat-btn" data-cat="Investigación">Investigación</button>
-      <button class="cat-btn" data-cat="Comunidad">Comunidad</button>
+      <button class="cat-btn active" data-cat="" data-i18n="actualidades.filter.all">Todas</button>
+      <button class="cat-btn" data-cat="Prevención" data-i18n="actualidades.filter.prevencion">Prevención</button>
+      <button class="cat-btn" data-cat="Nutrición Renal" data-i18n="actualidades.filter.nutricion">Nutrición Renal</button>
+      <button class="cat-btn" data-cat="Diálisis" data-i18n="actualidades.filter.dialisis">Diálisis</button>
+      <button class="cat-btn" data-cat="Investigación" data-i18n="actualidades.filter.investigacion">Investigación</button>
+      <button class="cat-btn" data-cat="Comunidad" data-i18n="actualidades.filter.comunidad">Comunidad</button>
     </div>
 
     <!-- Loading state -->
     <div class="loading-state" id="loading-state">
       <div class="loading-spinner"></div>
-      <p>Cargando actualidades...</p>
+      <p data-i18n="actualidades.loading">Cargando actualidades...</p>
     </div>
 
     <!-- Empty state -->
     <div class="empty-state" id="empty-state" style="display:none">
-      <h3>No hay actualidades disponibles</h3>
-      <p>Pronto publicaremos nuevas noticias sobre salud renal. ¡Regresa pronto!</p>
+      <h3 data-i18n="actualidades.empty.title">No hay actualidades disponibles</h3>
+      <p data-i18n="actualidades.empty.desc">Pronto publicaremos nuevas noticias sobre salud renal. ¡Regresa pronto!</p>
     </div>
 
     <!-- Entries -->
@@ -150,11 +150,11 @@
 
   <!-- Footer -->
   <div class="page-footer">
-    <p>&copy; 2026 Raíces Médicas. Todos los derechos reservados.</p>
+    <p data-i18n="footer.copy">&copy; 2026 Raíces Médicas. Todos los derechos reservados.</p>
     <p style="margin-top:6px">
-      <a href="/aviso-legal.html">Aviso legal</a> |
-      <a href="/politica-privacidad.html">Privacidad</a> |
-      <a href="/cookies.html">Cookies</a>
+      <a href="/aviso-legal.html" data-i18n="footer.legal.aviso">Aviso legal</a> |
+      <a href="/politica-privacidad.html" data-i18n="footer.legal.privacidad">Privacidad</a> |
+      <a href="/cookies.html" data-i18n="footer.legal.cookies">Cookies</a>
     </p>
   </div>
 
@@ -163,8 +163,11 @@
     var currentCategory = '';
     var LIMIT = 10;
 
-    // Disclaimer text
-    var DISCLAIMER = 'Raíces Médicas no es autora de este artículo. El resumen presentado aquí es de carácter educativo e informativo. Para acceder al contenido completo, visita la fuente original. Raíces Médicas no se responsabiliza por cambios en el contenido externo después de la fecha de publicación.';
+    // Disclaimer text — use i18n if available
+    function getT() {
+      return (typeof translations !== 'undefined' && typeof getCurrentLang === 'function' && translations[getCurrentLang()]) ? translations[getCurrentLang()] : {};
+    }
+    var DISCLAIMER = (getT()['actualidades.disclaimer']) || 'Ra\u00edces M\u00e9dicas no es autora de este art\u00edculo. El resumen presentado aqu\u00ed es de car\u00e1cter educativo e informativo. Para acceder al contenido completo, visita la fuente original. Ra\u00edces M\u00e9dicas no se responsabiliza por cambios en el contenido externo despu\u00e9s de la fecha de publicaci\u00f3n.';
 
     // Category filter click handlers
     document.getElementById('category-filters').addEventListener('click', function(e) {
@@ -184,12 +187,10 @@
 
     function formatDate(dateStr) {
       if (!dateStr) return '';
-      var parts = dateStr.split('-');
-      var months = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
-      var day = parseInt(parts[2], 10);
-      var month = months[parseInt(parts[1], 10) - 1] || '';
-      var year = parts[0];
-      return day + ' de ' + month + ' de ' + year;
+      var lang = (typeof getCurrentLang === 'function') ? getCurrentLang() : 'es';
+      var localeMap = { es: 'es-MX', en: 'en-US', pt: 'pt-BR' };
+      var date = new Date(dateStr + 'T00:00:00');
+      return date.toLocaleDateString(localeMap[lang] || 'es-MX', { year: 'numeric', month: 'long', day: 'numeric' });
     }
 
     function escapeHtml(str) {
@@ -227,7 +228,7 @@
           '</div>' +
           '<p class="entry-summary">' + safeResumen + '</p>' +
           '<a href="' + safeUrl + '" target="_blank" rel="noopener noreferrer" class="entry-cta">' +
-            'Leer artículo completo <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>' +
+            (getT()['actualidades.read'] || 'Leer art\u00edculo completo') + ' <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>' +
           '</a>' +
           '<div class="entry-disclaimer">' + DISCLAIMER + '</div>' +
         '</div>' +
@@ -245,7 +246,7 @@
       var html = '';
 
       // Previous button
-      html += '<button class="page-btn" onclick="goToPage(' + (pagination.page - 1) + ')"' + (pagination.page <= 1 ? ' disabled' : '') + '>&laquo; Anterior</button>';
+      html += '<button class="page-btn" onclick="goToPage(' + (pagination.page - 1) + ')"' + (pagination.page <= 1 ? ' disabled' : '') + '>' + (getT()['actualidades.prev'] || '&laquo; Anterior') + '</button>';
 
       // Page numbers
       for (var i = 1; i <= pagination.totalPages; i++) {
@@ -257,7 +258,7 @@
       }
 
       // Next button
-      html += '<button class="page-btn" onclick="goToPage(' + (pagination.page + 1) + ')"' + (pagination.page >= pagination.totalPages ? ' disabled' : '') + '>Siguiente &raquo;</button>';
+      html += '<button class="page-btn" onclick="goToPage(' + (pagination.page + 1) + ')"' + (pagination.page >= pagination.totalPages ? ' disabled' : '') + '>' + (getT()['actualidades.next'] || 'Siguiente &raquo;') + '</button>';
 
       container.innerHTML = html;
     }
@@ -276,8 +277,8 @@
 
       loadingEl.style.display = 'block';
       emptyEl.style.display = 'none';
-      emptyEl.querySelector('h3').textContent = 'No hay actualidades disponibles';
-      emptyEl.querySelector('p').textContent = 'Pronto publicaremos nuevas noticias sobre salud renal. \u00a1Regresa pronto!';
+      emptyEl.querySelector('h3').textContent = getT()['actualidades.empty.title'] || 'No hay actualidades disponibles';
+      emptyEl.querySelector('p').textContent = getT()['actualidades.empty.desc'] || 'Pronto publicaremos nuevas noticias sobre salud renal. \u00a1Regresa pronto!';
       gridEl.innerHTML = '';
       paginationEl.style.display = 'none';
 
@@ -309,14 +310,15 @@
         .catch(function(err) {
           loadingEl.style.display = 'none';
           emptyEl.style.display = 'block';
-          emptyEl.querySelector('h3').textContent = 'Error al cargar';
-          emptyEl.querySelector('p').textContent = 'No pudimos cargar las actualidades. Intenta de nuevo más tarde.';
+          emptyEl.querySelector('h3').textContent = getT()['actualidades.error.title'] || 'Error al cargar';
+          emptyEl.querySelector('p').textContent = getT()['actualidades.error.desc'] || 'No pudimos cargar las actualidades. Intenta de nuevo más tarde.';
         });
     }
 
     // Initial load
     loadEntries();
   </script>
+  <script src="/i18n.js"></script>
 
   <!-- Cookie Banner -->
   <div id="cookie-banner" style="
@@ -336,14 +338,14 @@
     font-family: Arial, sans-serif;
   ">
     <p style="margin: 0 0 12px 0; color: #1f2937; line-height: 1.5;">
-      Este sitio utiliza cookies para mejorar la experiencia del usuario, analizar el tráfico
+      <span data-i18n="cookie.text">Este sitio utiliza cookies para mejorar la experiencia del usuario, analizar el tráfico
       y medir el rendimiento de campañas publicitarias. Al continuar navegando, usted acepta
-      nuestro uso de cookies. Lea nuestra
-      <a href="/politica-privacidad.html" style="color: #166534; text-decoration: none;">Política de Privacidad</a>.
+      nuestro uso de cookies. Lea nuestra</span>
+      <a href="/politica-privacidad.html" style="color: #166534; text-decoration: none;" data-i18n="cookie.policy.link">Política de Privacidad</a>.
     </p>
     <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-      <button id="accept-cookies" style="background: #166534; color: white; border: none; border-radius: 8px; padding: 10px 16px; cursor: pointer; font-size: 14px;">Aceptar</button>
-      <button id="reject-cookies" style="background: #f3f4f6; color: #111827; border: 1px solid #d1d5db; border-radius: 8px; padding: 10px 16px; cursor: pointer; font-size: 14px;">Rechazar</button>
+      <button id="accept-cookies" style="background: #166534; color: white; border: none; border-radius: 8px; padding: 10px 16px; cursor: pointer; font-size: 14px;" data-i18n="cookie.accept">Aceptar</button>
+      <button id="reject-cookies" style="background: #f3f4f6; color: #111827; border: 1px solid #d1d5db; border-radius: 8px; padding: 10px 16px; cursor: pointer; font-size: 14px;" data-i18n="cookie.reject">Rechazar</button>
     </div>
   </div>
   <script>

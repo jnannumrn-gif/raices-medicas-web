@@ -148,6 +148,60 @@ const translations = {
     "counter.label": "Gracias por ser el visitante n\u00famero",
     "welcome.text": "\u00a1Bienvenido! Eres el visitante n\u00famero",
 
+    // Footer extras
+    "footer.disclaimer": "Este sitio ofrece contenido educativo e informativo \u00fanicamente y no sustituye la evaluaci\u00f3n m\u00e9dica profesional. Consulte siempre a su proveedor de salud.",
+    "footer.legal.aviso": "Aviso legal",
+    "footer.legal.privacidad": "Privacidad",
+    "footer.legal.cookies": "Cookies",
+
+    // Cookie Banner
+    "cookie.text": "Este sitio utiliza cookies para mejorar la experiencia del usuario, analizar el tr\u00e1fico y medir el rendimiento de campa\u00f1as publicitarias. Al continuar navegando, usted acepta nuestro uso de cookies. Lea nuestra",
+    "cookie.policy.link": "Pol\u00edtica de Privacidad",
+    "cookie.accept": "Aceptar",
+    "cookie.reject": "Rechazar",
+
+    // Quiz Section
+    "quiz.eyebrow": "Ra\u00edces M\u00e9dicas",
+    "quiz.title": "Quiz de la Semana",
+    "quiz.loading": "Cargando quiz\u2026",
+    "quiz.error": "No hay quiz disponible esta semana. \u00a1Regresa el pr\u00f3ximo lunes!",
+    "quiz.footer": "Donde la ciencia se encuentra con la compasi\u00f3n",
+    "quiz.progress": "Pregunta {current} de {total}",
+    "quiz.correct_count": "{n} correctas",
+    "quiz.correct": "\u00a1Correcto!",
+    "quiz.incorrect": "No exactamente",
+    "quiz.stats": "El {pct}% de los visitantes respondi\u00f3 correctamente.",
+    "quiz.next": "Siguiente pregunta \u2192",
+    "quiz.results": "Ver mis resultados",
+    "quiz.answer": "Respuesta:",
+    "quiz.comeback": "\uD83D\uDCC5 Regresa el pr\u00f3ximo lunes para el nuevo Quiz de la Semana",
+    "quiz.retry": "Volver a intentarlo",
+    "quiz.score.perfect": "\u00a1Perfecto! Eres un guardi\u00e1n de la salud renal \uD83C\uDFC6",
+    "quiz.score.great": "\u00a1Muy bien! Sabes m\u00e1s de lo que crees \uD83D\uDCAA",
+    "quiz.score.good": "Buen comienzo \u2014 aprende y regresa la pr\u00f3xima semana \uD83D\uDCD6",
+    "quiz.score.start": "Aqu\u00ed empezamos \u2014 cada pregunta es una semilla de conocimiento \uD83C\uDF31",
+    "quiz.error.submit": "No se pudo enviar la respuesta.",
+
+    // Actualidades page
+    "actualidades.back": "Volver al inicio",
+    "actualidades.title": "Actualidades de Salud Renal",
+    "actualidades.desc": "Noticias, investigaci\u00f3n y avances en nefrolog\u00eda curados por el equipo de Ra\u00edces M\u00e9dicas",
+    "actualidades.filter.all": "Todas",
+    "actualidades.filter.prevencion": "Prevenci\u00f3n",
+    "actualidades.filter.nutricion": "Nutrici\u00f3n Renal",
+    "actualidades.filter.dialisis": "Di\u00e1lisis",
+    "actualidades.filter.investigacion": "Investigaci\u00f3n",
+    "actualidades.filter.comunidad": "Comunidad",
+    "actualidades.loading": "Cargando actualidades...",
+    "actualidades.empty.title": "No hay actualidades disponibles",
+    "actualidades.empty.desc": "Pronto publicaremos nuevas noticias sobre salud renal. \u00a1Regresa pronto!",
+    "actualidades.error.title": "Error al cargar",
+    "actualidades.error.desc": "No pudimos cargar las actualidades. Intenta de nuevo m\u00e1s tarde.",
+    "actualidades.read": "Leer art\u00edculo completo",
+    "actualidades.disclaimer": "Ra\u00edces M\u00e9dicas no es autora de este art\u00edculo. El resumen presentado aqu\u00ed es de car\u00e1cter educativo e informativo. Para acceder al contenido completo, visita la fuente original. Ra\u00edces M\u00e9dicas no se responsabiliza por cambios en el contenido externo despu\u00e9s de la fecha de publicaci\u00f3n.",
+    "actualidades.prev": "\u00ab Anterior",
+    "actualidades.next": "Siguiente \u00bb",
+
     // Meta
     "meta.title": "Ra\u00edces M\u00e9dicas | Educaci\u00f3n M\u00e9dica y Salud Renal",
     "meta.description": "Ra\u00edces M\u00e9dicas: plataforma de educaci\u00f3n m\u00e9dica, salud renal e innovaci\u00f3n en salud digital."
@@ -297,6 +351,60 @@ const translations = {
     "counter.label": "Thanks for being visitor number",
     "welcome.text": "Welcome! You are visitor number",
 
+    // Footer extras
+    "footer.disclaimer": "This site offers educational and informational content only and does not replace professional medical evaluation. Always consult your healthcare provider.",
+    "footer.legal.aviso": "Legal notice",
+    "footer.legal.privacidad": "Privacy",
+    "footer.legal.cookies": "Cookies",
+
+    // Cookie Banner
+    "cookie.text": "This site uses cookies to improve user experience, analyze traffic, and measure advertising campaign performance. By continuing to browse, you accept our use of cookies. Read our",
+    "cookie.policy.link": "Privacy Policy",
+    "cookie.accept": "Accept",
+    "cookie.reject": "Decline",
+
+    // Quiz Section
+    "quiz.eyebrow": "Ra\u00edces M\u00e9dicas",
+    "quiz.title": "Quiz of the Week",
+    "quiz.loading": "Loading quiz\u2026",
+    "quiz.error": "No quiz available this week. Come back next Monday!",
+    "quiz.footer": "Where science meets compassion",
+    "quiz.progress": "Question {current} of {total}",
+    "quiz.correct_count": "{n} correct",
+    "quiz.correct": "Correct!",
+    "quiz.incorrect": "Not quite",
+    "quiz.stats": "{pct}% of visitors answered correctly.",
+    "quiz.next": "Next question \u2192",
+    "quiz.results": "See my results",
+    "quiz.answer": "Answer:",
+    "quiz.comeback": "\uD83D\uDCC5 Come back next Monday for the new Quiz of the Week",
+    "quiz.retry": "Try again",
+    "quiz.score.perfect": "Perfect! You are a renal health guardian \uD83C\uDFC6",
+    "quiz.score.great": "Great job! You know more than you think \uD83D\uDCAA",
+    "quiz.score.good": "Good start \u2014 learn and come back next week \uD83D\uDCD6",
+    "quiz.score.start": "Here we begin \u2014 every question is a seed of knowledge \uD83C\uDF31",
+    "quiz.error.submit": "Could not submit the answer.",
+
+    // Actualidades page
+    "actualidades.back": "Back to home",
+    "actualidades.title": "Renal Health News",
+    "actualidades.desc": "News, research, and advances in nephrology curated by the Ra\u00edces M\u00e9dicas team",
+    "actualidades.filter.all": "All",
+    "actualidades.filter.prevencion": "Prevention",
+    "actualidades.filter.nutricion": "Renal Nutrition",
+    "actualidades.filter.dialisis": "Dialysis",
+    "actualidades.filter.investigacion": "Research",
+    "actualidades.filter.comunidad": "Community",
+    "actualidades.loading": "Loading news...",
+    "actualidades.empty.title": "No news available",
+    "actualidades.empty.desc": "We will soon publish new renal health news. Come back soon!",
+    "actualidades.error.title": "Loading error",
+    "actualidades.error.desc": "We could not load the news. Please try again later.",
+    "actualidades.read": "Read full article",
+    "actualidades.disclaimer": "Ra\u00edces M\u00e9dicas is not the author of this article. The summary presented here is for educational and informational purposes. To access the full content, visit the original source. Ra\u00edces M\u00e9dicas is not responsible for changes to external content after the publication date.",
+    "actualidades.prev": "\u00ab Previous",
+    "actualidades.next": "Next \u00bb",
+
     // Meta
     "meta.title": "Ra\u00edces M\u00e9dicas | Medical Education & Renal Health",
     "meta.description": "Ra\u00edces M\u00e9dicas: medical education platform, renal health, and digital health innovation."
@@ -445,6 +553,60 @@ const translations = {
     // Visitor Counter & Welcome Banner
     "counter.label": "Obrigado por ser o visitante n\u00famero",
     "welcome.text": "Bem-vindo! Voc\u00ea \u00e9 o visitante n\u00famero",
+
+    // Footer extras
+    "footer.disclaimer": "Este site oferece conte\u00fado educativo e informativo apenas e n\u00e3o substitui a avalia\u00e7\u00e3o m\u00e9dica profissional. Consulte sempre o seu provedor de sa\u00fade.",
+    "footer.legal.aviso": "Aviso legal",
+    "footer.legal.privacidad": "Privacidade",
+    "footer.legal.cookies": "Cookies",
+
+    // Cookie Banner
+    "cookie.text": "Este site utiliza cookies para melhorar a experi\u00eancia do usu\u00e1rio, analisar o tr\u00e1fego e medir o desempenho de campanhas publicit\u00e1rias. Ao continuar navegando, voc\u00ea aceita nosso uso de cookies. Leia nossa",
+    "cookie.policy.link": "Pol\u00edtica de Privacidade",
+    "cookie.accept": "Aceitar",
+    "cookie.reject": "Rejeitar",
+
+    // Quiz Section
+    "quiz.eyebrow": "Ra\u00edces M\u00e9dicas",
+    "quiz.title": "Quiz da Semana",
+    "quiz.loading": "Carregando quiz\u2026",
+    "quiz.error": "Nenhum quiz dispon\u00edvel esta semana. Volte na pr\u00f3xima segunda-feira!",
+    "quiz.footer": "Onde a ci\u00eancia encontra a compaix\u00e3o",
+    "quiz.progress": "Pergunta {current} de {total}",
+    "quiz.correct_count": "{n} corretas",
+    "quiz.correct": "Correto!",
+    "quiz.incorrect": "N\u00e3o exatamente",
+    "quiz.stats": "{pct}% dos visitantes responderam corretamente.",
+    "quiz.next": "Pr\u00f3xima pergunta \u2192",
+    "quiz.results": "Ver meus resultados",
+    "quiz.answer": "Resposta:",
+    "quiz.comeback": "\uD83D\uDCC5 Volte na pr\u00f3xima segunda-feira para o novo Quiz da Semana",
+    "quiz.retry": "Tentar novamente",
+    "quiz.score.perfect": "Perfeito! Voc\u00ea \u00e9 um guardi\u00e3o da sa\u00fade renal \uD83C\uDFC6",
+    "quiz.score.great": "Muito bem! Voc\u00ea sabe mais do que pensa \uD83D\uDCAA",
+    "quiz.score.good": "Bom come\u00e7o \u2014 aprenda e volte na pr\u00f3xima semana \uD83D\uDCD6",
+    "quiz.score.start": "Aqui come\u00e7amos \u2014 cada pergunta \u00e9 uma semente de conhecimento \uD83C\uDF31",
+    "quiz.error.submit": "N\u00e3o foi poss\u00edvel enviar a resposta.",
+
+    // Actualidades page
+    "actualidades.back": "Voltar ao in\u00edcio",
+    "actualidades.title": "Atualidades de Sa\u00fade Renal",
+    "actualidades.desc": "Not\u00edcias, pesquisa e avan\u00e7os em nefrologia curados pela equipe da Ra\u00edces M\u00e9dicas",
+    "actualidades.filter.all": "Todas",
+    "actualidades.filter.prevencion": "Preven\u00e7\u00e3o",
+    "actualidades.filter.nutricion": "Nutri\u00e7\u00e3o Renal",
+    "actualidades.filter.dialisis": "Di\u00e1lise",
+    "actualidades.filter.investigacion": "Pesquisa",
+    "actualidades.filter.comunidad": "Comunidade",
+    "actualidades.loading": "Carregando atualidades...",
+    "actualidades.empty.title": "N\u00e3o h\u00e1 atualidades dispon\u00edveis",
+    "actualidades.empty.desc": "Em breve publicaremos novas not\u00edcias sobre sa\u00fade renal. Volte em breve!",
+    "actualidades.error.title": "Erro ao carregar",
+    "actualidades.error.desc": "N\u00e3o foi poss\u00edvel carregar as atualidades. Tente novamente mais tarde.",
+    "actualidades.read": "Ler artigo completo",
+    "actualidades.disclaimer": "Ra\u00edces M\u00e9dicas n\u00e3o \u00e9 autora deste artigo. O resumo apresentado aqui \u00e9 de car\u00e1ter educativo e informativo. Para acessar o conte\u00fado completo, visite a fonte original. Ra\u00edces M\u00e9dicas n\u00e3o se responsabiliza por altera\u00e7\u00f5es no conte\u00fado externo ap\u00f3s a data de publica\u00e7\u00e3o.",
+    "actualidades.prev": "\u00ab Anterior",
+    "actualidades.next": "Pr\u00f3ximo \u00bb",
 
     // Meta
     "meta.title": "Ra\u00edces M\u00e9dicas | Educa\u00e7\u00e3o M\u00e9dica e Sa\u00fade Renal",
