@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — Actualidades | Raíces Médicas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:#0f1a14;color:#f0ead8;font-family:'DM Sans','Inter',system-ui,sans-serif;min-height:100vh}
+    .container{max-width:800px;margin:0 auto;padding:32px 20px}
+    .header{text-align:center;margin-bottom:32px}
+    .header .eyebrow{font-family:'Cormorant Garamond',serif;font-size:13px;color:#c97a45;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:4px}
+    .header h1{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:#f0ead8}
+    .header p{font-size:13px;color:#8aaa8e;margin-top:4px}
+
+    /* Login */
+    .login-card{background:#162019;border:1.5px solid #2a3d2e;border-radius:16px;padding:32px 28px;max-width:400px;margin:60px auto}
+    .login-card h2{font-family:'Cormorant Garamond',serif;font-size:22px;margin-bottom:16px;text-align:center}
+    .login-card input{width:100%;padding:12px 16px;border-radius:10px;border:1.5px solid #2a3d2e;background:#0f1a14;color:#f0ead8;font-family:'DM Sans',sans-serif;font-size:14px;margin-bottom:12px}
+    .login-card input:focus{outline:none;border-color:#4a9e6b}
+    .login-card button{width:100%;padding:12px;border-radius:10px;border:none;background:#4a9e6b;color:#fff;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:500;cursor:pointer;transition:background 0.18s}
+    .login-card button:hover{background:#5dba80}
+    .login-error{color:#c94545;font-size:13px;margin-bottom:8px;text-align:center;display:none}
+
+    /* Form */
+    .admin-panel{display:none}
+    label{display:block;font-size:13px;color:#8aaa8e;margin-bottom:4px;margin-top:14px}
+    input,textarea,select{width:100%;padding:10px 14px;border-radius:8px;border:1.5px solid #2a3d2e;background:#0f1a14;color:#f0ead8;font-family:'DM Sans',sans-serif;font-size:14px}
+    input:focus,textarea:focus,select:focus{outline:none;border-color:#4a9e6b}
+    textarea{resize:vertical;min-height:80px}
+    select{appearance:auto}
+
+    .card{background:#162019;border:1.5px solid #2a3d2e;border-radius:16px;padding:24px 20px;margin-bottom:20px}
+    .card h3{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;margin-bottom:4px}
+    .card .subtitle{font-size:12px;color:#8aaa8e;margin-bottom:12px}
+
+    .btn-submit{width:100%;padding:14px;border-radius:10px;border:none;background:#4a9e6b;color:#fff;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:500;cursor:pointer;transition:background 0.18s;margin-top:20px}
+    .btn-submit:hover{background:#5dba80}
+    .btn-submit:disabled{background:#2a3d2e;cursor:not-allowed}
+
+    .btn-secondary{background:#2a3d2e;color:#f0ead8;border:none;border-radius:8px;padding:8px 16px;font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer;transition:background 0.18s}
+    .btn-secondary:hover{background:#3a5d3e}
+
+    .btn-danger{background:#3a1616;color:#e07070;border:1px solid #c94545;border-radius:8px;padding:6px 14px;font-family:'DM Sans',sans-serif;font-size:12px;cursor:pointer;transition:background 0.18s}
+    .btn-danger:hover{background:#4a1e1e}
+
+    .toast{position:fixed;top:20px;right:20px;padding:14px 20px;border-radius:10px;font-size:14px;z-index:1000;opacity:0;transition:opacity 0.3s;pointer-events:none}
+    .toast.success{background:#162a1e;border:1px solid #4a9e6b;color:#5dba80}
+    .toast.error{background:#2a1616;border:1px solid #c94545;color:#e07070}
+    .toast.show{opacity:1}
+
+    /* Image upload */
+    .upload-area{border:2px dashed #2a3d2e;border-radius:12px;padding:24px;text-align:center;cursor:pointer;transition:border-color 0.2s;margin-top:8px}
+    .upload-area:hover{border-color:#4a9e6b}
+    .upload-area.dragging{border-color:#5dba80;background:#1a2a1e}
+    .upload-area p{font-size:13px;color:#8aaa8e}
+    .upload-area input[type="file"]{display:none}
+    .upload-preview{margin-top:12px;border-radius:8px;overflow:hidden;max-height:200px}
+    .upload-preview img{width:100%;height:auto;max-height:200px;object-fit:cover;border-radius:8px}
+    .upload-status{font-size:12px;color:#8aaa8e;margin-top:6px}
+
+    /* Entries list */
+    .entry-row{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:#1a2a1e;border:1px solid #2a3d2e;border-radius:10px;margin-bottom:8px;gap:12px}
+    .entry-row .entry-info{flex:1;min-width:0}
+    .entry-row .entry-title{font-size:14px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .entry-row .entry-meta{font-size:12px;color:#8aaa8e;margin-top:2px}
+    .entry-row .entry-badges{display:flex;gap:6px;margin-top:4px}
+    .entry-row .badge{font-size:10px;padding:2px 8px;border-radius:999px}
+    .entry-row .badge-cat{background:#162a1e;color:#5dba80;border:1px solid #2a3d2e}
+    .entry-row .badge-source{background:#1a2016;color:#c97a45;border:1px solid #3a2d1e}
+    .entry-row .status{font-size:12px;padding:4px 10px;border-radius:6px;white-space:nowrap}
+    .entry-row .status.active{background:#162a1e;color:#5dba80;border:1px solid #4a9e6b}
+    .entry-row .status.inactive{background:#1a1a1a;color:#8aaa8e;border:1px solid #2a3d2e}
+    .entry-row .actions{display:flex;gap:6px;flex-shrink:0}
+
+    /* Preview modal */
+    .modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);z-index:500;display:none;align-items:center;justify-content:center;padding:20px}
+    .modal-overlay.show{display:flex}
+    .modal-content{background:#162019;border:1.5px solid #2a3d2e;border-radius:16px;max-width:700px;width:100%;max-height:90vh;overflow-y:auto;padding:28px}
+    .modal-close{float:right;background:none;border:none;color:#8aaa8e;font-size:24px;cursor:pointer;line-height:1}
+    .modal-close:hover{color:#f0ead8}
+
+    .back-link{display:inline-block;color:#8aaa8e;font-size:13px;text-decoration:none;margin-bottom:16px}
+    .back-link:hover{color:#f0ead8}
+
+    .logout-btn{position:absolute;top:20px;right:20px;background:none;border:1px solid #2a3d2e;color:#8aaa8e;padding:6px 14px;border-radius:8px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif}
+    .logout-btn:hover{border-color:#c94545;color:#c94545}
+
+    /* Edit form */
+    .edit-section{display:none;margin-top:16px;padding-top:16px;border-top:1px solid #2a3d2e}
+
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+    @media(max-width:640px){
+      .container{padding:20px 14px}
+      .entry-row{flex-direction:column;align-items:flex-start}
+      .entry-row .actions{margin-top:8px}
+      .form-row{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+<div id="toast" class="toast"></div>
+
+<!-- Preview Modal -->
+<div class="modal-overlay" id="preview-modal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closePreview()">&times;</button>
+    <div id="preview-content"></div>
+  </div>
+</div>
+
+<!-- Login Screen -->
+<div id="login-screen">
+  <div class="login-card">
+    <div class="eyebrow" style="font-family:'Cormorant Garamond',serif;font-size:13px;color:#c97a45;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:4px;text-align:center">Raíces Médicas</div>
+    <h2>Admin — Actualidades</h2>
+    <p style="font-size:13px;color:#8aaa8e;margin-bottom:20px;text-align:center">Ingresa la contraseña para administrar las actualidades.</p>
+    <div id="login-error" class="login-error">Contraseña incorrecta</div>
+    <input type="password" id="password-input" placeholder="Contraseña" autocomplete="off">
+    <button id="login-btn" onclick="attemptLogin()">Entrar</button>
+  </div>
+</div>
+
+<!-- Admin Panel -->
+<div id="admin-panel" class="admin-panel" style="position:relative">
+  <button class="logout-btn" onclick="logout()">Cerrar sesión</button>
+  <div class="container">
+    <a href="/" class="back-link">&larr; Volver al sitio</a>
+    <div class="header">
+      <div class="eyebrow">Raíces Médicas</div>
+      <h1>Admin — Actualidades</h1>
+      <p>Crea y administra las entradas de Actualidades de Salud Renal</p>
+    </div>
+
+    <!-- New Entry Form -->
+    <div class="card" id="create-card">
+      <h3 id="form-title">Crear nueva entrada</h3>
+      <div class="subtitle" id="form-subtitle">Completa los campos para agregar una nueva actualidad</div>
+
+      <form id="entry-form" onsubmit="submitEntry(event)">
+        <input type="hidden" id="edit-id" value="">
+
+        <label for="titulo">Título (en español) *</label>
+        <input type="text" id="titulo" placeholder="Ej: El Día Mundial del Riñón 2026" required>
+
+        <div class="form-row">
+          <div>
+            <label for="fuente">Fuente *</label>
+            <input type="text" id="fuente" placeholder="Ej: NKF, WHO, NIDDK, KDIGO" required>
+          </div>
+          <div>
+            <label for="categoria">Categoría *</label>
+            <select id="categoria" required>
+              <option value="">Selecciona...</option>
+              <option value="Prevención">Prevención</option>
+              <option value="Nutrición Renal">Nutrición Renal</option>
+              <option value="Diálisis">Diálisis</option>
+              <option value="Investigación">Investigación</option>
+              <option value="Comunidad">Comunidad</option>
+            </select>
+          </div>
+        </div>
+
+        <label for="url_original">URL del artículo original *</label>
+        <input type="url" id="url_original" placeholder="https://..." required>
+
+        <div class="form-row">
+          <div>
+            <label for="autor">Autor</label>
+            <input type="text" id="autor" value="Equipo Raíces Médicas" placeholder="Equipo Raíces Médicas">
+          </div>
+          <div>
+            <label for="fecha_publicacion">Fecha de publicación *</label>
+            <input type="date" id="fecha_publicacion" required>
+          </div>
+        </div>
+
+        <label for="resumen">Resumen (2-3 oraciones en español) *</label>
+        <textarea id="resumen" placeholder="Escribe un resumen breve del artículo..." required></textarea>
+
+        <!-- Image Upload -->
+        <label>Imagen (opcional — 1200x630px recomendado)</label>
+        <div class="upload-area" id="upload-area" onclick="document.getElementById('imagen-file').click()">
+          <input type="file" id="imagen-file" accept="image/jpeg,image/png,image/webp">
+          <p>Haz clic o arrastra una imagen aquí<br><span style="font-size:11px;color:#5a7a5e">JPG, PNG o WebP — máximo 5MB</span></p>
+        </div>
+        <div class="upload-preview" id="upload-preview" style="display:none">
+          <img id="preview-img" src="" alt="Vista previa">
+        </div>
+        <div class="upload-status" id="upload-status"></div>
+        <input type="hidden" id="imagen_url" value="">
+
+        <div class="form-row">
+          <div>
+            <label for="numero_edicion">Número de edición (opcional)</label>
+            <input type="number" id="numero_edicion" placeholder="Ej: 1" min="1">
+          </div>
+          <div style="display:flex;align-items:flex-end;padding-bottom:2px">
+            <button type="button" class="btn-secondary" onclick="showPreview()" style="width:100%;padding:10px">Vista previa</button>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-submit" id="submit-btn">Crear entrada</button>
+        <button type="button" class="btn-secondary" id="cancel-edit-btn" onclick="cancelEdit()" style="width:100%;margin-top:8px;display:none">Cancelar edición</button>
+      </form>
+    </div>
+
+    <!-- Existing Entries -->
+    <div class="card">
+      <h3>Entradas existentes</h3>
+      <div class="subtitle">Lista de todas las actualidades</div>
+      <div id="entries-list">
+        <p style="font-size:13px;color:#8aaa8e;text-align:center;padding:20px 0">Cargando...</p>
+      </div>
+    </div>
+
+    <p style="font-size:12px;color:#8aaa8e;text-align:center;margin-top:20px">Donde la ciencia se encuentra con la compasión</p>
+  </div>
+</div>
+
+<script>
+  var adminPassword = '';
+  var uploadedImageUrl = '';
+  var isEditing = false;
+
+  function escapeHtml(str) {
+    if (!str) return '';
+    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  // Auto-set today as default date
+  (function() {
+    var today = new Date();
+    var iso = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0');
+    document.getElementById('fecha_publicacion').value = iso;
+  })();
+
+  // Password input enter key
+  document.getElementById('password-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') attemptLogin();
+  });
+
+  // Image upload handlers
+  var uploadArea = document.getElementById('upload-area');
+  var imagenFile = document.getElementById('imagen-file');
+
+  uploadArea.addEventListener('dragover', function(e) {
+    e.preventDefault();
+    uploadArea.classList.add('dragging');
+  });
+  uploadArea.addEventListener('dragleave', function() {
+    uploadArea.classList.remove('dragging');
+  });
+  uploadArea.addEventListener('drop', function(e) {
+    e.preventDefault();
+    uploadArea.classList.remove('dragging');
+    if (e.dataTransfer.files.length > 0) {
+      imagenFile.files = e.dataTransfer.files;
+      handleImageSelect();
+    }
+  });
+  imagenFile.addEventListener('change', handleImageSelect);
+
+  function handleImageSelect() {
+    var file = imagenFile.files[0];
+    if (!file) return;
+
+    // Show local preview
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      document.getElementById('preview-img').src = e.target.result;
+      document.getElementById('upload-preview').style.display = 'block';
+    };
+    reader.readAsDataURL(file);
+
+    // Upload to R2
+    var statusEl = document.getElementById('upload-status');
+    statusEl.textContent = 'Subiendo imagen...';
+
+    var formData = new FormData();
+    formData.append('imagen', file);
+
+    fetch('/api/actualidades/upload-imagen', {
+      method: 'POST',
+      headers: { 'X-Admin-Password': adminPassword },
+      body: formData,
+    })
+    .then(function(res) { return res.json(); })
+    .then(function(data) {
+      if (data.success) {
+        uploadedImageUrl = data.url;
+        document.getElementById('imagen_url').value = data.url;
+        statusEl.textContent = 'Imagen subida correctamente';
+        statusEl.style.color = '#5dba80';
+      } else {
+        statusEl.textContent = 'Error: ' + (data.error || 'No se pudo subir la imagen');
+        statusEl.style.color = '#e07070';
+      }
+    })
+    .catch(function(err) {
+      statusEl.textContent = 'Error de conexión al subir la imagen';
+      statusEl.style.color = '#e07070';
+    });
+  }
+
+  function attemptLogin() {
+    var pw = document.getElementById('password-input').value.trim();
+    if (!pw) return;
+    adminPassword = pw;
+
+    // Verify password by attempting an admin-only operation (dummy POST with empty body)
+    // This will return 400 (missing fields) if auth is valid, or 401 if password is wrong
+    fetch('/api/actualidades', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Admin-Password': pw
+      },
+      body: JSON.stringify({})
+    })
+    .then(function(res) {
+      if (res.status === 401) {
+        throw new Error('Unauthorized');
+      }
+      // Any other response (400 for missing fields, etc.) means password was accepted
+      document.getElementById('login-screen').style.display = 'none';
+      document.getElementById('admin-panel').style.display = 'block';
+      loadEntries();
+    })
+    .catch(function() {
+      document.getElementById('login-error').style.display = 'block';
+      adminPassword = '';
+    });
+  }
+
+  function logout() {
+    adminPassword = '';
+    document.getElementById('admin-panel').style.display = 'none';
+    document.getElementById('login-screen').style.display = '';
+    document.getElementById('password-input').value = '';
+    document.getElementById('login-error').style.display = 'none';
+  }
+
+  function showToast(msg, type) {
+    var toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.className = 'toast ' + type + ' show';
+    setTimeout(function() { toast.className = 'toast'; }, 4000);
+  }
+
+  function submitEntry(e) {
+    e.preventDefault();
+    var btn = document.getElementById('submit-btn');
+    btn.disabled = true;
+    btn.textContent = isEditing ? 'Guardando...' : 'Creando...';
+
+    var payload = {
+      titulo: document.getElementById('titulo').value.trim(),
+      fuente: document.getElementById('fuente').value.trim(),
+      url_original: document.getElementById('url_original').value.trim(),
+      categoria: document.getElementById('categoria').value,
+      autor: document.getElementById('autor').value.trim() || 'Equipo Raíces Médicas',
+      resumen: document.getElementById('resumen').value.trim(),
+      imagen_url: document.getElementById('imagen_url').value || null,
+      fecha_publicacion: document.getElementById('fecha_publicacion').value,
+    };
+
+    var numEdicion = document.getElementById('numero_edicion').value;
+    if (numEdicion) {
+      payload.numero_edicion = parseInt(numEdicion, 10);
+    }
+
+    var method = 'POST';
+    if (isEditing) {
+      method = 'PUT';
+      payload.id = parseInt(document.getElementById('edit-id').value, 10);
+    }
+
+    fetch('/api/actualidades', {
+      method: method,
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Admin-Password': adminPassword,
+      },
+      body: JSON.stringify(payload),
+    })
+    .then(function(res) { return res.json(); })
+    .then(function(data) {
+      btn.disabled = false;
+      btn.textContent = isEditing ? 'Guardar cambios' : 'Crear entrada';
+
+      if (data.success) {
+        showToast(isEditing ? 'Entrada actualizada exitosamente' : 'Entrada creada exitosamente', 'success');
+        if (!isEditing) resetForm();
+        cancelEdit();
+        loadEntries();
+      } else {
+        showToast(data.error || 'Error desconocido', 'error');
+      }
+    })
+    .catch(function() {
+      btn.disabled = false;
+      btn.textContent = isEditing ? 'Guardar cambios' : 'Crear entrada';
+      showToast('Error de conexión', 'error');
+    });
+  }
+
+  function resetForm() {
+    document.getElementById('entry-form').reset();
+    document.getElementById('imagen_url').value = '';
+    uploadedImageUrl = '';
+    document.getElementById('upload-preview').style.display = 'none';
+    document.getElementById('upload-status').textContent = '';
+
+    // Re-set today's date
+    var today = new Date();
+    var iso = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0');
+    document.getElementById('fecha_publicacion').value = iso;
+    document.getElementById('autor').value = 'Equipo Raíces Médicas';
+  }
+
+  function cancelEdit() {
+    isEditing = false;
+    document.getElementById('edit-id').value = '';
+    document.getElementById('form-title').textContent = 'Crear nueva entrada';
+    document.getElementById('form-subtitle').textContent = 'Completa los campos para agregar una nueva actualidad';
+    document.getElementById('submit-btn').textContent = 'Crear entrada';
+    document.getElementById('cancel-edit-btn').style.display = 'none';
+    resetForm();
+  }
+
+  function editEntry(id) {
+    // Find entry data from the list (including inactive entries)
+    fetch('/api/actualidades?limit=50', {
+      headers: { 'X-Admin-Password': adminPassword }
+    })
+    .then(function(res) { return res.json(); })
+    .then(function(data) {
+      var entry = null;
+      for (var i = 0; i < data.entries.length; i++) {
+        if (data.entries[i].id === id) {
+          entry = data.entries[i];
+          break;
+        }
+      }
+      if (!entry) {
+        showToast('No se encontró la entrada', 'error');
+        return;
+      }
+
+      isEditing = true;
+      document.getElementById('edit-id').value = entry.id;
+      document.getElementById('titulo').value = entry.titulo;
+      document.getElementById('fuente').value = entry.fuente;
+      document.getElementById('url_original').value = entry.url_original;
+      document.getElementById('categoria').value = entry.categoria;
+      document.getElementById('autor').value = entry.autor;
+      document.getElementById('fecha_publicacion').value = entry.fecha_publicacion;
+      document.getElementById('resumen').value = entry.resumen;
+      document.getElementById('imagen_url').value = entry.imagen_url || '';
+      document.getElementById('numero_edicion').value = entry.numero_edicion || '';
+
+      if (entry.imagen_url) {
+        document.getElementById('preview-img').src = entry.imagen_url;
+        document.getElementById('upload-preview').style.display = 'block';
+      }
+
+      document.getElementById('form-title').textContent = 'Editar entrada';
+      document.getElementById('form-subtitle').textContent = 'Modificando: ' + entry.titulo;
+      document.getElementById('submit-btn').textContent = 'Guardar cambios';
+      document.getElementById('cancel-edit-btn').style.display = 'block';
+
+      // Scroll to form
+      document.getElementById('create-card').scrollIntoView({ behavior: 'smooth' });
+    });
+  }
+
+  function deactivateEntry(id) {
+    if (!confirm('¿Deseas desactivar esta entrada?')) return;
+
+    fetch('/api/actualidades', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Admin-Password': adminPassword,
+      },
+      body: JSON.stringify({ id: id }),
+    })
+    .then(function(res) { return res.json(); })
+    .then(function(data) {
+      if (data.success) {
+        showToast('Entrada desactivada', 'success');
+        loadEntries();
+      } else {
+        showToast(data.error || 'Error al desactivar', 'error');
+      }
+    })
+    .catch(function() {
+      showToast('Error de conexión', 'error');
+    });
+  }
+
+  function reactivateEntry(id) {
+    fetch('/api/actualidades', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Admin-Password': adminPassword,
+      },
+      body: JSON.stringify({ id: id, activo: 1 }),
+    })
+    .then(function(res) { return res.json(); })
+    .then(function(data) {
+      if (data.success) {
+        showToast('Entrada reactivada', 'success');
+        loadEntries();
+      } else {
+        showToast(data.error || 'Error al reactivar', 'error');
+      }
+    })
+    .catch(function() {
+      showToast('Error de conexión', 'error');
+    });
+  }
+
+  function loadEntries() {
+    var listEl = document.getElementById('entries-list');
+    listEl.innerHTML = '<p style="font-size:13px;color:#8aaa8e;text-align:center;padding:20px 0">Cargando...</p>';
+
+    // Fetch ALL entries (including inactive) for admin view
+    fetch('/api/actualidades?limit=50', {
+      headers: { 'X-Admin-Password': adminPassword }
+    })
+    .then(function(res) { return res.json(); })
+    .then(function(data) {
+      if (!data.entries || data.entries.length === 0) {
+        listEl.innerHTML = '<p style="font-size:13px;color:#8aaa8e;text-align:center;padding:20px 0">No hay entradas todavía</p>';
+        return;
+      }
+      renderEntries(data.entries);
+    })
+    .catch(function() {
+      listEl.innerHTML = '<p style="font-size:13px;color:#e07070;text-align:center;padding:20px 0">Error al cargar entradas</p>';
+    });
+  }
+
+  function formatDate(dateStr) {
+    if (!dateStr) return '';
+    var parts = dateStr.split('-');
+    return parts[2] + '/' + parts[1] + '/' + parts[0];
+  }
+
+  function renderEntries(entries) {
+    var html = '';
+    for (var i = 0; i < entries.length; i++) {
+      var e = entries[i];
+      var isActive = e.activo !== 0;
+      html += '<div class="entry-row">' +
+        '<div class="entry-info">' +
+          '<div class="entry-title">' + escapeHtml(e.titulo) + (isActive ? '' : ' <span class="status inactive">Inactiva</span>') + '</div>' +
+          '<div class="entry-meta">' + formatDate(e.fecha_publicacion) + ' · ' + escapeHtml(e.autor) + '</div>' +
+          '<div class="entry-badges">' +
+            '<span class="badge badge-cat">' + escapeHtml(e.categoria) + '</span>' +
+            '<span class="badge badge-source">' + escapeHtml(e.fuente) + '</span>' +
+          '</div>' +
+        '</div>' +
+        '<div class="actions">' +
+          '<button class="btn-secondary" onclick="editEntry(' + e.id + ')">Editar</button>' +
+          (isActive
+            ? '<button class="btn-danger" onclick="deactivateEntry(' + e.id + ')">Desactivar</button>'
+            : '<button class="btn-secondary" onclick="reactivateEntry(' + e.id + ')" style="color:#c97a45;border-color:#c97a45">Reactivar</button>'
+          ) +
+        '</div>' +
+      '</div>';
+    }
+    document.getElementById('entries-list').innerHTML = html;
+  }
+
+  function showPreview() {
+    var titulo = document.getElementById('titulo').value.trim();
+    var fuente = document.getElementById('fuente').value.trim();
+    var categoria = document.getElementById('categoria').value;
+    var resumen = document.getElementById('resumen').value.trim();
+    var fecha = document.getElementById('fecha_publicacion').value;
+    var autor = document.getElementById('autor').value.trim() || 'Equipo Raíces Médicas';
+    var imgUrl = document.getElementById('imagen_url').value || document.getElementById('preview-img').src;
+
+    if (!titulo) {
+      showToast('Agrega al menos un título para la vista previa', 'error');
+      return;
+    }
+
+    var disclaimer = 'Raíces Médicas no es autora de este artículo. El resumen presentado aquí es de carácter educativo e informativo. Para acceder al contenido completo, visita la fuente original. Raíces Médicas no se responsabiliza por cambios en el contenido externo después de la fecha de publicación.';
+
+    var html = '<div style="margin-top:16px">';
+
+    if (imgUrl && imgUrl !== '') {
+      html += '<div style="border-radius:12px;overflow:hidden;margin-bottom:16px;max-height:260px"><img src="' + escapeHtml(imgUrl) + '" style="width:100%;height:auto;max-height:260px;object-fit:cover" alt="Preview" /></div>';
+    }
+
+    html += '<div style="display:flex;gap:8px;margin-bottom:10px">';
+    if (categoria) html += '<span style="display:inline-block;padding:4px 12px;border-radius:999px;background:#162a1e;color:#5dba80;font-size:11px;font-weight:600;text-transform:uppercase">' + escapeHtml(categoria) + '</span>';
+    if (fuente) html += '<span style="display:inline-block;padding:4px 12px;border-radius:999px;background:#1a2016;color:#c97a45;font-size:11px;font-weight:600;border:1px solid #3a2d1e">' + escapeHtml(fuente) + '</span>';
+    html += '</div>';
+
+    html += '<h2 style="font-family:Cormorant Garamond,serif;font-size:24px;font-weight:700;margin-bottom:8px;color:#f0ead8">' + escapeHtml(titulo) + '</h2>';
+    html += '<p style="font-size:12px;color:#8aaa8e;margin-bottom:12px">' + escapeHtml(fecha) + ' · ' + escapeHtml(autor) + '</p>';
+    if (resumen) html += '<p style="font-size:14px;color:#c8d8c0;line-height:1.7;margin-bottom:16px">' + escapeHtml(resumen) + '</p>';
+
+    html += '<hr style="border:none;border-top:1px solid #2a3d2e;margin:16px 0" />';
+    html += '<p style="font-size:12px;color:#5a7a5e;line-height:1.5">' + disclaimer + '</p>';
+    html += '</div>';
+
+    document.getElementById('preview-content').innerHTML = '<h3 style="font-family:Cormorant Garamond,serif;font-size:20px;color:#c97a45;margin-bottom:4px">Vista previa</h3>' + html;
+    document.getElementById('preview-modal').classList.add('show');
+  }
+
+  function closePreview() {
+    document.getElementById('preview-modal').classList.remove('show');
+  }
+
+  // Close modal on overlay click
+  document.getElementById('preview-modal').addEventListener('click', function(e) {
+    if (e.target === this) closePreview();
+  });
+</script>
+
+</body>
+</html>

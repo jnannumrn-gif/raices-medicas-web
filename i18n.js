@@ -13,6 +13,7 @@ const translations = {
     "nav.raices": "Nuestras Ra\u00edces",
     "nav.episodio": "\u00daltimo Episodio",
     "nav.quiz": "Quiz",
+    "nav.actualidades": "Actualidades",
     "nav.contacto": "Contacto",
     "nav.cta": "Contactar",
 
@@ -160,6 +161,7 @@ const translations = {
     "nav.raices": "Our Roots",
     "nav.episodio": "Latest Episode",
     "nav.quiz": "Quiz",
+    "nav.actualidades": "News",
     "nav.contacto": "Contact",
     "nav.cta": "Contact Us",
 
@@ -307,6 +309,7 @@ const translations = {
     "nav.raices": "Nossas Ra\u00edzes",
     "nav.episodio": "\u00daltimo Epis\u00f3dio",
     "nav.quiz": "Quiz",
+    "nav.actualidades": "Atualidades",
     "nav.contacto": "Contato",
     "nav.cta": "Fale Conosco",
 
