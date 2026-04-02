@@ -1202,6 +1202,26 @@
     </div>
   </div>
 
+  <!-- Google Ads: track YouTube link clicks as conversions -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var ytLinks = document.querySelectorAll(
+        'a.btn-yt, a.ue-watch-btn, a.ue-channel-link, .footer-social a[aria-label="YouTube"]'
+      );
+      for (var i = 0; i < ytLinks.length; i++) {
+        ytLinks[i].addEventListener("click", function () {
+          if (typeof gtag === "function") {
+            gtag("event", "conversion", {
+              send_to: "AW-18020189394/Dok9CN7L0ZQcENKJ2ZBD",
+              event_category: "social_click",
+              event_label: "youtube"
+            });
+          }
+        });
+      }
+    });
+  </script>
+
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       var banner = document.getElementById("cookie-banner");
