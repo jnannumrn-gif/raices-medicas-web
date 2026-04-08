@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es" data-i18n-title="historia.meta.title" data-i18n-desc="historia.meta.description">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Historia de la Diálisis | Raíces Médicas</title>
+  <meta name="description" content="Serie editorial sobre la historia de la diálisis: los pioneros, los inventos y los hitos que transformaron la nefrología moderna." />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18020189394"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-18020189394');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:#f4f8fb;--card:#ffffff;--text:#17324d;--muted:#5f7387;
+      --line:#d9e4ee;--primary:#2f6f9f;--primary-dark:#1f5278;
+      --primary-light:#e8f1f8;--accent:#7fb59e;--accent-dark:#5a9a7d;
+      --shadow:0 12px 32px rgba(20,49,74,0.08);--radius:20px;--max:1120px;
+      --gradient-hero:linear-gradient(135deg,#0b1e36 0%,#163a5f 40%,#1a5276 70%,#1f6f8b 100%);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',system-ui,-apple-system,sans-serif;color:var(--text);background:var(--bg);line-height:1.7;-webkit-font-smoothing:antialiased}
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
+
+    /* Header */
+    .page-header{background:var(--gradient-hero);color:white;padding:48px 0 40px;text-align:center}
+    .page-header .container{max-width:var(--max);margin:0 auto;padding:0 24px}
+    .page-header .back-link{display:inline-flex;align-items:center;gap:6px;color:rgba(255,255,255,0.7);font-size:14px;margin-bottom:20px;transition:color 0.2s}
+    .page-header .back-link:hover{color:white}
+    .page-header h1{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,42px);font-weight:700;margin-bottom:8px}
+    .page-header p{font-size:16px;color:rgba(255,255,255,0.75);max-width:600px;margin:0 auto}
+    .page-header .series-badge{display:inline-block;padding:6px 16px;border-radius:999px;background:rgba(127,181,158,0.2);border:1px solid rgba(127,181,158,0.4);font-size:13px;font-weight:500;margin-bottom:14px;letter-spacing:.5px;color:rgba(255,255,255,0.85)}
+
+    /* Main content */
+    .main-content{max-width:var(--max);margin:0 auto;padding:32px 24px 60px}
+
+    /* Section intro */
+    .section-intro{text-align:center;max-width:720px;margin:0 auto 40px;padding:0 20px}
+    .section-intro p{font-size:16px;color:var(--muted);line-height:1.8}
+
+    /* Entries grid */
+    .entries-grid{display:grid;grid-template-columns:1fr;gap:28px}
+
+    /* Entry card */
+    .entry-card{background:white;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:transform 0.3s,box-shadow 0.3s;display:grid;grid-template-columns:320px 1fr}
+    .entry-card:hover{transform:translateY(-4px);box-shadow:0 20px 50px rgba(20,49,74,0.14)}
+    .entry-card-img{height:100%;min-height:220px;overflow:hidden;position:relative;background:#e8f1f8}
+    .entry-card-img .placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#0d2137,#1a3a5c);padding:20px;position:relative;overflow:hidden}
+    .entry-card-img .placeholder::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(14,110,114,0.2),transparent 70%)}
+    .entry-card-img .placeholder .number{font-family:'Playfair Display',serif;font-size:6rem;font-weight:900;color:rgba(255,255,255,0.06);position:absolute;right:-10px;bottom:-20px;line-height:1}
+    .entry-card-img .placeholder .icon{position:relative;z-index:1;text-align:center}
+    .entry-card-img .placeholder .icon svg{width:48px;height:48px;color:rgba(200,131,26,0.6)}
+    .entry-card-img .placeholder .icon p{font-family:'Playfair Display',serif;font-size:14px;color:rgba(255,255,255,0.4);margin-top:8px;font-style:italic}
+    .entry-card-body{padding:28px;display:flex;flex-direction:column}
+    .entry-badges{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+    .badge{display:inline-block;padding:4px 12px;border-radius:999px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px}
+    .badge-series{background:#fef3c7;color:#92400e;border:1px solid #fcd34d}
+    .badge-chapter{background:var(--primary-light);color:var(--primary)}
+    .entry-card-body h2{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;line-height:1.3;margin-bottom:8px;color:var(--text)}
+    .entry-meta{font-size:13px;color:var(--muted);margin-bottom:12px;display:flex;gap:16px;flex-wrap:wrap}
+    .entry-meta span{display:inline-flex;align-items:center;gap:4px}
+    .entry-summary{font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:16px;flex:1}
+    .entry-cta{display:inline-flex;align-items:center;gap:6px;color:var(--primary);font-weight:600;font-size:14px;transition:gap 0.2s}
+    .entry-cta:hover{gap:10px}
+
+    /* Footer */
+    .page-footer{background:var(--gradient-hero);color:white;text-align:center;padding:32px 20px}
+    .page-footer p{font-size:13px;color:rgba(255,255,255,0.6)}
+    .page-footer a{color:rgba(255,255,255,0.8);transition:color 0.2s}
+    .page-footer a:hover{color:white}
+
+    /* Responsive */
+    @media(max-width:768px){
+      .entry-card{grid-template-columns:1fr}
+      .entry-card-img{min-height:200px;max-height:240px}
+      .entry-card-body{padding:20px}
+      .entry-card-body h2{font-size:19px}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="page-header">
+    <div class="container">
+      <a href="/" class="back-link">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        <span data-i18n="historia.back">Volver al inicio</span>
+      </a>
+      <div class="series-badge" data-i18n="historia.badge">Serie Editorial</div>
+      <h1 data-i18n="historia.title">Historia de la Diálisis</h1>
+      <p data-i18n="historia.desc">Los pioneros, los inventos y los hitos que transformaron la insuficiencia renal de sentencia de muerte a enfermedad tratable</p>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+
+    <div class="section-intro">
+      <p data-i18n="historia.intro">Esta serie editorial de Raíces Médicas recorre los momentos clave y las figuras que hicieron posible la diálisis moderna. Cada capítulo cuenta una historia de ciencia, perseverancia e innovación que cambió el destino de millones de pacientes renales en todo el mundo.</p>
+    </div>
+
+    <!-- Articles Grid — chronological order (oldest first) -->
+    <div class="entries-grid">
+
+      <!-- Chapter 1: Pioneros de la Diálisis -->
+      <a href="/historia-dialisis/pioneros-dialisis.html" class="entry-card">
+        <div class="entry-card-img">
+          <div class="placeholder">
+            <div class="number">I</div>
+            <div class="icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
+              <p>Capítulo I</p>
+            </div>
+          </div>
+        </div>
+        <div class="entry-card-body">
+          <div class="entry-badges">
+            <span class="badge badge-series" data-i18n="historia.badge.series">Historia de la Diálisis</span>
+            <span class="badge badge-chapter">Capítulo I</span>
+          </div>
+          <h2>Los Pioneros de la Diálisis: 150 Años de Ciencia, Coraje y Revolución Médica</h2>
+          <div class="entry-meta">
+            <span>
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+              Abril 2026
+            </span>
+            <span>
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="10"/></svg>
+              ~10 min de lectura
+            </span>
+          </div>
+          <p class="entry-summary">Desde Thomas Graham en 1861 hasta los riñones portátiles del siglo XXI — la historia completa de los visionarios que inventaron, perfeccionaron y democratizaron la diálisis, salvando más de 4 millones de vidas al año.</p>
+          <span class="entry-cta">
+            Leer capítulo <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Chapter 2: Kolff & Scribner -->
+      <a href="/historia-dialisis/kolff-scribner.html" class="entry-card">
+        <div class="entry-card-img">
+          <div class="placeholder">
+            <div class="number">II</div>
+            <div class="icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
+              <p>Capítulo II</p>
+            </div>
+          </div>
+        </div>
+        <div class="entry-card-body">
+          <div class="entry-badges">
+            <span class="badge badge-series" data-i18n="historia.badge.series">Historia de la Diálisis</span>
+            <span class="badge badge-chapter">Capítulo II</span>
+          </div>
+          <h2>Los Padres de la Hemodiálisis: Willem Kolff y Belding Scribner</h2>
+          <div class="entry-meta">
+            <span>
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+              Abril 2026
+            </span>
+            <span>
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="10"/></svg>
+              ~25 min de lectura
+            </span>
+          </div>
+          <p class="entry-summary">Cómo Willem Kolff y Belding Scribner transformaron la insuficiencia renal de sentencia de muerte a enfermedad tratable, salvando más de 1.5 millones de vidas. Desde el primer riñón artificial construido bajo ocupación nazi hasta el shunt de Teflón que hizo posible la diálisis crónica indefinida.</p>
+          <span class="entry-cta">
+            Leer capítulo <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="page-footer">
+    <p data-i18n="footer.copy">&copy; 2026 Raíces Médicas. Todos los derechos reservados.</p>
+    <p style="margin-top:6px">
+      <a href="/aviso-legal.html" data-i18n="footer.legal.aviso">Aviso legal</a> |
+      <a href="/politica-privacidad.html" data-i18n="footer.legal.privacidad">Privacidad</a> |
+      <a href="/cookies.html" data-i18n="footer.legal.cookies">Cookies</a>
+    </p>
+  </div>
+
+  <script src="/i18n.js"></script>
+</body>
+</html>
