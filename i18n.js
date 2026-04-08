@@ -307,6 +307,17 @@ const translations = {
     "cookies.s6.title": "6. Contacto",
     "cookies.s6.p1": "Si tiene preguntas sobre nuestra pol\u00edtica de cookies, puede contactarnos a trav\u00e9s de los medios disponibles en el sitio web.",
 
+    // Historia de la Diálisis page
+    "nav.historia": "Historia de la Di\u00e1lisis",
+    "historia.back": "Volver al inicio",
+    "historia.badge": "Serie Editorial",
+    "historia.title": "Historia de la Di\u00e1lisis",
+    "historia.desc": "Los pioneros, los inventos y los hitos que transformaron la insuficiencia renal de sentencia de muerte a enfermedad tratable",
+    "historia.intro": "Esta serie editorial de Ra\u00edces M\u00e9dicas recorre los momentos clave y las figuras que hicieron posible la di\u00e1lisis moderna. Cada cap\u00edtulo cuenta una historia de ciencia, perseverancia e innovaci\u00f3n que cambi\u00f3 el destino de millones de pacientes renales en todo el mundo.",
+    "historia.badge.series": "Historia de la Di\u00e1lisis",
+    "historia.meta.title": "Historia de la Di\u00e1lisis | Ra\u00edces M\u00e9dicas",
+    "historia.meta.description": "Serie editorial sobre la historia de la di\u00e1lisis: los pioneros, los inventos y los hitos que transformaron la nefrolog\u00eda moderna.",
+
     // Meta
     "meta.title": "Ra\u00edces M\u00e9dicas | Educaci\u00f3n M\u00e9dica y Salud Renal",
     "meta.description": "Ra\u00edces M\u00e9dicas: plataforma de educaci\u00f3n m\u00e9dica, salud renal e innovaci\u00f3n en salud digital."
@@ -615,6 +626,17 @@ const translations = {
     "cookies.s6.title": "6. Contact",
     "cookies.s6.p1": "If you have questions about our cookie policy, you may contact us through the means available on the website.",
 
+    // History of Dialysis page
+    "nav.historia": "History of Dialysis",
+    "historia.back": "Back to home",
+    "historia.badge": "Editorial Series",
+    "historia.title": "History of Dialysis",
+    "historia.desc": "The pioneers, inventions, and milestones that transformed kidney failure from a death sentence to a treatable disease",
+    "historia.intro": "This editorial series by Ra\u00edces M\u00e9dicas traces the key moments and figures that made modern dialysis possible. Each chapter tells a story of science, perseverance, and innovation that changed the fate of millions of kidney patients worldwide.",
+    "historia.badge.series": "History of Dialysis",
+    "historia.meta.title": "History of Dialysis | Ra\u00edces M\u00e9dicas",
+    "historia.meta.description": "Editorial series on the history of dialysis: the pioneers, inventions, and milestones that transformed modern nephrology.",
+
     // Meta
     "meta.title": "Ra\u00edces M\u00e9dicas | Medical Education & Renal Health",
     "meta.description": "Ra\u00edces M\u00e9dicas: medical education platform, renal health, and digital health innovation."
@@ -922,6 +944,17 @@ const translations = {
     "cookies.s5.p1": "A Ra\u00edces M\u00e9dicas pode atualizar esta pol\u00edtica de cookies a qualquer momento. Recomenda-se revisar esta p\u00e1gina periodicamente para se manter informado de quaisquer altera\u00e7\u00f5es.",
     "cookies.s6.title": "6. Contato",
     "cookies.s6.p1": "Se voc\u00ea tiver d\u00favidas sobre nossa pol\u00edtica de cookies, pode nos contatar atrav\u00e9s dos meios dispon\u00edveis no site.",
+
+    // História da Diálise page
+    "nav.historia": "Hist\u00f3ria da Di\u00e1lise",
+    "historia.back": "Voltar ao in\u00edcio",
+    "historia.badge": "S\u00e9rie Editorial",
+    "historia.title": "Hist\u00f3ria da Di\u00e1lise",
+    "historia.desc": "Os pioneiros, as inven\u00e7\u00f5es e os marcos que transformaram a insufici\u00eancia renal de senten\u00e7a de morte em doen\u00e7a trat\u00e1vel",
+    "historia.intro": "Esta s\u00e9rie editorial da Ra\u00edces M\u00e9dicas percorre os momentos-chave e as figuras que tornaram poss\u00edvel a di\u00e1lise moderna. Cada cap\u00edtulo conta uma hist\u00f3ria de ci\u00eancia, perseveran\u00e7a e inova\u00e7\u00e3o que mudou o destino de milh\u00f5es de pacientes renais em todo o mundo.",
+    "historia.badge.series": "Hist\u00f3ria da Di\u00e1lise",
+    "historia.meta.title": "Hist\u00f3ria da Di\u00e1lise | Ra\u00edces M\u00e9dicas",
+    "historia.meta.description": "S\u00e9rie editorial sobre a hist\u00f3ria da di\u00e1lise: os pioneiros, as inven\u00e7\u00f5es e os marcos que transformaram a nefrologia moderna.",
 
     // Meta
     "meta.title": "Ra\u00edces M\u00e9dicas | Educa\u00e7\u00e3o M\u00e9dica e Sa\u00fade Renal",
