@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Los Padres de la Hemodiálisis | Raíces Médicas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:        #0d2137;
+    --navy-mid:    #1a3a5c;
+    --teal:        #0e6e72;
+    --teal-light:  #1a9498;
+    --amber:       #c8831a;
+    --amber-light: #e8a83a;
+    --cream:       #f7f3ec;
+    --cream-dark:  #ede7da;
+    --white:       #ffffff;
+    --text:        #1c1c2e;
+    --muted:       #5a5a6e;
+  }
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--cream); color: var(--text); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; }
+
+  /* ─── MASTHEAD ─── */
+  .masthead {
+    background: var(--navy);
+    padding: 0 48px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 2px solid var(--amber);
+  }
+  .mast-brand {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.45rem;
+    color: var(--amber-light);
+    letter-spacing: 0.02em;
+  }
+  .mast-center {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+  }
+  .mast-date {
+    font-size: 0.68rem;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.08em;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    background: var(--navy);
+    padding: 90px 48px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 80% 50%, rgba(14,110,114,0.18) 0%, transparent 70%),
+      repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 40px,
+        rgba(255,255,255,0.012) 40px,
+        rgba(255,255,255,0.012) 41px
+      );
+    pointer-events: none;
+  }
+  .hero-inner { max-width: 780px; position: relative; z-index: 1; }
+  .hero-kicker {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--amber-light);
+    margin-bottom: 22px;
+  }
+  .hero-kicker::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1.5px;
+    background: var(--amber-light);
+    flex-shrink: 0;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.04;
+    margin-bottom: 28px;
+    letter-spacing: -0.01em;
+  }
+  .hero-title em { font-style: italic; color: var(--amber-light); }
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-style: italic;
+    color: rgba(255,255,255,0.72);
+    line-height: 1.6;
+    max-width: 620px;
+    border-left: 3px solid var(--teal-light);
+    padding-left: 20px;
+  }
+  .hero-meta {
+    margin-top: 36px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 0.06em;
+  }
+  .hero-meta-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--amber); }
+
+  /* ─── BYLINE ─── */
+  .byline {
+    background: var(--white);
+    border-bottom: 1px solid var(--cream-dark);
+    padding: 14px 48px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 0.78rem;
+    color: var(--muted);
+    flex-wrap: wrap;
+  }
+  .byline strong { color: var(--teal); font-weight: 500; }
+  .byline-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--amber); flex-shrink: 0; }
+
+  /* ─── WRAPPER ─── */
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 48px; }
+
+  /* ─── LEAD ─── */
+  .lead {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 64px;
+    padding: 72px 0 56px;
+    border-bottom: 1px solid var(--cream-dark);
+    align-items: start;
+  }
+  .lead-text p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.28rem;
+    line-height: 1.78;
+    color: var(--text);
+    margin-bottom: 18px;
+  }
+  .lead-text p:first-child::first-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 5.8rem;
+    font-weight: 900;
+    color: var(--teal);
+    float: left;
+    line-height: 0.75;
+    margin: 10px 14px 0 0;
+  }
+  .sidebar {
+    padding-top: 6px;
+    border-left: 3px solid var(--amber);
+    padding-left: 28px;
+  }
+  .sidebar-label {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 20px;
+  }
+  .stat { margin-bottom: 30px; padding-bottom: 26px; border-bottom: 1px solid var(--cream-dark); }
+  .stat:last-child { border-bottom: none; margin-bottom: 0; }
+  .stat-n {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.2rem;
+    font-weight: 900;
+    color: var(--teal);
+    line-height: 1;
+  }
+  .stat-d { font-size: 0.82rem; color: var(--muted); line-height: 1.5; margin-top: 6px; }
+
+  /* ─── PORTRAIT CARDS ─── */
+  .portraits {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin: 56px 0;
+  }
+  .pcard {
+    background: var(--white);
+    border-top: 4px solid var(--teal);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+    overflow: hidden;
+  }
+  .pcard-color {
+    height: 8px;
+    background: linear-gradient(90deg, var(--teal) 0%, var(--teal-light) 100%);
+  }
+  .pcard-monogram {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--navy);
+    font-family: 'Playfair Display', serif;
+    font-size: 6rem;
+    font-weight: 900;
+    color: rgba(255,255,255,0.07);
+    letter-spacing: -0.05em;
+    position: relative;
+    overflow: hidden;
+  }
+  .pcard-monogram::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(14,110,114,0.25) 0%, transparent 70%);
+  }
+  .pcard-monogram span {
+    position: relative;
+    z-index: 1;
+    font-size: 5rem;
+    color: rgba(255,255,255,0.12);
+  }
+  .pcard-initial {
+    position: absolute;
+    z-index: 2;
+    font-family: 'Playfair Display', serif;
+    font-size: 7rem;
+    font-weight: 900;
+    color: rgba(255,255,255,0.09);
+  }
+  .pcard-body { padding: 22px 26px 26px; }
+  .pcard-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--navy);
+  }
+  .pcard-years {
+    font-size: 0.73rem;
+    color: var(--amber);
+    letter-spacing: 0.1em;
+    font-weight: 500;
+    margin: 5px 0 14px;
+    text-transform: uppercase;
+  }
+  .pcard-bio { font-size: 0.9rem; line-height: 1.7; color: var(--muted); }
+
+  /* ─── SECTION HEADER ─── */
+  .sec-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin: 64px 0 30px;
+  }
+  .sec-n {
+    font-family: 'Playfair Display', serif;
+    font-size: 4.5rem;
+    font-weight: 900;
+    color: var(--cream-dark);
+    line-height: 1;
+    min-width: 60px;
+    flex-shrink: 0;
+  }
+  .sec-wrap { border-left: 3px solid var(--teal); padding-left: 20px; }
+  .sec-kicker {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--teal-light);
+    margin-bottom: 6px;
+  }
+  .sec-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.2;
+  }
+
+  /* ─── BODY TEXT ─── */
+  .bt p { font-size: 1rem; line-height: 1.88; color: var(--text); margin-bottom: 22px; }
+  .bt strong { color: var(--teal); font-weight: 500; }
+  .bt em { font-style: italic; }
+
+  /* ─── PULL QUOTE ─── */
+  .pq {
+    margin: 52px 0;
+    padding: 38px 48px 38px 52px;
+    background: var(--navy);
+    border-left: 5px solid var(--amber);
+    position: relative;
+    overflow: hidden;
+  }
+  .pq::before {
+    content: '\201C';
+    font-family: 'Playfair Display', serif;
+    font-size: 18rem;
+    color: rgba(255,255,255,0.03);
+    position: absolute;
+    top: -60px;
+    left: 10px;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .pq blockquote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.65rem;
+    color: var(--white);
+    line-height: 1.48;
+    position: relative;
+    z-index: 1;
+  }
+  .pq cite {
+    display: block;
+    margin-top: 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-style: normal;
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--amber-light);
+  }
+
+  /* ─── DIVIDER BAND ─── */
+  .band {
+    background: var(--teal);
+    padding: 36px 48px;
+    margin: 52px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .band::after {
+    content: attr(data-word);
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Playfair Display', serif;
+    font-size: 6rem;
+    font-weight: 900;
+    color: rgba(255,255,255,0.05);
+    letter-spacing: 0.15em;
+    pointer-events: none;
+  }
+  .band-label {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--amber-light);
+    margin-bottom: 18px;
+  }
+  .band-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .band-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.6rem;
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1;
+  }
+  .band-desc { font-size: 0.82rem; color: rgba(255,255,255,0.68); line-height: 1.5; margin-top: 7px; }
+
+  /* ─── BORDERED BOX ─── */
+  .bordered {
+    border: 2px solid var(--amber);
+    padding: 34px 38px;
+    margin: 48px 0;
+    position: relative;
+  }
+  .bordered-tag {
+    position: absolute;
+    top: -13px;
+    left: 22px;
+    background: var(--cream);
+    padding: 0 12px;
+    font-size: 0.63rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--amber);
+  }
+  .bordered h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--navy);
+    margin-bottom: 14px;
+    font-weight: 700;
+  }
+  .bordered p { font-size: 0.97rem; line-height: 1.78; color: var(--muted); }
+
+  /* ─── TIMELINE ─── */
+  .timeline { margin: 48px 0; padding-left: 36px; position: relative; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 10px; top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--teal), var(--amber));
+  }
+  .tl-item { position: relative; margin-bottom: 34px; }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -30px; top: 8px;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--amber);
+    border: 2.5px solid var(--cream);
+    box-shadow: 0 0 0 2px var(--amber);
+  }
+  .tl-year {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    font-weight: 900;
+    color: var(--teal);
+    margin-bottom: 4px;
+  }
+  .tl-text { font-size: 0.96rem; color: var(--text); line-height: 1.68; }
+  .tl-text strong { color: var(--navy); font-weight: 500; }
+
+  /* ─── AWARD ─── */
+  .award {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+    padding: 48px 52px;
+    margin: 60px 0;
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+  .medal {
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--amber) 0%, var(--amber-light) 100%);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column;
+    flex-shrink: 0;
+    box-shadow: 0 0 0 5px rgba(200,131,26,0.2), 0 10px 36px rgba(0,0,0,0.35);
+    text-align: center;
+  }
+  .medal-word {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.58rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--navy);
+    line-height: 1.5;
+  }
+  .medal-year {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 900;
+    color: var(--navy);
+    line-height: 1;
+  }
+  .award-label {
+    font-size: 0.65rem; font-weight: 500; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--amber-light); margin-bottom: 8px;
+  }
+  .award-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.7rem; color: var(--white); margin-bottom: 14px; line-height: 1.25;
+  }
+  .award-desc { font-size: 0.9rem; color: rgba(255,255,255,0.62); line-height: 1.68; max-width: 560px; }
+  .award-cta {
+    display: inline-block;
+    margin-top: 20px;
+    background: var(--amber);
+    color: var(--navy);
+    font-size: 0.76rem; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 11px 26px;
+    text-decoration: none;
+    transition: background 0.25s, transform 0.2s;
+  }
+  .award-cta:hover { background: var(--amber-light); transform: translateX(3px); }
+
+  /* ─── LEGACY CARDS ─── */
+  .legacy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin: 38px 0 56px; }
+  .lcard {
+    background: var(--white);
+    border-top: 3px solid var(--teal-light);
+    padding: 28px 24px 30px;
+    box-shadow: 0 2px 14px rgba(0,0,0,0.055);
+  }
+  .lcard-icon { font-size: 1.7rem; margin-bottom: 14px; }
+  .lcard-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.08rem; font-weight: 700;
+    color: var(--navy); margin-bottom: 10px;
+  }
+  .lcard-text { font-size: 0.88rem; line-height: 1.68; color: var(--muted); }
+
+  /* ─── ORNAMENT ─── */
+  .ornament { text-align: center; margin: 48px 0; color: var(--amber); font-size: 1.1rem; letter-spacing: 0.5em; opacity: 0.55; }
+
+  /* ─── DISCLAIMER ─── */
+  .disclaimer {
+    margin: 56px 0 16px;
+    padding: 20px 28px;
+    background: var(--cream-dark);
+    border-left: 4px solid var(--muted);
+    font-size: 0.78rem; font-style: italic;
+    color: var(--muted); line-height: 1.6;
+  }
+  .disclaimer strong { font-style: normal; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--navy);
+    padding: 36px 48px;
+    text-align: center;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.06em;
+  }
+  footer strong { color: var(--amber-light); font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.05rem; }
+  footer a { color: rgba(200,131,26,0.55); }
+
+  /* ─── REFERENCES ─── */
+  .references {
+    margin: 48px 0 16px;
+    padding: 34px 38px;
+    border-top: 3px solid var(--teal);
+  }
+  .references-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 24px;
+  }
+  .ref-item {
+    margin-bottom: 18px;
+    padding-left: 28px;
+    position: relative;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+  .ref-item .ref-num {
+    position: absolute;
+    left: 0;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    color: var(--teal);
+    font-size: 0.92rem;
+  }
+  .ref-item .ref-authors { font-weight: 500; color: var(--text); }
+  .ref-item .ref-title { font-style: italic; }
+
+  /* ─── PRINT STYLES ─── */
+  @media print {
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; line-height: 1.55; }
+    .masthead { position: relative; }
+
+    /* Condense spacing */
+    .hero { padding: 50px 40px 45px; }
+    .hero-title { font-size: 3.2rem; margin-bottom: 18px; }
+    .hero-subtitle { font-size: 1.2rem; }
+    .hero-meta { margin-top: 22px; }
+    .byline { padding: 10px 40px; }
+    .wrap { padding: 0 40px; }
+    .lead { padding: 40px 0 32px; gap: 40px; }
+    .lead-text p { font-size: 1.1rem; line-height: 1.6; margin-bottom: 12px; }
+    .lead-text p:first-child::first-letter { font-size: 4.5rem; }
+    .sidebar { padding-left: 20px; }
+    .stat { margin-bottom: 18px; padding-bottom: 16px; }
+    .stat-n { font-size: 2.4rem; }
+    .stat-d { font-size: 0.75rem; }
+    .portraits { margin: 32px 0; gap: 16px; }
+    .pcard-monogram { height: 140px; }
+    .pcard-body { padding: 16px 20px 20px; }
+    .pcard-name { font-size: 1.25rem; }
+    .pcard-bio { font-size: 0.82rem; line-height: 1.55; }
+    .sec-head { margin: 36px 0 18px; }
+    .sec-n { font-size: 3.2rem; }
+    .sec-title { font-size: 1.45rem; }
+    .bt p { font-size: 0.9rem; line-height: 1.7; margin-bottom: 14px; }
+    .pq { margin: 28px 0; padding: 24px 36px 24px 38px; }
+    .pq blockquote { font-size: 1.3rem; }
+    .pq cite { margin-top: 10px; font-size: 0.65rem; }
+    .band { padding: 24px 40px; margin: 28px 0; }
+    .band-num { font-size: 2rem; }
+    .band-desc { font-size: 0.75rem; }
+    .bordered { padding: 22px 28px; margin: 28px 0; }
+    .bordered h3 { font-size: 1.1rem; margin-bottom: 10px; }
+    .bordered p { font-size: 0.88rem; line-height: 1.6; }
+    .timeline { margin: 28px 0; }
+    .tl-item { margin-bottom: 20px; }
+    .tl-year { font-size: 1.1rem; }
+    .tl-text { font-size: 0.85rem; line-height: 1.5; }
+    .award { padding: 30px 36px; margin: 36px 0; gap: 28px; }
+    .award-title { font-size: 1.35rem; }
+    .award-desc { font-size: 0.82rem; }
+    .medal { width: 80px; height: 80px; }
+    .medal-word { font-size: 0.5rem; }
+    .medal-year { font-size: 1rem; }
+    .legacy-grid { margin: 24px 0 36px; gap: 16px; }
+    .lcard { padding: 20px 18px 22px; }
+    .lcard-title { font-size: 0.95rem; }
+    .lcard-text { font-size: 0.8rem; line-height: 1.55; }
+    .ornament { margin: 28px 0; }
+    .references { margin: 28px 0 12px; padding: 22px 28px; }
+    .references-title { font-size: 1.2rem; margin-bottom: 16px; }
+    .ref-item { margin-bottom: 10px; font-size: 0.78rem; line-height: 1.45; }
+    .disclaimer { margin: 28px 0 12px; padding: 14px 22px; font-size: 0.72rem; }
+    footer { padding: 24px 40px; }
+
+    /* Keep section headers with their first paragraph */
+    .sec-head { break-after: avoid; page-break-after: avoid; }
+    /* Prevent breaks inside small self-contained blocks */
+    .pq { break-inside: avoid; page-break-inside: avoid; }
+    .pcard { break-inside: avoid; page-break-inside: avoid; }
+    .band { break-inside: avoid; page-break-inside: avoid; }
+    .bordered { break-inside: avoid; page-break-inside: avoid; }
+    .tl-item { break-inside: avoid; page-break-inside: avoid; }
+    .award { break-inside: avoid; page-break-inside: avoid; }
+    .lcard { break-inside: avoid; page-break-inside: avoid; }
+    .stat { break-inside: avoid; page-break-inside: avoid; }
+    .ref-item { break-inside: avoid; page-break-inside: avoid; }
+    .disclaimer { break-inside: avoid; page-break-inside: avoid; }
+    h1, h2, h3 { break-after: avoid; page-break-after: avoid; }
+    .references-title { break-after: avoid; page-break-after: avoid; }
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 800px) {
+    .masthead, .byline, .wrap { padding-left: 22px; padding-right: 22px; }
+    .hero { padding: 60px 22px 56px; }
+    .lead, .portraits, .band-grid, .legacy-grid { grid-template-columns: 1fr; }
+    .award { grid-template-columns: 1fr; }
+    .medal { margin: 0 auto; }
+    footer { padding: 28px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <a href="/actualidades.html" class="mast-brand" style="text-decoration:none;color:var(--amber-light);">Raíces Médicas</a>
+  <a href="/actualidades.html" class="mast-center" style="text-decoration:none;color:rgba(255,255,255,0.45);">← Volver a Actualidades</a>
+  <div class="mast-date">Abril 2026</div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-kicker">Historia de la Nefrología</div>
+    <h1 class="hero-title">Los Padres de<br>la <em>Hemodiálisis</em></h1>
+    <p class="hero-subtitle">Cómo Willem Kolff y Belding Scribner transformaron la insuficiencia renal de sentencia de muerte a enfermedad tratable, salvando más de 1.5 millones de vidas en el mundo.</p>
+    <div class="hero-meta">
+      <span>Raíces Médicas</span>
+      <span class="hero-meta-dot"></span>
+      <span>Fuente: Albert Lasker Foundation, 2002</span>
+      <span class="hero-meta-dot"></span>
+      <span>Lectura: 10 min</span>
+    </div>
+  </div>
+</section>
+
+<!-- BYLINE -->
+<div class="byline">
+  <span>Por <strong>Raíces Médicas</strong></span>
+  <span class="byline-dot"></span>
+  <span>Fuente primaria: <strong>Albert Lasker Foundation · 2002</strong></span>
+  <span class="byline-dot"></span>
+  <span>Nefrología · Historia Médica</span>
+</div>
+
+<div class="wrap">
+
+  <!-- LEAD -->
+  <div class="lead">
+    <div class="lead-text">
+      <p>Cada vez que un paciente se sienta en una silla de diálisis y regresa a su casa vivo, está siendo testigo de una deuda histórica con dos hombres: <strong>Willem Johan Kolff</strong> y <strong>Belding Scribner</strong>. Juntos, en décadas distintas y con herramientas radicalmente diferentes, convirtieron la insuficiencia renal terminal de una condena irreversible en una condición tratable — y en el proceso, fundaron toda una rama de la medicina moderna.</p>
+      <p>Esta es su historia completa.</p>
+    </div>
+    <aside class="sidebar">
+      <div class="sidebar-label">Impacto Global</div>
+      <div class="stat">
+        <div class="stat-n">1.5M</div>
+        <div class="stat-d">Pacientes en diálisis crónica en el mundo hoy</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">90%</div>
+        <div class="stat-d">Reducción en mortalidad por falla renal terminal tras el shunt de Scribner</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">1943</div>
+        <div class="stat-d">Año del primer tratamiento clínico con riñón artificial</div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- RETRATOS -->
+  <div class="portraits">
+    <div class="pcard">
+      <div class="pcard-monogram" style="background:linear-gradient(135deg,#0d2137 0%,#1a3558 100%)">
+        <div style="position:absolute;font-family:'Playfair Display',serif;font-size:9rem;font-weight:900;color:rgba(255,255,255,0.06);line-height:1;user-select:none;">WK</div>
+        <div style="position:relative;z-index:2;text-align:center;">
+          <div style="font-family:'Playfair Display',serif;font-size:1rem;font-style:italic;color:rgba(255,255,255,0.4);letter-spacing:0.08em;">1911 — 2009</div>
+          <div style="font-family:'Playfair Display',serif;font-size:3rem;font-weight:900;color:rgba(14,110,114,0.7);line-height:1;margin-top:8px;">W.K.</div>
+        </div>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-name">Willem Johan Kolff</div>
+        <div class="pcard-years">1911 – 2009 · Países Bajos / EE.UU.</div>
+        <p class="pcard-bio">Médico e inventor. Construyó el primer riñón artificial funcional bajo ocupación nazi en los Países Bajos. Más tarde desarrolló el primer corazón artificial implantable. Padre de la medicina de órganos artificiales.</p>
+      </div>
+    </div>
+    <div class="pcard">
+      <div class="pcard-monogram" style="background:linear-gradient(135deg,#0d2137 0%,#0e3a3c 100%)">
+        <div style="position:absolute;font-family:'Playfair Display',serif;font-size:9rem;font-weight:900;color:rgba(255,255,255,0.06);line-height:1;user-select:none;">BS</div>
+        <div style="position:relative;z-index:2;text-align:center;">
+          <div style="font-family:'Playfair Display',serif;font-size:1rem;font-style:italic;color:rgba(255,255,255,0.4);letter-spacing:0.08em;">1921 — 2003</div>
+          <div style="font-family:'Playfair Display',serif;font-size:3rem;font-weight:900;color:rgba(14,110,114,0.7);line-height:1;margin-top:8px;">B.S.</div>
+        </div>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-name">Belding H. Scribner</div>
+        <div class="pcard-years">1921 – 2003 · Seattle, EE.UU.</div>
+        <p class="pcard-bio">Nefrólogo en la Universidad de Washington. Inventó el shunt de Teflón que hizo posible la diálisis crónica indefinida. Fundó el primer centro ambulatorio de diálisis del mundo y fue pionero de la bioética médica moderna.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEC 01 -->
+  <div class="sec-head">
+    <div class="sec-n">01</div>
+    <div class="sec-wrap">
+      <div class="sec-kicker">Países Bajos, 1938</div>
+      <div class="sec-title">Un Joven Médico, un Paciente que Muere, y una Promesa</div>
+    </div>
+  </div>
+  <div class="bt">
+    <p>En 1938, <strong>Willem Kolff</strong>, recién graduado de medicina, trabajaba en el hospital universitario de Groningen. Uno de sus primeros pacientes era un joven de 22 años que moría lentamente de insuficiencia renal. Kolff lo observó durante días —impotente, frustrado— mientras los desechos tóxicos acumulados en su sangre apagaban su cuerpo, órgano por órgano.</p>
+    <p>Esa muerte lo marcó de por vida. La misma tarde fue a la biblioteca universitaria en busca de una respuesta. Encontró un artículo de 1913 escrito por <strong>John Abel</strong> de Johns Hopkins, que describía un experimento en perros: extraer sangre, hacerla pasar por tubos porosos bañados en solución salina y devolverla al animal. El concepto era claro —la diálisis podía funcionar— pero el método era primitivo e inseguro para humanos.</p>
+    <p>Kolff vio la posibilidad donde otros veían el fracaso. Tenía dos ventajas que Abel no tuvo: la <strong>heparina</strong> como anticoagulante seguro, y el <strong>celofán</strong> de tripa de salchicha como membrana de diálisis perfecta. Solo necesitaba construir la máquina.</p>
+  </div>
+
+  <div class="pq">
+    <blockquote>"Si pudiera encontrar una manera de extraer los venenos producidos cada día, podría salvar a esos pacientes."</blockquote>
+    <cite>— Willem Kolff, reflexionando sobre su primer paciente fallecido · Groningen, 1938</cite>
+  </div>
+
+  <!-- SEC 02 -->
+  <div class="sec-head">
+    <div class="sec-n">02</div>
+    <div class="sec-wrap">
+      <div class="sec-kicker">Kampen, Países Bajos · 1940–1945</div>
+      <div class="sec-title">Construir un Riñón en Medio de la Guerra</div>
+    </div>
+  </div>
+  <div class="bt">
+    <p>Lo que vino después desafía la imaginación. En 1940, los nazis invadieron los Países Bajos. El mayor apoyo de Kolff en Groningen —su jefe de departamento, quien era judío— se suicidó antes de ser arrestado. Un simpatizante nazi tomó su puesto. Kolff decidió trasladarse a <strong>Kampen</strong>, una ciudad pequeña, donde continuó su proyecto en secreto y con recursos mínimos.</p>
+    <p>Trabajar bajo ocupación nazi significaba trabajar sin nada. Las agujas eran escasas. El caucho era tan valioso que lo reservaba solo donde necesitaba flexibilidad, sustituyéndolo con tubos de vidrio en el resto del recorrido. Los primeros modelos usaban tiras de aluminio; cuando el aluminio escaseó, usó listones de madera —que funcionaban bien, salvo cuando se combaban con la humedad—. Lo único que había previsto con anticipación eran metros y metros de tripa de salchicha, comprada antes de que los alemanes llegaran.</p>
+    <p>Convenció al director de una fábrica local de esmalte, <strong>Henrick Berk</strong>, de ayudarlo. En 1942, juntos construyeron el primer <strong>riñón artificial de tambor rotatorio</strong>: 40 metros de celofán enrollados en espiral alrededor de un tambor horizontal que giraba dentro de un tanque de esmalte lleno de solución de enjuague. Al girar, la sangre recorría todo el tubo liberando sus toxinas hacia el líquido circundante.</p>
+    <p>La mayoría de los médicos tenían poca fe. Solo le referían pacientes en coma o al borde de la muerte. Los primeros 15 pacientes fallecieron —pero no por el tratamiento—. Sin embargo, Kolff podía controlar los niveles de urea, y algunos pacientes despertaron brevemente de su coma, lo que lo mantuvo firme en su convicción.</p>
+  </div>
+
+  <!-- SEC 03 -->
+  <div class="sec-head">
+    <div class="sec-n">03</div>
+    <div class="sec-wrap">
+      <div class="sec-kicker">Septiembre, 1945</div>
+      <div class="sec-title">La Primera Victoria: Una Ironía de la Historia</div>
+    </div>
+  </div>
+  <div class="bt">
+    <p>En septiembre de 1945, Kolff logró su primera victoria indiscutible. La ironía histórica no podía ser más profunda: su paciente era una mujer de 67 años que había colaborado con los nazis, delatando a vecinos holandeses a las autoridades alemanas. La hostilidad de la comunidad hacia el médico que intentaba salvarla era palpable. Pero Kolff procedió —fiel a su rol como médico, por encima de cualquier otra consideración.</p>
+    <p>La mujer llegó inconsciente. Tras muchas horas de diálisis, Kolff se inclinó sobre ella y le preguntó si podía escucharlo.</p>
+  </div>
+
+  <div class="pq">
+    <blockquote>"Ella abrió lentamente los ojos y dijo: 'Me voy a divorciar de mi marido.'"</blockquote>
+    <cite>— Willem Kolff · ASAIO Journal, editorial 1993 · citado en Lasker Foundation, 2002</cite>
+  </div>
+
+  <div class="bt">
+    <p>Sus riñones comenzaron a producir orina. Cumplió su palabra, se divorció, y vivió siete años más antes de morir de otra enfermedad. <strong>La revolución del tambor había comenzado.</strong></p>
+    <p>Terminada la guerra, Kolff no patentó su invento. Donó sus cinco riñones artificiales a hospitales en Londres, Polonia, La Haya, Montreal y el Hospital Mount Sinai de Nueva York. También compartió los planos con <strong>George Thorn</strong> en Boston, lo que llevó al riñón <strong>Kolff-Brigham</strong>, usado durante la <strong>Guerra de Corea</strong> para dializar soldados con falla renal traumática, y que facilitó el primer trasplante renal exitoso realizado por <strong>Joseph Murray</strong> en 1954.</p>
+  </div>
+
+  <div class="band" data-word="KOLFF">
+    <div class="band-label">Datos Clave · El Impacto de Kolff</div>
+    <div class="band-grid">
+      <div>
+        <div class="band-num">75–90%</div>
+        <div class="band-desc">Mortalidad por falla renal aguda <em>antes</em> del riñón artificial</div>
+      </div>
+      <div>
+        <div class="band-num">20–50%</div>
+        <div class="band-desc">Mortalidad actual, según la enfermedad de base</div>
+      </div>
+      <div>
+        <div class="band-num">5</div>
+        <div class="band-desc">Riñones donados gratuitamente al mundo en 1945</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEC 04 -->
+  <div class="sec-head">
+    <div class="sec-n">04</div>
+    <div class="sec-wrap">
+      <div class="sec-kicker">Seattle · 4:00 a.m., 1960</div>
+      <div class="sec-title">Scribner: La Revelación que Cambió Todo</div>
+    </div>
+  </div>
+  <div class="bt">
+    <p>El riñón de Kolff salvaba pacientes con falla renal aguda y <em>temporal</em>. Pero para los pacientes con <strong>enfermedad renal terminal crónica</strong>, cuyo riñón no se recuperaría jamás, el panorama seguía siendo mortal. El problema era técnico: cada sesión de diálisis requería insertar agujas en arterias y venas. Con el tiempo, esos vasos quedaban tan dañados que los médicos literalmente se quedaban sin acceso. La creencia dominante: la diálisis crónica era imposible.</p>
+    <p><strong>Belding Scribner</strong>, profesor en la Universidad de Washington, observó impotente cómo un paciente que había respondido milagrosamente a una sesión de diálisis moría semanas después, incapaz de recibir más tratamientos. Esa imagen lo persiguió durante semanas.</p>
+    <p>Una noche, incapaz de dormir, se despertó a las <strong>4 de la madrugada</strong> con una idea. Se levantó y la anotó en un papel: un conector en forma de U, fabricado de <strong>Teflón</strong>, implantado permanentemente entre una arteria y una vena del antebrazo. Cuando se necesitara dializar, simplemente se desconectaría el puente y se conectaría la máquina. Al terminar, se reconectaba. Sin nuevas incisiones. Sin destruir nuevos vasos.</p>
+    <p>El Teflón era el secreto: su superficie ultra-lisa repele prácticamente cualquier sustancia. Los coágulos no pueden adherirse, y el material no reacciona con los tejidos del cuerpo.</p>
+    <p>Scribner contactó al cirujano <strong>David Dillard</strong> y al ingeniero <strong>Wayne Quinton</strong>, quien dominó el arte de doblar Teflón —un proceso similar al soplado de vidrio—. En marzo de 1960, los tres estaban listos. Implantaron el primer shunt en <strong>Clyde Shields</strong>, un mecánico de 39 años que moría de insuficiencia renal crónica.</p>
+    <p>Los expertos del mundo seguían dudando: el riñón no solo filtra, también produce eritropoyetina, activa la vitamina D, regula la presión arterial. Una máquina nunca podría reemplazar todo eso, insistían. Shields los hizo callar. Vivió <strong>11 años</strong> en diálisis intermitente. El quinto paciente de Scribner, <strong>Tim Albers</strong>, vivió <strong>36 años</strong> —más de 5,700 sesiones— antes de morir de causas no relacionadas.</p>
+  </div>
+
+  <div class="pq">
+    <blockquote>"De la noche a la mañana, el pronóstico de la enfermedad renal terminal pasó de 90% fatal a 90% tratable."</blockquote>
+    <cite>— Albert Lasker Foundation · Premio Clínico 2002</cite>
+  </div>
+
+  <!-- SEC 05 -->
+  <div class="sec-head">
+    <div class="sec-n">05</div>
+    <div class="sec-wrap">
+      <div class="sec-kicker">Seattle, 1962</div>
+      <div class="sec-title">El Primer Dilema Bioético de la Medicina Moderna</div>
+    </div>
+  </div>
+  <div class="bt">
+    <p>En 1962, Scribner estableció el primer <strong>centro ambulatorio de diálisis del mundo</strong>, hoy conocido como el <strong>Northwest Kidney Center</strong>. Casi de inmediato, la demanda superó la capacidad: solo había seis máquinas. El seguro médico y Medicare no cubrían la diálisis crónica, que costaba $10,000 anuales en dólares de 1960. Pacientes moribundos clamaban por acceso.</p>
+    <p>La pregunta era aterradora: <strong>¿quién vive y quién muere?</strong></p>
+  </div>
+
+  <div class="bordered">
+    <div class="bordered-tag">Bioética Médica</div>
+    <h3>El Primer Comité de Bioética del Mundo</h3>
+    <p>Scribner no quiso ser el juez. Su solución fue radical: crear un comité anónimo de ciudadanos —el primero en su tipo en la historia de la medicina— compuesto por cinco líderes comunitarios laicos y dos médicos fuera de la nefrología. Este comité decidía quién recibía diálisis y quién no. Fue polémico, doloroso e imperfecto. Pero sentó las bases de la bioética médica moderna. Muchos de los debates actuales sobre acceso, justicia distributiva y priorización de recursos en salud tienen su origen directo en aquel comité de Seattle de 1962.</p>
+  </div>
+
+  <div class="bt">
+    <p>Scribner también desarrolló una máquina de diálisis portátil y miniaturizada para uso doméstico, con mecanismos de seguridad que permitían operarla sin entrenamiento médico especializado. Esto liberó camas en el centro y permitió a los pacientes incorporar el tratamiento a su vida cotidiana. Hoy, miles de pacientes en el mundo dializan desde sus propias casas.</p>
+  </div>
+
+  <!-- SEC 06 TIMELINE -->
+  <div class="sec-head">
+    <div class="sec-n">06</div>
+    <div class="sec-wrap">
+      <div class="sec-kicker">1938 – 2009</div>
+      <div class="sec-title">Cronología: De Groningen a Seattle</div>
+    </div>
+  </div>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-year">1938</div>
+      <div class="tl-text">Kolff observa morir a su primer paciente renal en Groningen. Inicia investigación sobre diálisis. Descubre el trabajo de John Abel (1913).</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1940</div>
+      <div class="tl-text">Los nazis invaden los Países Bajos. Kolff se traslada a Kampen y continúa su trabajo en secreto.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1942</div>
+      <div class="tl-text"><strong>Primer riñón artificial de tambor rotatorio.</strong> Construido con celofán de tripa de salchicha y un tanque de esmalte, con ayuda de Henrick Berk.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1943–44</div>
+      <div class="tl-text">Kolff trata 16 pacientes con falla renal aguda. Ninguno sobrevive, pero el concepto queda validado.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1945</div>
+      <div class="tl-text"><strong>Primera curación documentada.</strong> Paciente de 67 años recupera consciencia tras 11 horas de diálisis. Kolff dona sus 5 máquinas al mundo al terminar la guerra.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1954</div>
+      <div class="tl-text">El riñón Kolff-Brigham facilita el primer trasplante renal exitoso, realizado por Joseph Murray en Boston.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1960</div>
+      <div class="tl-text"><strong>Shunt de Scribner.</strong> Primer implante en Clyde Shields, Seattle. La diálisis crónica indefinida se vuelve posible. El pronóstico de la falla renal terminal se invierte radicalmente.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1962</div>
+      <div class="tl-text">Scribner funda el primer centro ambulatorio de diálisis del mundo (Northwest Kidney Center). Crea el primer comité de bioética médica de la historia.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1982</div>
+      <div class="tl-text">Kolff lidera el equipo que implanta el primer corazón artificial. Barney Clark vive 112 días con el dispositivo.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2002</div>
+      <div class="tl-text"><strong>Premio Albert Lasker Clinical Medical Research Award.</strong> Entrevista histórica en video con ambos pioneros, documentada para la posteridad.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2003 / 2009</div>
+      <div class="tl-text">Scribner fallece en 2003. Kolff fallece en 2009 a los 97 años, activo en investigación de órganos artificiales hasta el final.</div>
+    </div>
+  </div>
+
+  <!-- AWARD -->
+  <div class="award">
+    <div class="medal">
+      <div class="medal-word">Premio<br>Lasker</div>
+      <div class="medal-year">2002</div>
+    </div>
+    <div>
+      <div class="award-label">Reconocimiento Histórico</div>
+      <div class="award-title">Premio Albert Lasker de Investigación Clínica</div>
+      <p class="award-desc">En 2002, la Fundación Lasker —considerada el "antecámara del Nobel" en medicina— honró a Kolff y Scribner por transformar la insuficiencia renal de sentencia de muerte en enfermedad tratable. Ese mismo año realizó una entrevista en video con ambos pioneros: un documento histórico para todo profesional de la nefrología y estudiante de la salud.</p>
+      <a href="https://laskerfoundation.org/winners/hemodialysis-for-treating-end-stage-kidney-disease/" target="_blank" class="award-cta">Ver entrevista completa →</a>
+    </div>
+  </div>
+
+  <!-- SEC 07 -->
+  <div class="sec-head">
+    <div class="sec-n">07</div>
+    <div class="sec-wrap">
+      <div class="sec-kicker">Hoy</div>
+      <div class="sec-title">El Legado que Nos Rodea Cada Día</div>
+    </div>
+  </div>
+
+  <div class="legacy-grid">
+    <div class="lcard">
+      <div class="lcard-icon">🩺</div>
+      <div class="lcard-title">Diálisis Crónica</div>
+      <p class="lcard-text">Más de 300,000 pacientes en EE.UU. y 1.5 millones en el mundo viven gracias a la hemodiálisis crónica. El hemodiálisis sigue siendo el único método en que una máquina reemplaza permanentemente un órgano vital humano.</p>
+    </div>
+    <div class="lcard">
+      <div class="lcard-icon">🫀</div>
+      <div class="lcard-title">Órganos Artificiales</div>
+      <p class="lcard-text">El trabajo de Kolff fundó la disciplina completa. Inventó el oxigenador de bomba para cirugía cardíaca, el balón de contrapulsación aórtico y el primer corazón artificial implantable en seres humanos.</p>
+    </div>
+    <div class="lcard">
+      <div class="lcard-icon">⚖️</div>
+      <div class="lcard-title">Bioética Médica</div>
+      <p class="lcard-text">El comité de asignación de Scribner de 1962 es el origen directo de la bioética médica moderna y de los debates actuales sobre acceso, justicia distributiva y priorización de recursos en salud.</p>
+    </div>
+  </div>
+
+  <div class="bt">
+    <p>Para quienes trabajamos en nefrología, esta no es solo historia. Es el origen de todo lo que hacemos. Cada acceso vascular, cada membrana de dializador, cada fístula arteriovenosa. Todo se construyó sobre los fundamentos que <strong>Kolff</strong> levantó en una ciudad holandesa ocupada por los nazis, y que <strong>Scribner</strong> completó a las 4 de la mañana en Seattle.</p>
+  </div>
+
+  <div class="ornament">— ◆ —</div>
+
+  <!-- REFERENCIAS -->
+  <div class="references">
+    <div class="references-title">Referencias</div>
+    <div class="ref-item">
+      <span class="ref-num">1.</span>
+      <span class="ref-authors">Kolff WJ.</span>
+      <span class="ref-title">The artificial kidney — past, present and future.</span>
+      ASAIO Journal. 1993.
+    </div>
+    <div class="ref-item">
+      <span class="ref-num">2.</span>
+      <span class="ref-authors">Albert and Mary Lasker Foundation.</span>
+      <span class="ref-title">Clinical Medical Research Award: Hemodialysis for treating end-stage kidney disease.</span>
+      New York: Lasker Foundation; 2002. Disponible en: laskerfoundation.org
+    </div>
+    <div class="ref-item">
+      <span class="ref-num">3.</span>
+      <span class="ref-authors">Scribner BH, Buri R, Caner JEZ, Hegstrom R, Burnell JM.</span>
+      <span class="ref-title">The treatment of chronic uremia by means of intermittent hemodialysis: a preliminary report.</span>
+      Transactions — American Society for Artificial Internal Organs. 1960;6:114-122.
+    </div>
+    <div class="ref-item">
+      <span class="ref-num">4.</span>
+      <span class="ref-authors">Abel JJ, Rowntree LG, Turner BB.</span>
+      <span class="ref-title">On the removal of diffusible substances from the circulating blood of living animals by dialysis.</span>
+      Journal of Pharmacology and Experimental Therapeutics. 1913;5(3):275-316.
+    </div>
+    <div class="ref-item">
+      <span class="ref-num">5.</span>
+      <span class="ref-authors">Haas G.</span>
+      <span class="ref-title">Versuche der Blutauswaschung am Lebenden mit Hilfe der Dialyse.</span>
+      Klinische Wochenschrift. 1925;4(1):13-14. (Series de reportes, 1924-1928.)
+    </div>
+    <div class="ref-item">
+      <span class="ref-num">6.</span>
+      <span class="ref-authors">United States Renal Data System (USRDS).</span>
+      <span class="ref-title">Annual Data Report: Epidemiology of Kidney Disease in the United States.</span>
+      Bethesda, MD: National Institutes of Health, NIDDK. Edicion vigente.
+    </div>
+    <div class="ref-item">
+      <span class="ref-num">7.</span>
+      <span class="ref-authors">National Kidney Foundation (NKF).</span>
+      <span class="ref-title">KDOQI Clinical Practice Guidelines and Clinical Practice Recommendations.</span>
+      New York: NKF. Disponible en: kidney.org
+    </div>
+  </div>
+
+  <div class="disclaimer">
+    <strong>Aviso legal:</strong> Este contenido es de carácter educativo e informativo. No sustituye el criterio clínico ni la evaluación de un profesional de la salud calificado. Para información sobre tu tratamiento renal, consulta siempre a tu médico o equipo de nefrología.
+  </div>
+
+</div><!-- /wrap -->
+
+<footer>
+  <p><strong>Raíces Médicas</strong></p>
+  <p style="margin-top:8px">Educación en salud renal para la comunidad hispanohablante · raicesmedicas.health</p>
+  <p style="margin-top:10px">Fuente primaria: Albert and Mary Lasker Foundation —
+    <a href="https://laskerfoundation.org/winners/hemodialysis-for-treating-end-stage-kidney-disease/" target="_blank">laskerfoundation.org</a>
+  </p>
+</footer>
+
+</body>
+</html>
