@@ -48,7 +48,7 @@ INSERT INTO actualidades (titulo, fuente, url_original, categoria, autor, resume
 INSERT INTO actualidades (titulo, fuente, url_original, categoria, autor, resumen, imagen_url, fecha_publicacion) VALUES (
   'Los Padres de la Hemodiálisis: Willem Kolff y Belding Scribner',
   'Albert Lasker Foundation · 2002',
-  '/actualidades/kolff-scribner.html',
+  'https://raicesmedicas.health/actualidades/kolff-scribner.html',
   'Diálisis',
   'Equipo Raíces Médicas',
   'Cómo Willem Kolff y Belding Scribner transformaron la insuficiencia renal de sentencia de muerte a enfermedad tratable, salvando más de 1.5 millones de vidas en el mundo. Desde el primer riñón artificial construido bajo ocupación nazi hasta el shunt de Teflón que hizo posible la diálisis crónica indefinida — esta es la historia completa de los dos hombres que fundaron la nefrología moderna.',
