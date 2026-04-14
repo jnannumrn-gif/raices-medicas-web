@@ -27,6 +27,32 @@ INSERT INTO quiz_questions (quiz_id, position, question, option_a, option_b, opt
 );
 
 -- ============================================================
+-- Quiz: Week of April 14, 2026 — Fallo Renal
+-- ============================================================
+
+INSERT INTO quizzes (week_start, subtitle) VALUES ('2026-04-14', 'Semana del 14 de abril · Fallo Renal');
+
+INSERT INTO quiz_questions (quiz_id, position, question, option_a, option_b, option_c, option_d, correct_index, explanation) VALUES
+(2, 1,
+  '¿Cuál es la diferencia principal entre la insuficiencia renal aguda y la crónica?',
+  'La aguda solo afecta un riñón', 'La crónica se cura con antibióticos', 'La aguda aparece de forma súbita y puede ser reversible', 'No hay diferencia clínica real',
+  2,
+  'La insuficiencia renal aguda (IRA) se desarrolla en horas o días — frecuentemente por deshidratación severa, medicamentos nefrotóxicos o sepsis — y puede ser reversible si se trata a tiempo. La crónica (ERC) es un deterioro progresivo e irreversible que ocurre a lo largo de meses o años.'
+),
+(2, 2,
+  '¿A partir de qué tasa de filtración glomerular (TFG) se considera que un paciente está en fallo renal terminal (Etapa 5)?',
+  'Menos de 60 mL/min', 'Menos de 30 mL/min', 'Menos de 15 mL/min', 'Menos de 45 mL/min',
+  2,
+  'La enfermedad renal se clasifica en 5 etapas según la TFG. La Etapa 5, o fallo renal terminal, se define cuando la TFG cae por debajo de 15 mL/min. En esta etapa, los riñones ya no pueden mantener la vida sin diálisis o trasplante renal.'
+),
+(2, 3,
+  '¿Cuál de las siguientes es una complicación frecuente del fallo renal avanzado?',
+  'Aumento de glóbulos rojos', 'Hipopotasemia (potasio bajo)', 'Anemia por deficiencia de eritropoyetina', 'Producción excesiva de orina',
+  2,
+  'Los riñones producen eritropoyetina (EPO), la hormona que estimula la producción de glóbulos rojos en la médula ósea. Cuando los riñones fallan, la producción de EPO disminuye, causando anemia — una de las complicaciones más comunes y tempranas del fallo renal avanzado.'
+);
+
+-- ============================================================
 -- Actualidades: First Entry (Día Mundial del Riñón 2026)
 -- ============================================================
 
