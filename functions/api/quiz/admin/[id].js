@@ -8,22 +8,15 @@
  * Uses D1 database binding: QUIZ_DB
  */
 
+import { adminHeaders, isAuthorized, unauthorized, databaseError } from '../_admin.js';
+
 export async function onRequestGet(context) {
   const { request, env, params } = context;
 
-  const headers = {
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
-    'Cache-Control': 'no-store',
-  };
+  const headers = adminHeaders(request);
 
-  const password = request.headers.get('X-Admin-Password') || '';
-  const expected = env.QUIZ_ADMIN_PASSWORD || '';
-  if (!expected || password !== expected) {
-    return new Response(JSON.stringify({ error: 'Unauthorized' }), {
-      status: 401,
-      headers,
-    });
+  if (!isAuthorized(request, env)) {
+    return unauthorized(headers);
   }
 
   const id = Number(params.id);
@@ -77,19 +70,15 @@ export async function onRequestGet(context) {
 
     return new Response(JSON.stringify(payload), { headers });
   } catch (err) {
-    return new Response(JSON.stringify({ error: 'Database error: ' + err.message }), {
-      status: 500,
-      headers,
-    });
+    return databaseError(err, headers);
   }
 }
 
-export async function onRequestOptions() {
+export async function onRequestOptions(context) {
   return new Response(null, {
-    headers: {
-      'Access-Control-Allow-Origin': '*',
+    headers: adminHeaders(context.request, {
       'Access-Control-Allow-Methods': 'GET, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type, X-Admin-Password',
-    },
+    }),
   });
 }

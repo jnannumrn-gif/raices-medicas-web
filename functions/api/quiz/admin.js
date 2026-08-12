@@ -1,31 +1,24 @@
+import { adminHeaders, isAuthorized, unauthorized, databaseError } from './_admin.js';
+
 export async function onRequest(context) {
   const { request, env } = context;
   const method = request.method;
 
+  const corsHeaders = adminHeaders(request);
+
   // Handle CORS preflight
   if (method === 'OPTIONS') {
     return new Response(null, {
-      headers: {
-        'Access-Control-Allow-Origin': '*',
+      headers: adminHeaders(request, {
         'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
         'Access-Control-Allow-Headers': 'Content-Type, X-Admin-Password',
-      },
+      }),
     });
   }
 
-  const corsHeaders = {
-    'Access-Control-Allow-Origin': '*',
-    'Content-Type': 'application/json',
-  };
-
   // Authenticate
-  const password = request.headers.get('X-Admin-Password') || '';
-  const expected = env.QUIZ_ADMIN_PASSWORD || '';
-  if (!expected || password !== expected) {
-    return new Response(JSON.stringify({ error: 'Unauthorized' }), {
-      status: 401,
-      headers: corsHeaders,
-    });
+  if (!isAuthorized(request, env)) {
+    return unauthorized(corsHeaders);
   }
 
   const db = env.QUIZ_DB;
@@ -55,10 +48,7 @@ async function handleGet(db, headers) {
 
     return new Response(JSON.stringify({ quizzes: result.results }), { headers });
   } catch (err) {
-    return new Response(JSON.stringify({ error: 'Database error: ' + err.message }), {
-      status: 500,
-      headers,
-    });
+    return databaseError(err, headers);
   }
 }
 
@@ -151,9 +141,6 @@ async function handlePost(db, request, headers) {
       headers,
     });
   } catch (err) {
-    return new Response(JSON.stringify({ error: 'Database error: ' + err.message }), {
-      status: 500,
-      headers,
-    });
+    return databaseError(err, headers);
   }
 }
