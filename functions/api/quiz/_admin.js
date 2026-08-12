@@ -12,14 +12,15 @@ const ALLOWED_ORIGINS = [
 // Branch/deployment previews, e.g. https://abc123.raices-medicas-web.pages.dev
 const PREVIEW_ORIGIN = /^https:\/\/[a-z0-9-]+\.raices-medicas-web\.pages\.dev$/;
 
-// Local development (wrangler pages dev / static server) on any port
-const LOCALHOST_ORIGIN = /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/;
-
-function isAllowedOrigin(origin) {
+/**
+ * The site's own origin is always allowed, which covers local development
+ * (wrangler pages dev) without granting loopback origins access in production.
+ */
+function isAllowedOrigin(origin, request) {
   return (
+    origin === new URL(request.url).origin ||
     ALLOWED_ORIGINS.indexOf(origin) !== -1 ||
-    PREVIEW_ORIGIN.test(origin) ||
-    LOCALHOST_ORIGIN.test(origin)
+    PREVIEW_ORIGIN.test(origin)
   );
 }
 
@@ -35,7 +36,7 @@ export function adminHeaders(request, extra) {
   };
 
   const origin = request.headers.get('Origin');
-  if (origin && isAllowedOrigin(origin)) {
+  if (origin && isAllowedOrigin(origin, request)) {
     headers['Access-Control-Allow-Origin'] = origin;
   }
 
