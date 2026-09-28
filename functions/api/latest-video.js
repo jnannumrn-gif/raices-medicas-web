@@ -9,7 +9,14 @@
 
 const CHANNEL_ID = "UCdjmZMIZIEd24EfV-NahQ2w";
 const RSS_URL = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`;
+const CHANNEL_VIDEOS_URL = "https://www.youtube.com/@raicesmedicas/videos";
 const CACHE_TTL = 3600; // Cache for 1 hour (in seconds)
+const BROWSER_HEADERS = {
+  "User-Agent":
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36",
+  "Accept-Language": "es-MX,es;q=0.9,en;q=0.8",
+  Cookie: "CONSENT=YES+1; SOCS=CAI",
+};
 
 export async function onRequest(context) {
   const { request } = context;
@@ -39,43 +46,37 @@ export async function onRequest(context) {
     });
   }
 
-  // --- Fetch fresh RSS feed from YouTube ---
-  let rssText;
+  // --- Fetch latest video: RSS feed first, channel page as fallback ---
+  const errors = [];
+  let video = null;
   try {
-    const rssResponse = await fetch(RSS_URL);
-    if (!rssResponse.ok) {
-      throw new Error(`YouTube RSS returned ${rssResponse.status}`);
-    }
-    rssText = await rssResponse.text();
+    video = await fetchFromRss();
   } catch (err) {
+    errors.push(`rss: ${err.message}`);
+  }
+  if (!video) {
+    try {
+      video = await fetchFromChannelPage();
+    } catch (err) {
+      errors.push(`channel: ${err.message}`);
+    }
+  }
+
+  if (!video) {
     return new Response(
-      JSON.stringify({ error: "Failed to fetch YouTube feed", detail: err.message }),
+      JSON.stringify({ error: "Failed to fetch YouTube feed", detail: errors.join("; ") }),
       { status: 502, headers: corsHeaders }
     );
   }
 
-  // --- Parse the XML to extract latest video ---
-  const videoId    = extractTag(rssText, "yt:videoId");
-  const title      = extractTag(rssText, "title", 1); // index 1 = first video title (index 0 is channel title)
-  const published  = extractTag(rssText, "published", 1); // index 1 = first video's publish date (index 0 is channel creation date)
-  const thumbnail  = extractAttr(rssText, "media:thumbnail", "url");
-  const channelName = extractTag(rssText, "title", 0);
-
-  if (!videoId) {
-    return new Response(
-      JSON.stringify({ error: "Could not parse video ID from feed" }),
-      { status: 500, headers: corsHeaders }
-    );
-  }
-
   const payload = {
-    videoId,
-    title:       decodeXML(title || ""),
-    published:   published || "",
-    thumbnail:   thumbnail || `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`,
-    embedUrl:    `https://www.youtube.com/embed/${videoId}`,
-    watchUrl:    `https://www.youtube.com/watch?v=${videoId}`,
-    channelName: decodeXML(channelName || "Raices Medicas"),
+    videoId:     video.videoId,
+    title:       video.title,
+    published:   video.published,
+    thumbnail:   video.thumbnail || `https://i.ytimg.com/vi/${video.videoId}/hqdefault.jpg`,
+    embedUrl:    `https://www.youtube.com/embed/${video.videoId}`,
+    watchUrl:    `https://www.youtube.com/watch?v=${video.videoId}`,
+    channelName: video.channelName || "Raices Medicas",
   };
 
   // --- Store result in Cloudflare Cache for 1 hour ---
@@ -90,7 +91,58 @@ export async function onRequest(context) {
   return new Response(JSON.stringify(payload), { headers: corsHeaders });
 }
 
+// --- Sources ---
+
+async function fetchFromRss() {
+  const res = await fetch(RSS_URL, { headers: BROWSER_HEADERS });
+  if (!res.ok) throw new Error(`YouTube RSS returned ${res.status}`);
+  const xml = await res.text();
+  const videoId = extractTag(xml, "yt:videoId");
+  if (!videoId) throw new Error("Could not parse video ID from feed");
+  return {
+    videoId,
+    title:       decodeXML(extractTag(xml, "title", 1) || ""), // index 0 is the channel title
+    published:   extractTag(xml, "published", 1) || "",       // index 0 is the channel creation date
+    thumbnail:   extractAttr(xml, "media:thumbnail", "url"),
+    channelName: decodeXML(extractTag(xml, "title", 0) || ""),
+  };
+}
+
+async function fetchFromChannelPage() {
+  const res = await fetch(CHANNEL_VIDEOS_URL, { headers: BROWSER_HEADERS });
+  if (!res.ok) throw new Error(`YouTube channel page returned ${res.status}`);
+  const html = await res.text();
+  const start = html.indexOf('"richItemRenderer":{');
+  if (start === -1) throw new Error("Could not find video list on channel page");
+  const item = html.slice(start, start + 20000);
+  const idMatch =
+    item.match(/"videoId":"([A-Za-z0-9_-]{11})"/) ||
+    item.match(/i\.ytimg\.com\/vi(?:_webp)?\/([A-Za-z0-9_-]{11})\//);
+  if (!idMatch) throw new Error("Could not parse video ID from channel page");
+  const videoId = idMatch[1];
+  const titleMatch =
+    item.match(/"lockupMetadataViewModel":\{"title":\{"content":"((?:[^"\\]|\\.)*)"/) ||
+    item.match(/"title":\{"runs":\[\{"text":"((?:[^"\\]|\\.)*)"/);
+  const channelMatch = html.match(/<meta property="og:title" content="([^"]*)"/);
+  return {
+    videoId,
+    title:       titleMatch ? decodeJSONString(titleMatch[1]) : "",
+    published:   "", // the channel page only exposes relative dates ("hace 2 días")
+    thumbnail:   null,
+    channelName: channelMatch ? decodeXML(channelMatch[1]) : "",
+  };
+}
+
 // --- Helpers ---
+
+/** Decode the escaped contents of a JSON string literal */
+function decodeJSONString(str) {
+  try {
+    return JSON.parse(`"${str}"`);
+  } catch {
+    return str;
+  }
+}
 
 /** Extract the Nth occurrence of a tag's text content from XML */
 function extractTag(xml, tag, index = 0) {
