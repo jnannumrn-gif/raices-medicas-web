@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Primera Vida Salvada por la Diálisis | Raíces Médicas</title>
+<meta name="description" content="En 1945, la primera persona que sobrevivió gracias a la diálisis era una presa acusada de colaborar con los nazis. El dilema ético de Willem Kolff y el principio que nos dejó.">
+<meta property="og:title" content="La Primera Vida Salvada por la Diálisis | Raíces Médicas">
+<meta property="og:description" content="La primera persona salvada por la diálisis era una presa acusada de colaborar con los nazis. ¿Qué harías tú en el lugar de Kolff?">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://raicesmedicas.health/historia-dialisis/primera-vida-salvada.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:        #0d2137;
+    --navy-mid:    #1a3a5c;
+    --teal:        #0e6e72;
+    --teal-light:  #1a9498;
+    --amber:       #c8831a;
+    --amber-light: #e8a83a;
+    --cream:       #f7f3ec;
+    --cream-dark:  #ede7da;
+    --white:       #ffffff;
+    --text:        #1c1c2e;
+    --muted:       #5a5a6e;
+  }
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--cream); color: var(--text); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; }
+
+  /* ─── MASTHEAD ─── */
+  .masthead {
+    background: var(--navy);
+    padding: 0 48px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 2px solid var(--amber);
+  }
+  .mast-brand {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.45rem;
+    color: var(--amber-light);
+    letter-spacing: 0.02em;
+  }
+  .mast-center {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+  }
+  .mast-date {
+    font-size: 0.68rem;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.08em;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    background: var(--navy);
+    padding: 90px 48px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 80% 50%, rgba(14,110,114,0.18) 0%, transparent 70%),
+      repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 40px,
+        rgba(255,255,255,0.012) 40px,
+        rgba(255,255,255,0.012) 41px
+      );
+    pointer-events: none;
+  }
+  .hero-inner { max-width: 780px; position: relative; z-index: 1; }
+  .hero-kicker {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--amber-light);
+    margin-bottom: 22px;
+  }
+  .hero-kicker::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1.5px;
+    background: var(--amber-light);
+    flex-shrink: 0;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.04;
+    margin-bottom: 28px;
+    letter-spacing: -0.01em;
+  }
+  .hero-title em { font-style: italic; color: var(--amber-light); }
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-style: italic;
+    color: rgba(255,255,255,0.72);
+    line-height: 1.6;
+    max-width: 620px;
+    border-left: 3px solid var(--teal-light);
+    padding-left: 20px;
+  }
+  .hero-meta {
+    margin-top: 36px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 0.06em;
+  }
+  .hero-meta-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--amber); }
+
+  /* ─── BYLINE ─── */
+  .byline {
+    background: var(--white);
+    border-bottom: 1px solid var(--cream-dark);
+    padding: 14px 48px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 0.78rem;
+    color: var(--muted);
+    flex-wrap: wrap;
+  }
+  .byline strong { color: var(--teal); font-weight: 500; }
+  .byline-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--amber); flex-shrink: 0; }
+
+  /* ─── WRAPPER ─── */
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 48px; }
+
+  /* ─── LEAD ─── */
+  .lead {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 64px;
+    padding: 72px 0 56px;
+    border-bottom: 1px solid var(--cream-dark);
+    align-items: start;
+  }
+  .lead-text p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.28rem;
+    line-height: 1.78;
+    color: var(--text);
+    margin-bottom: 18px;
+  }
+  .lead-text p:first-child::first-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 5.8rem;
+    font-weight: 900;
+    color: var(--teal);
+    float: left;
+    line-height: 0.75;
+    margin: 10px 14px 0 0;
+  }
+  .sidebar {
+    padding-top: 6px;
+    border-left: 3px solid var(--amber);
+    padding-left: 28px;
+  }
+  .sidebar-label {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 20px;
+  }
+  .stat { margin-bottom: 30px; padding-bottom: 26px; border-bottom: 1px solid var(--cream-dark); }
+  .stat:last-child { border-bottom: none; margin-bottom: 0; }
+  .stat-n {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.2rem;
+    font-weight: 900;
+    color: var(--teal);
+    line-height: 1;
+  }
+  .stat-d { font-size: 0.82rem; color: var(--muted); line-height: 1.5; margin-top: 6px; }
+
+  /* ─── PORTRAIT CARDS ─── */
+  .portraits {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin: 56px 0;
+  }
+  .pcard {
+    background: var(--white);
+    border-top: 4px solid var(--teal);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+    overflow: hidden;
+  }
+  .pcard-color {
+    height: 8px;
+    background: linear-gradient(90deg, var(--teal) 0%, var(--teal-light) 100%);
+  }
+  .pcard-monogram {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--navy);
+    font-family: 'Playfair Display', serif;
+    font-size: 6rem;
+    font-weight: 900;
+    color: rgba(255,255,255,0.07);
+    letter-spacing: -0.05em;
+    position: relative;
+    overflow: hidden;
+  }
+  .pcard-monogram::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(14,110,114,0.25) 0%, transparent 70%);
+  }
+  .pcard-monogram span {
+    position: relative;
+    z-index: 1;
+    font-size: 5rem;
+    color: rgba(255,255,255,0.12);
+  }
+  .pcard-initial {
+    position: absolute;
+    z-index: 2;
+    font-family: 'Playfair Display', serif;
+    font-size: 7rem;
+    font-weight: 900;
+    color: rgba(255,255,255,0.09);
+  }
+  .pcard-body { padding: 22px 26px 26px; }
+  .pcard-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--navy);
+  }
+  .pcard-years {
+    font-size: 0.73rem;
+    color: var(--amber);
+    letter-spacing: 0.1em;
+    font-weight: 500;
+    margin: 5px 0 14px;
+    text-transform: uppercase;
+  }
+  .pcard-bio { font-size: 0.9rem; line-height: 1.7; color: var(--muted); }
+
+  /* ─── SECTION HEADER ─── */
+  .sec-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin: 64px 0 30px;
+  }
+  .sec-n {
+    font-family: 'Playfair Display', serif;
+    font-size: 4.5rem;
+    font-weight: 900;
+    color: var(--cream-dark);
+    line-height: 1;
+    min-width: 60px;
+    flex-shrink: 0;
+  }
+  .sec-wrap { border-left: 3px solid var(--teal); padding-left: 20px; }
+  .sec-kicker {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--teal-light);
+    margin-bottom: 6px;
+  }
+  .sec-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.2;
+  }
+
+  /* ─── BODY TEXT ─── */
+  .bt p { font-size: 1rem; line-height: 1.88; color: var(--text); margin-bottom: 22px; }
+  .bt strong { color: var(--teal); font-weight: 500; }
+  .bt em { font-style: italic; }
+
+  /* ─── PULL QUOTE ─── */
+  .pq {
+    margin: 52px 0;
+    padding: 38px 48px 38px 52px;
+    background: var(--navy);
+    border-left: 5px solid var(--amber);
+    position: relative;
+    overflow: hidden;
+  }
+  .pq::before {
+    content: '\201C';
+    font-family: 'Playfair Display', serif;
+    font-size: 18rem;
+    color: rgba(255,255,255,0.03);
+    position: absolute;
+    top: -60px;
+    left: 10px;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .pq blockquote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.65rem;
+    color: var(--white);
+    line-height: 1.48;
+    position: relative;
+    z-index: 1;
+  }
+  .pq cite {
+    display: block;
+    margin-top: 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-style: normal;
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--amber-light);
+  }
+
+  /* ─── DIVIDER BAND ─── */
+  .band {
+    background: var(--teal);
+    padding: 36px 48px;
+    margin: 52px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .band::after {
+    content: attr(data-word);
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Playfair Display', serif;
+    font-size: 6rem;
+    font-weight: 900;
+    color: rgba(255,255,255,0.05);
+    letter-spacing: 0.15em;
+    pointer-events: none;
+  }
+  .band-label {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--amber-light);
+    margin-bottom: 18px;
+  }
+  .band-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .band-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.6rem;
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1;
+  }
+  .band-desc { font-size: 0.82rem; color: rgba(255,255,255,0.68); line-height: 1.5; margin-top: 7px; }
+
+  /* ─── BORDERED BOX ─── */
+  .bordered {
+    border: 2px solid var(--amber);
+    padding: 34px 38px;
+    margin: 48px 0;
+    position: relative;
+  }
+  .bordered-tag {
+    position: absolute;
+    top: -13px;
+    left: 22px;
+    background: var(--cream);
+    padding: 0 12px;
+    font-size: 0.63rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--amber);
+  }
+  .bordered h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--navy);
+    margin-bottom: 14px;
+    font-weight: 700;
+  }
+  .bordered p { font-size: 0.97rem; line-height: 1.78; color: var(--muted); }
+
+  /* ─── TIMELINE ─── */
+  .timeline { margin: 48px 0; padding-left: 36px; position: relative; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 10px; top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--teal), var(--amber));
+  }
+  .tl-item { position: relative; margin-bottom: 34px; }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -30px; top: 8px;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--amber);
+    border: 2.5px solid var(--cream);
+    box-shadow: 0 0 0 2px var(--amber);
+  }
+  .tl-year {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    font-weight: 900;
+    color: var(--teal);
+    margin-bottom: 4px;
+  }
+  .tl-text { font-size: 0.96rem; color: var(--text); line-height: 1.68; }
+  .tl-text strong { color: var(--navy); font-weight: 500; }
+
+  /* ─── AWARD ─── */
+  .award {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+    padding: 48px 52px;
+    margin: 60px 0;
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+  .medal {
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--amber) 0%, var(--amber-light) 100%);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column;
+    flex-shrink: 0;
+    box-shadow: 0 0 0 5px rgba(200,131,26,0.2), 0 10px 36px rgba(0,0,0,0.35);
+    text-align: center;
+  }
+  .medal-word {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.58rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--navy);
+    line-height: 1.5;
+  }
+  .medal-year {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 900;
+    color: var(--navy);
+    line-height: 1;
+  }
+  .award-label {
+    font-size: 0.65rem; font-weight: 500; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--amber-light); margin-bottom: 8px;
+  }
+  .award-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.7rem; color: var(--white); margin-bottom: 14px; line-height: 1.25;
+  }
+  .award-desc { font-size: 0.9rem; color: rgba(255,255,255,0.62); line-height: 1.68; max-width: 560px; }
+  .award-cta {
+    display: inline-block;
+    margin-top: 20px;
+    background: var(--amber);
+    color: var(--navy);
+    font-size: 0.76rem; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 11px 26px;
+    text-decoration: none;
+    transition: background 0.25s, transform 0.2s;
+  }
+  .award-cta:hover { background: var(--amber-light); transform: translateX(3px); }
+
+  /* ─── LEGACY CARDS ─── */
+  .legacy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin: 38px 0 56px; }
+  .lcard {
+    background: var(--white);
+    border-top: 3px solid var(--teal-light);
+    padding: 28px 24px 30px;
+    box-shadow: 0 2px 14px rgba(0,0,0,0.055);
+  }
+  .lcard-icon { font-size: 1.7rem; margin-bottom: 14px; }
+  .lcard-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.08rem; font-weight: 700;
+    color: var(--navy); margin-bottom: 10px;
+  }
+  .lcard-text { font-size: 0.88rem; line-height: 1.68; color: var(--muted); }
+
+  /* ─── ORNAMENT ─── */
+  .ornament { text-align: center; margin: 48px 0; color: var(--amber); font-size: 1.1rem; letter-spacing: 0.5em; opacity: 0.55; }
+
+  /* ─── DISCLAIMER ─── */
+  .disclaimer {
+    margin: 56px 0 16px;
+    padding: 20px 28px;
+    background: var(--cream-dark);
+    border-left: 4px solid var(--muted);
+    font-size: 0.78rem; font-style: italic;
+    color: var(--muted); line-height: 1.6;
+  }
+  .disclaimer strong { font-style: normal; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--navy);
+    padding: 36px 48px;
+    text-align: center;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.06em;
+  }
+  footer strong { color: var(--amber-light); font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.05rem; }
+  footer a { color: rgba(200,131,26,0.55); }
+
+  /* ─── REFERENCES ─── */
+  .references {
+    margin: 48px 0 16px;
+    padding: 34px 38px;
+    border-top: 3px solid var(--teal);
+  }
+  .references-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 24px;
+  }
+  .ref-item {
+    margin-bottom: 18px;
+    padding-left: 28px;
+    position: relative;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+  .ref-item .ref-num {
+    position: absolute;
+    left: 0;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    color: var(--teal);
+    font-size: 0.92rem;
+  }
+  .ref-item .ref-authors { font-weight: 500; color: var(--text); }
+  .ref-item .ref-title { font-style: italic; }
+
+  /* ─── PRINT STYLES ─── */
+  @media print {
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; line-height: 1.55; }
+    .masthead { position: relative; }
+
+    /* Condense spacing */
+    .hero { padding: 50px 40px 45px; }
+    .hero-title { font-size: 3.2rem; margin-bottom: 18px; }
+    .hero-subtitle { font-size: 1.2rem; }
+    .hero-meta { margin-top: 22px; }
+    .byline { padding: 10px 40px; }
+    .wrap { padding: 0 40px; }
+    .lead { padding: 40px 0 32px; gap: 40px; }
+    .lead-text p { font-size: 1.1rem; line-height: 1.6; margin-bottom: 12px; }
+    .lead-text p:first-child::first-letter { font-size: 4.5rem; }
+    .sidebar { padding-left: 20px; }
+    .stat { margin-bottom: 18px; padding-bottom: 16px; }
+    .stat-n { font-size: 2.4rem; }
+    .stat-d { font-size: 0.75rem; }
+    .portraits { margin: 32px 0; gap: 16px; }
+    .pcard-monogram { height: 140px; }
+    .pcard-body { padding: 16px 20px 20px; }
+    .pcard-name { font-size: 1.25rem; }
+    .pcard-bio { font-size: 0.82rem; line-height: 1.55; }
+    .sec-head { margin: 36px 0 18px; }
+    .sec-n { font-size: 3.2rem; }
+    .sec-title { font-size: 1.45rem; }
+    .bt p { font-size: 0.9rem; line-height: 1.7; margin-bottom: 14px; }
+    .pq { margin: 28px 0; padding: 24px 36px 24px 38px; }
+    .pq blockquote { font-size: 1.3rem; }
+    .pq cite { margin-top: 10px; font-size: 0.65rem; }
+    .band { padding: 24px 40px; margin: 28px 0; }
+    .band-num { font-size: 2rem; }
+    .band-desc { font-size: 0.75rem; }
+    .bordered { padding: 22px 28px; margin: 28px 0; }
+    .bordered h3 { font-size: 1.1rem; margin-bottom: 10px; }
+    .bordered p { font-size: 0.88rem; line-height: 1.6; }
+    .timeline { margin: 28px 0; }
+    .tl-item { margin-bottom: 20px; }
+    .tl-year { font-size: 1.1rem; }
+    .tl-text { font-size: 0.85rem; line-height: 1.5; }
+    .award { padding: 30px 36px; margin: 36px 0; gap: 28px; }
+    .award-title { font-size: 1.35rem; }
+    .award-desc { font-size: 0.82rem; }
+    .medal { width: 80px; height: 80px; }
+    .medal-word { font-size: 0.5rem; }
+    .medal-year { font-size: 1rem; }
+    .legacy-grid { margin: 24px 0 36px; gap: 16px; }
+    .lcard { padding: 20px 18px 22px; }
+    .lcard-title { font-size: 0.95rem; }
+    .lcard-text { font-size: 0.8rem; line-height: 1.55; }
+    .ornament { margin: 28px 0; }
+    .references { margin: 28px 0 12px; padding: 22px 28px; }
+    .references-title { font-size: 1.2rem; margin-bottom: 16px; }
+    .ref-item { margin-bottom: 10px; font-size: 0.78rem; line-height: 1.45; }
+    .disclaimer { margin: 28px 0 12px; padding: 14px 22px; font-size: 0.72rem; }
+    footer { padding: 24px 40px; }
+
+    /* Keep section headers with their first paragraph */
+    .sec-head { break-after: avoid; page-break-after: avoid; }
+    /* Prevent breaks inside small self-contained blocks */
+    .pq { break-inside: avoid; page-break-inside: avoid; }
+    .pcard { break-inside: avoid; page-break-inside: avoid; }
+    .band { break-inside: avoid; page-break-inside: avoid; }
+    .bordered { break-inside: avoid; page-break-inside: avoid; }
+    .tl-item { break-inside: avoid; page-break-inside: avoid; }
+    .award { break-inside: avoid; page-break-inside: avoid; }
+    .lcard { break-inside: avoid; page-break-inside: avoid; }
+    .stat { break-inside: avoid; page-break-inside: avoid; }
+    .ref-item { break-inside: avoid; page-break-inside: avoid; }
+    .disclaimer { break-inside: avoid; page-break-inside: avoid; }
+    h1, h2, h3 { break-after: avoid; page-break-after: avoid; }
+    .references-title { break-after: avoid; page-break-after: avoid; }
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 800px) {
+    .masthead, .byline, .wrap { padding-left: 22px; padding-right: 22px; }
+    .hero { padding: 60px 22px 56px; }
+    .lead, .portraits, .band-grid, .legacy-grid { grid-template-columns: 1fr; }
+    .award { grid-template-columns: 1fr; }
+    .medal { margin: 0 auto; }
+    footer { padding: 28px 22px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <a href="/historia-dialisis.html" class="mast-brand" style="text-decoration:none;color:var(--amber-light);">Raíces Médicas</a>
+  <a href="/historia-dialisis.html" class="mast-center" style="text-decoration:none;color:rgba(255,255,255,0.45);">← Volver a Historia de la Diálisis</a>
+  <div class="mast-date">Octubre 2026</div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-kicker">Historia de la Diálisis · Capítulo III</div>
+    <h1 class="hero-title">La Primera Vida<br>Salvada por la <em>Diálisis</em></h1>
+    <p class="hero-subtitle">En 1945, la primera persona que sobrevivió gracias a un riñón artificial era una presa acusada de colaborar con los nazis. Esta es la historia del dilema que enfrentó Willem Kolff y del principio que nos dejó.</p>
+    <div class="hero-meta">
+      <span>Raíces Médicas</span>
+      <span class="hero-meta-dot"></span>
+      <span>Ética Médica</span>
+      <span class="hero-meta-dot"></span>
+      <span>Lectura: 6 min</span>
+    </div>
+  </div>
+</section>
+
+<!-- BYLINE -->
+<div class="byline">
+  <span>Por <strong>Raíces Médicas</strong></span>
+  <span class="byline-dot"></span>
+  <span>Serie: <strong>Historia de la Diálisis</strong></span>
+  <span class="byline-dot"></span>
+  <span>Nefrología · Ética Médica</span>
+</div>
+
+<div class="wrap">
+
+  <!-- LEAD -->
+  <div class="lead">
+    <div class="lead-text">
+      <p>En septiembre de 1945, en un pequeño hospital de Holanda, una mujer de 67 años despertó de un coma que la estaba matando. Fue la primera persona en la historia que sobrevivió gracias a la diálisis.</p>
+      <p>Pero no era una paciente cualquiera. Estaba presa, acusada de haber colaborado con los nazis durante la ocupación. Y el médico que la salvó había pasado la guerra escondiendo a personas perseguidas por ellos.</p>
+      <p>Esta es la historia de esa paciente, de ese médico y de una pregunta que la medicina sigue respondiendo hoy: <strong>¿a quién le toca ser salvado?</strong></p>
+    </div>
+    <aside class="sidebar">
+      <div class="sidebar-label">En cifras</div>
+      <div class="stat">
+        <div class="stat-n">1945</div>
+        <div class="stat-d">Año de la primera vida salvada por la diálisis</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">+11 h</div>
+        <div class="stat-d">Duración del tratamiento que la sacó del coma</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">~800</div>
+        <div class="stat-d">Personas que Kolff ayudó a esconder de los nazis</div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- SEC 01 -->
+  <div class="sec-head">
+    <div class="sec-n">01</div>
+    <div class="sec-wrap">
+      <div class="sec-kicker">Kampen, Países Bajos · 1943–1945</div>
+      <div class="sec-title">Una Máquina Hecha con lo que Había</div>
+    </div>
+  </div>
+  <div class="bt">
+    <p><strong>Willem Kolff</strong> era un médico joven en un hospital pequeño de Kampen, en plena ocupación alemana. Allí construyó el primer riñón artificial con lo que encontró: tripa de salchicha de celofán enrollada en un tambor, latas de jugo y piezas de una lavadora vieja.</p>
+    <p>La idea era sencilla. La sangre pasaba por el celofán, que dejaba salir las toxinas pequeñas hacia un líquido de lavado, pero no las células ni las proteínas.</p>
+    <p>La realidad fue cruel. Desde 1943, Kolff conectó a su máquina a unos quince pacientes. <strong>Todos murieron.</strong></p>
+  </div>
+
+  <!-- SEC 02 -->
+  <div class="sec-head">
+    <div class="sec-n">02</div>
+    <div class="sec-wrap">
+      <div class="sec-kicker">Septiembre, 1945</div>
+      <div class="sec-title">La Paciente: Una Presa del Cuartel de Kampen</div>
+    </div>
+  </div>
+  <div class="bt">
+    <p>Se llamaba <strong>Sofia Maria Schafstadt</strong>. Había sido miembro del NSB, el partido nazi holandés. Terminada la guerra, estaba encerrada en el cuartel de Kampen, acusada de colaborar con el enemigo.</p>
+    <p>Allí enfermó. Sus riñones dejaron de funcionar: ya no producía orina y cayó en coma. En 1945, eso era casi una sentencia de muerte.</p>
+    <p>La llevaron al hospital donde trabajaba Kolff. Y él tenía que decidir si la conectaba a la máquina.</p>
+  </div>
+
+  <!-- SEC 03 -->
+  <div class="sec-head">
+    <div class="sec-n">03</div>
+    <div class="sec-wrap">
+      <div class="sec-kicker">El dilema</div>
+      <div class="sec-title">Salvar a Alguien del Otro Bando</div>
+    </div>
+  </div>
+  <div class="bt">
+    <p>Durante la ocupación, Kolff había trabajado con la resistencia holandesa. Ayudó a esconder a unas 800 personas que los nazis buscaban para mandarlas a campos de trabajo forzado.</p>
+    <p>Ahora tenía en sus manos a alguien del otro bando. Y mucha gente no quería que la salvara. Años después, el propio Kolff lo contó así: a muchos de sus compatriotas les habría gustado retorcerle el cuello.</p>
+    <p>Su respuesta fue una sola frase:</p>
+  </div>
+
+  <div class="pq">
+    <blockquote>"Mi deber no es retorcerle el cuello, sino tratarla."</blockquote>
+    <cite>— Willem Kolff · entrevista con la Academy of Achievement (traducción)</cite>
+  </div>
+
+  <!-- SEC 04 -->
+  <div class="sec-head">
+    <div class="sec-n">04</div>
+    <div class="sec-wrap">
+      <div class="sec-kicker">11 de septiembre de 1945</div>
+      <div class="sec-title">Once Horas Conectada</div>
+    </div>
+  </div>
+  <div class="bt">
+    <p>El 11 de septiembre de 1945, Kolff la conectó a su máquina. El tratamiento duró más de once horas. Su sangre dio vueltas y vueltas por el tambor: en total pasaron unos 80 litros, y se le sacaron 60 gramos de urea.</p>
+    <p>Poco a poco abrió los ojos. Según contó Kolff, una de las primeras cosas que dijo fue que se iba a divorciar de su marido. Y lo hizo.</p>
+    <p>Sus riñones volvieron a producir orina y en una semana funcionaban de nuevo. <strong>La diálisis no la curó: la mantuvo viva el tiempo suficiente para que sus propios riñones se recuperaran.</strong> Vivió varios años más y murió por causas que no tenían que ver con sus riñones.</p>
+  </div>
+
+  <!-- SEC 05 -->
+  <div class="sec-head">
+    <div class="sec-n">05</div>
+    <div class="sec-wrap">
+      <div class="sec-kicker">Seattle, 1962 · Hoy</div>
+      <div class="sec-title">El Principio que Quedó</div>
+    </div>
+  </div>
+  <div class="bt">
+    <p>Décadas después, Kolff seguía pensando lo mismo. Para él la lección era clara: hay que tratar a los pacientes cuando necesitan ayuda, aunque no nos caigan bien.</p>
+    <p>Y la diálisis pronto puso ese principio a prueba. A principios de los años 60, en Seattle, había muchos más pacientes que máquinas. Un comité de siete personas —un abogado, un pastor, un banquero, un ama de casa, un funcionario, un líder sindical y un cirujano— decidía quién recibía el tratamiento.</p>
+    <p>Juzgaban el «valor social» de cada candidato: su trabajo, sus ingresos, su familia, si iba a la iglesia. En 1962 la revista <em>Life</em> lo contó con un título que se hizo famoso: «Ellos deciden quién vive y quién muere». Más tarde lo llamaron el <strong>Comité de Dios</strong>.</p>
+    <p>Kolff se opuso con toda su fuerza a esos comités. Hoy la ética médica le da la razón. La <a href="https://www.wma.net/policies-post/wma-declaration-of-geneva/" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:underline;">Declaración de Ginebra</a> de la Asociación Médica Mundial, el juramento del médico moderno, pide no permitir que la edad, la religión, la nacionalidad, la afiliación política o la posición social se interpongan entre el deber y el paciente.</p>
+  </div>
+
+  <div class="ornament">— ◆ —</div>
+
+  <!-- CIERRE -->
+  <div class="bt">
+    <p><strong>¿Y tú qué harías?</strong> Imagina que eres Kolff en 1945. Tienes una sola máquina, nadie ha sobrevivido todavía, y la paciente que llega colaboró con quienes persiguieron a tu gente. ¿La conectas?</p>
+    <p>Kolff eligió tratarla. Y con ella, la diálisis salvó su primera vida: hoy mantiene vivas a millones de personas en todo el mundo.</p>
+    <p>Conoce la historia completa en la serie <strong>Pioneros de la Diálisis</strong>: lee el <a href="/historia-dialisis/pioneros-dialisis.html" style="color:var(--teal);text-decoration:underline;">Capítulo I</a> y el <a href="/historia-dialisis/kolff-scribner.html" style="color:var(--teal);text-decoration:underline;">Capítulo II</a>, mira la <a href="https://www.youtube.com/watch?v=xaXe-5yDZ1s" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:underline;">Parte 2 en YouTube</a> y pon a prueba lo que sabes con el <a href="/#quiz" style="color:var(--teal);text-decoration:underline;">quiz de la semana</a>.</p>
+  </div>
+
+  <div class="ornament">— ◆ —</div>
+
+  <!-- REFERENCIAS -->
+  <div class="references">
+    <div class="references-title">Referencias</div>
+    <div class="ref-item">
+      <span class="ref-num">1.</span>
+      <span class="ref-authors">Kolff WJ.</span>
+      <span class="ref-title">Entrevista con la Academy of Achievement.</span>
+      Washington, DC: American Academy of Achievement. Disponible en: <a href="https://achievement.org/achiever/willem-j-kolff/" target="_blank" rel="noopener" style="color:var(--teal);word-break:break-all;">achievement.org/achiever/willem-j-kolff</a>
+    </div>
+    <div class="ref-item">
+      <span class="ref-num">2.</span>
+      <span class="ref-authors">The National WWII Museum.</span>
+      <span class="ref-title">Medical Innovations: Under Occupation, the Development of Dialysis.</span>
+      Nueva Orleans: The National WWII Museum. Disponible en: <a href="https://www.nationalww2museum.org/war/articles/medical-innovations-dialysis" target="_blank" rel="noopener" style="color:var(--teal);word-break:break-all;">www.nationalww2museum.org/war/articles/medical-innovations-dialysis</a>
+    </div>
+    <div class="ref-item">
+      <span class="ref-num">3.</span>
+      <span class="ref-authors">NEMO Kennislink.</span>
+      <span class="ref-title">Willem Kolff, vindingrijke vader van de kunstnier.</span>
+      Ámsterdam: NEMO Kennislink. Disponible en: <a href="https://www.nemokennislink.nl/publicaties/willem-kolff-vindingrijke-vader-van-de-kunstnier/" target="_blank" rel="noopener" style="color:var(--teal);word-break:break-all;">www.nemokennislink.nl/publicaties/willem-kolff-vindingrijke-vader-van-de-kunstnier</a>
+    </div>
+    <div class="ref-item">
+      <span class="ref-num">4.</span>
+      <span class="ref-authors">Stadsarchief Kampen.</span>
+      <span class="ref-title">De Kunstnier van dr. Kolff.</span>
+      Kampen: Stadsarchief Kampen. Disponible en: <a href="https://www.stadsarchiefkampen.nl/meer-weten-over/pronkstukken/item/de-kunstnier-van-dr-kolff" target="_blank" rel="noopener" style="color:var(--teal);word-break:break-all;">www.stadsarchiefkampen.nl/meer-weten-over/pronkstukken/item/de-kunstnier-van-dr-kolff</a>
+    </div>
+    <div class="ref-item">
+      <span class="ref-num">5.</span>
+      <span class="ref-authors">Transonic.</span>
+      <span class="ref-title">First Artificial Kidney Built in War-Torn Netherlands by W.J. Kolff.</span>
+      Ithaca, NY: Transonic Systems. Disponible en: <a href="https://blog.transonic.com/hemodialysis/artificial-kidney-w.j.-kolff" target="_blank" rel="noopener" style="color:var(--teal);word-break:break-all;">blog.transonic.com/hemodialysis/artificial-kidney-w.j.-kolff</a>
+    </div>
+    <div class="ref-item">
+      <span class="ref-num">6.</span>
+      <span class="ref-authors">Human Progress.</span>
+      <span class="ref-title">Heroes of Progress, Pt. 31: Willem Kolff.</span>
+      Washington, DC: Cato Institute. Disponible en: <a href="https://humanprogress.org/heroes-of-progress-pt-31-willem-kolff/" target="_blank" rel="noopener" style="color:var(--teal);word-break:break-all;">humanprogress.org/heroes-of-progress-pt-31-willem-kolff</a>
+    </div>
+    <div class="ref-item">
+      <span class="ref-num">7.</span>
+      <span class="ref-authors">Clinical Correlations.</span>
+      <span class="ref-title">Playing God? The God Committee and the History of Hemodialysis.</span>
+      Nueva York: NYU Langone; septiembre de 2026. Disponible en: <a href="https://www.clinicalcorrelations.org/2026/09/17/playing-god-the-god-committee-and-the-history-of-hemodialysis/" target="_blank" rel="noopener" style="color:var(--teal);word-break:break-all;">www.clinicalcorrelations.org/2026/09/17/playing-god-the-god-committee-and-the-history-of-hemodialysis</a>
+    </div>
+    <div class="ref-item">
+      <span class="ref-num">8.</span>
+      <span class="ref-authors">Asociación Médica Mundial.</span>
+      <span class="ref-title">Declaración de Ginebra.</span>
+      Ferney-Voltaire: AMM. Disponible en: <a href="https://www.wma.net/policies-post/wma-declaration-of-geneva/" target="_blank" rel="noopener" style="color:var(--teal);word-break:break-all;">www.wma.net/policies-post/wma-declaration-of-geneva</a>
+    </div>
+  </div>
+
+  <div class="disclaimer">
+    <strong>Aviso legal:</strong> Este contenido es de carácter educativo e informativo. No sustituye el criterio clínico ni la evaluación de un profesional de la salud calificado. Para información sobre tu tratamiento renal, consulta siempre a tu médico o equipo de nefrología.
+  </div>
+
+</div><!-- /wrap -->
+
+<footer>
+  <p><strong>Raíces Médicas</strong></p>
+  <p style="margin-top:8px">Educación en salud renal para la comunidad hispanohablante · raicesmedicas.health</p>
+</footer>
+
+</body>
+</html>
