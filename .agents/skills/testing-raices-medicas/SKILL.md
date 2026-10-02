@@ -13,6 +13,15 @@ description: How to run, test, and verify the Raíces Médicas static site, its 
 
 ## Local Development
 
+### Real latest-video end-to-end checks
+- `/api/latest-video` is a **Pages Function** in `functions/api/latest-video.js`, not a standalone Worker route. It runs both in Wrangler Pages dev and on Pages previews.
+- Prefer real Wrangler upstream requests for fallback tests; a static server with mocked JSON only tests presentation and cannot prove YouTube fetching works.
+- If `npx` is missing, prepend the installed Node directory to PATH (on the current testing image: `export PATH="$HOME/.nvm/versions/node/v24.19.0/bin:$PATH"`).
+- Use the Pages dev command below, then open `http://127.0.0.1:8788/#ultimo-episodio`. No quiz database writes are needed for episode checks.
+- Validate public GET `/api/latest-video`, then confirm the visible card, click the iframe play button and observe elapsed playback time. A thumbnail alone does not prove playback.
+- The channel-page fallback returns an empty `published`; the card date should remain blank. ES/EN/PT switches translate surrounding labels, not the YouTube title.
+- Discover the current matching preview via PR deployment metadata or read-only Cloudflare API `GET /accounts/{account_id}/pages/projects/raices-medicas-web/deployments`; match `deployment_trigger.metadata.commit_hash`, not just the most recent URL.
+
 ### Serving the Site Locally
 The site is plain HTML with no build step. Use any static file server:
 ```bash
@@ -102,7 +111,7 @@ Notes:
 
 ### Cloudflare Pages Preview URLs
 - Every PR gets a preview deployment at `https://{hash}.raices-medicas-web.pages.dev`
-- Preview URLs do NOT have the standalone Cloudflare *Worker* routes (e.g. `/api/latest-video`), so those features show error states — expected, not a bug
+- Preview URLs do NOT have standalone Cloudflare *Worker* routes, but `/api/latest-video` is a Pages Function and must work on previews; its error state should not be dismissed as an expected preview limitation.
 - Pages *Functions* (`functions/**`, including the quiz API) DO run on preview URLs and share the production D1 database
 - Use preview URLs to test error state UI and general layout/styling
 
