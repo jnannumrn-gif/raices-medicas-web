@@ -8,7 +8,9 @@
  */
 
 const CHANNEL_ID = "UCdjmZMIZIEd24EfV-NahQ2w";
-const RSS_URL = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`;
+// UULF plus the channel ID without the UC prefix is the automatic long-form-only playlist, so no Shorts
+const LONG_FORM_PLAYLIST_ID = "UULF" + CHANNEL_ID.slice(2);
+const RSS_URL = `https://www.youtube.com/feeds/videos.xml?playlist_id=${LONG_FORM_PLAYLIST_ID}`;
 const CHANNEL_VIDEOS_URL = "https://www.youtube.com/@raicesmedicas/videos";
 const CACHE_TTL = 3600; // Cache for 1 hour (in seconds)
 const BROWSER_HEADERS = {
@@ -104,7 +106,7 @@ async function fetchFromRss() {
     title:       decodeXML(extractTag(xml, "title", 1) || ""), // index 0 is the channel title
     published:   extractTag(xml, "published", 1) || "",       // index 0 is the channel creation date
     thumbnail:   extractAttr(xml, "media:thumbnail", "url"),
-    channelName: decodeXML(extractTag(xml, "title", 0) || ""),
+    channelName: decodeXML(extractTag(xml, "name", 0) || ""),
   };
 }
 
