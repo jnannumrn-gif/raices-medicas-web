@@ -37,6 +37,24 @@ aplica igual al cron automático y al disparador manual
 `/admin/trigger/publish`, así que no hay forma de publicar un quiz antes de
 su semana por ningún camino.
 
+### `week_start` siempre debe ser lunes
+
+`week_start` se calcula como el lunes siguiente al **próximo viernes**
+(hoy mismo si hoy ya es viernes) — no asume ciegamente "hoy es viernes y
+sumo 3 días". Esto importa porque `functions/api/quiz/current.js` activa un
+quiz comparando `week_start <= fecha UTC actual` (solo fecha, sin hora): si
+`week_start` no cayera en lunes, el quiz podría activarse en un día
+equivocado de la semana.
+
+Dos salvaguardas independientes contra esto, ambas con aviso por Telegram
+si se disparan:
+- Al **generar**: si el `week_start` calculado no es lunes, no se guarda ni
+  se envía el borrador (falla con error, que se reporta por Telegram).
+- Al **publicar**: se revalida que `week_start` sea lunes y que no sea
+  posterior a la fecha UTC actual, independientemente de cómo se haya
+  generado el borrador. Si falla, el borrador pasa a `status: "blocked"` y
+  no se publica — hay que revisarlo a mano.
+
 ## Modo dry run (por defecto: ACTIVADO)
 
 Mientras `config:dry_run` en KV sea distinto de `"false"` (incluido cuando
@@ -122,6 +140,36 @@ curl -X DELETE "https://api.cloudflare.com/client/v4/accounts/$ACC/storage/kv/na
 - `TELEGRAM_WEBHOOK_SECRET` — token aleatorio que Telegram reenvía en el
   header `X-Telegram-Bot-Api-Secret-Token`; si no coincide, el webhook
   responde 404 sin revelar que el endpoint existe.
+
+## Por qué esta carpeta NO se sirve en el sitio
+
+`workers/quiz-weekly/` vive en el mismo repositorio que el sitio
+(`raicesmedicas.health`), pero es un proyecto totalmente aparte (se
+despliega por separado como el Worker `raices-quiz-weekly`, ver arriba). El
+proyecto de Cloudflare Pages del sitio no tiene build command (sirve el
+repo tal cual como archivos estáticos), así que sin ninguna exclusión
+`workers/quiz-weekly/*` —código fuente, `wrangler.toml`, `package.json`—
+quedaría accesible públicamente en `raicesmedicas.health/workers/...`.
+
+Esto se evita con un **build command** en la configuración de Pages
+(Dashboard → el proyecto → Settings → Builds → Build command, o vía API):
+
+```
+rm -rf workers
+```
+
+Pages ejecuta ese comando en una copia del checkout antes de subir
+`destination_dir` (`/`), así que la carpeta nunca llega a publicarse — sin
+tocar nada en el repo ni en `.gitignore`. No afecta a `functions/` (Pages
+Functions se compilan aparte, independientemente del build command) ni
+requiere ningún paso de "build" real porque el sitio sigue siendo HTML
+estático.
+
+Verificado: tras aplicar este build command y regenerar el deployment de
+preview de este mismo PR, `/workers/quiz-weekly/package.json` (y el resto
+de archivos de esta carpeta) devuelven el fallback normal del sitio en vez
+de su contenido real, mientras que el resto del sitio y `/api/quiz/*` 
+siguen funcionando sin cambios.
 
 ## Desarrollo local
 

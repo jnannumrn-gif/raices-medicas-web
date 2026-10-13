@@ -1,4 +1,4 @@
-import { currentSlot, nextMondayUtcDateFromFriday, hasReachedTargetPublishTime, targetSundayFromWeekStart } from '../scheduler.js';
+import { currentSlot, nextMondayUtcDateFromFriday, hasReachedTargetPublishTime, targetSundayFromWeekStart, isMondayDateKey } from '../scheduler.js';
 import { getDraft, setDraft, getAuthorizedChatId, isPaused, isDryRun, hasRun, markRun } from '../kv.js';
 import { generateQuiz } from '../anthropic.js';
 import { validateGeneratedQuiz, toPublishPayload } from '../validate.js';
@@ -55,6 +55,13 @@ async function runGenerate(env) {
   }
 
   const weekStart = nextMondayUtcDateFromFriday(new Date());
+  if (!isMondayDateKey(weekStart)) {
+    // Should be unreachable given nextMondayUtcDateFromFriday's contract,
+    // but we never want to silently save/send a quiz with a broken
+    // week_start — fail loudly instead. Thrown (not notified here directly)
+    // so the single catch in handleScheduled/runSlot's callers reports it.
+    throw new Error(`week_start calculado (${weekStart}) no es un lunes; no se genera el quiz.`);
+  }
   const avoidTopics = await recentTopics(env).catch(() => []);
 
   const draft = await generateWithRetry(env, { avoidTopics });
@@ -85,6 +92,20 @@ async function runPublish(env) {
   const draft = await getDraft(env);
   if (!draft || draft.status !== 'approved') return; // nothing approved to publish this round
 
+  // Hard safety check, independent of how/when week_start was computed:
+  // current.js on the site activates a quiz by `week_start <= fecha UTC
+  // actual` (date only), so week_start MUST be a Monday for the weekly
+  // cadence to make sense. Never publish a malformed draft — block it and
+  // tell a human instead of guessing.
+  if (!isMondayDateKey(draft.week_start)) {
+    draft.status = 'blocked';
+    await setDraft(env, draft);
+    const msg = `🚫 Quiz NO publicado: su week_start (<b>${draft.week_start}</b>) no es un lunes. Revísalo manualmente antes de continuar.`;
+    console.error(`[quiz-weekly] ${msg}`);
+    if (chatId) await sendMessage(env, chatId, msg);
+    return;
+  }
+
   // A quiz approved early in the week (e.g. right after it was generated on
   // Friday, or during Saturday's reminder) must still wait for its own
   // target Sunday 10pm ET — approval is not a trigger to publish early.
@@ -95,6 +116,19 @@ async function runPublish(env) {
     console.log(
       `[quiz-weekly] draft for week_start=${draft.week_start} is approved but its target Sunday (${targetSundayFromWeekStart(draft.week_start)} 10pm ET) hasn't arrived yet — not publishing.`
     );
+    return;
+  }
+
+  // Belt-and-suspenders: current.js on the site only activates a quiz once
+  // `week_start <= fecha UTC actual`. hasReachedTargetPublishTime() above
+  // already guarantees this (domingo 10pm ET is always already Monday in
+  // UTC), but we assert it explicitly so a future scheduler bug can never
+  // silently publish a quiz the site itself wouldn't yet show.
+  const nowUtcDate = new Date().toISOString().slice(0, 10);
+  if (draft.week_start > nowUtcDate) {
+    const msg = `🚫 Quiz NO publicado: su week_start (<b>${draft.week_start}</b>) es posterior a la fecha UTC actual (${nowUtcDate}) — current.js todavía no lo activaría.`;
+    console.error(`[quiz-weekly] ${msg}`);
+    if (chatId) await sendMessage(env, chatId, msg);
     return;
   }
 

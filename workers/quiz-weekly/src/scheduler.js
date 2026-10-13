@@ -69,15 +69,29 @@ function addDaysToDateKey(dateKey, days) {
   return dt.toISOString().slice(0, 10);
 }
 
+const WEEKDAY_INDEX = { Sunday: 0, Monday: 1, Tuesday: 2, Wednesday: 3, Thursday: 4, Friday: 5, Saturday: 6 };
+
 /**
- * The Monday (UTC date, "YYYY-MM-DD") immediately following the Friday on
- * which this is computed — i.e. the week_start for a quiz generated this
- * Friday. Computed from the NY date so a late-night UTC rollover near the
- * Friday/Saturday boundary doesn't shift it by a day.
+ * The Monday (UTC date, "YYYY-MM-DD") immediately following "the Friday of
+ * the current week" — i.e. the week_start a quiz generated right now would
+ * get. Does NOT assume today is actually Friday: it first finds the next
+ * Friday on/after today (0 days ahead if today already is Friday) and adds
+ * 3 days to that. This keeps the real Friday-9am cron path unchanged while
+ * making any manual/admin-triggered generation (run on an arbitrary day,
+ * e.g. for testing) land on the same Monday a Friday run that week would
+ * have produced, instead of silently drifting to a non-Monday date.
  */
 export function nextMondayUtcDateFromFriday(date = new Date()) {
   const ny = nowInNewYork(date);
-  return addDaysToDateKey(ny.dateKey, 3);
+  const daysUntilFriday = (WEEKDAY_INDEX.Friday - WEEKDAY_INDEX[ny.weekday] + 7) % 7;
+  const friday = addDaysToDateKey(ny.dateKey, daysUntilFriday);
+  return addDaysToDateKey(friday, 3);
+}
+
+/** True if `dateKey` ("YYYY-MM-DD") falls on a Monday (UTC calendar date). */
+export function isMondayDateKey(dateKey) {
+  const [y, m, d] = dateKey.split('-').map(Number);
+  return new Date(Date.UTC(y, m - 1, d, 12, 0, 0)).getUTCDay() === 1;
 }
 
 /**
