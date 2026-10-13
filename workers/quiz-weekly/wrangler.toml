@@ -1,0 +1,23 @@
+name = "raices-quiz-weekly"
+main = "src/index.js"
+compatibility_date = "2024-09-23"
+
+# Runs every 15 minutes, every day. The handler itself decides whether
+# "now" (in America/New_York time) matches one of the three real slots
+# (Friday 9am generate, Saturday 9am reminder, Sunday 10pm publish) and
+# is a no-op otherwise. This avoids hardcoding UTC cron times that would
+# drift by an hour between EST and EDT.
+[triggers]
+crons = ["*/15 * * * *"]
+
+[[kv_namespaces]]
+binding = "QUIZ_WEEKLY_KV"
+id = "8aab28f45f5b4bb6937c24d3d5e7181b"
+
+[vars]
+# Non-secret configuration. Secrets (API keys, passwords, tokens) are
+# uploaded separately with `wrangler secret put` — see README.md.
+QUIZ_SITE_BASE_URL = "https://raices-medicas-web.pages.dev"
+ANTHROPIC_PROVIDER = "anthropic"
+ANTHROPIC_MODEL = "claude-sonnet-4-5-20250929"
+ANTHROPIC_API_BASE = "https://api.anthropic.com"
