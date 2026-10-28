@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es" data-i18n-title="mensajes.meta.title" data-i18n-desc="mensajes.meta.description">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recibe nuestros mensajes | Raíces Médicas</title>
+  <meta name="description" content="Autoriza el envío de mensajes de texto (SMS) y WhatsApp de Raíces Médicas con contenido educativo sobre salud renal." />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18020189394"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-18020189394');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:#f4f8fb;--card:#ffffff;--text:#17324d;--muted:#5f7387;
+      --line:#d9e4ee;--primary:#2f6f9f;--primary-dark:#1f5278;
+      --primary-light:#e8f1f8;--accent:#7fb59e;--accent-dark:#5a9a7d;
+      --shadow:0 12px 32px rgba(20,49,74,0.08);--radius:20px;--max:1120px;
+      --gradient-hero:linear-gradient(135deg,#0b1e36 0%,#163a5f 40%,#1a5276 70%,#1f6f8b 100%);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',system-ui,-apple-system,sans-serif;color:var(--text);background:var(--bg);line-height:1.7;-webkit-font-smoothing:antialiased}
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
+
+    /* Header */
+    .page-header{background:var(--gradient-hero);color:white;padding:48px 0 40px;text-align:center;position:relative}
+    .page-header .container{max-width:700px;margin:0 auto;padding:0 24px}
+    .page-header .back-link{display:inline-flex;align-items:center;gap:6px;color:rgba(255,255,255,0.7);font-size:14px;margin-bottom:20px;transition:color 0.2s}
+    .page-header .back-link:hover{color:white}
+    .page-header h1{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,42px);font-weight:700;margin-bottom:8px}
+    .page-header p{font-size:16px;color:rgba(255,255,255,0.75);max-width:560px;margin:0 auto}
+    .lang-switcher{display:flex;gap:6px;justify-content:center;margin-top:18px}
+    .lang-btn{display:inline-block;padding:4px 10px;border-radius:6px;font-size:12px;font-weight:600;color:rgba(255,255,255,0.8);background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.25);cursor:pointer;transition:background 0.2s,color 0.2s}
+    .lang-btn:hover{background:rgba(255,255,255,0.18)}
+    .lang-btn.active{background:white;color:var(--primary-dark);border-color:white}
+
+    /* Main content */
+    .main-content{max-width:620px;margin:0 auto;padding:40px 24px 60px}
+    .form-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:36px}
+
+    .form-group{margin-bottom:20px}
+    .form-group label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;color:var(--text)}
+    .form-group input[type="tel"]{width:100%;padding:12px 16px;border:1.5px solid var(--line);border-radius:10px;font-family:'Inter',sans-serif;font-size:15px;transition:border-color .2s;outline:none;background:var(--bg)}
+    .form-group input[type="tel"]:focus{border-color:var(--primary)}
+    .form-hint{font-size:13px;color:var(--muted);margin-top:6px}
+
+    /* Honeypot field — hidden from real users, left open for bots */
+    .hp-field{position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden}
+
+    .consent-group{display:flex;gap:12px;align-items:flex-start;margin-bottom:16px;padding:16px;background:var(--primary-light);border-radius:12px}
+    .consent-group input[type="checkbox"]{margin-top:4px;width:18px;height:18px;flex-shrink:0;cursor:pointer}
+    .consent-group label{font-size:14px;line-height:1.6;color:var(--text);cursor:pointer}
+
+    .legal-links{font-size:13px;color:var(--muted);margin-bottom:24px}
+    .legal-links a{color:var(--primary);font-weight:600}
+    .legal-links a:hover{text-decoration:underline}
+
+    .form-submit{width:100%;padding:14px;background:var(--primary);color:white;border:none;border-radius:10px;font-family:'Inter',sans-serif;font-size:15px;font-weight:600;cursor:pointer;transition:background .2s,opacity .2s}
+    .form-submit:hover:not(:disabled){background:var(--primary-dark)}
+    .form-submit:disabled{opacity:0.5;cursor:not-allowed}
+
+    .form-message{margin-top:18px;padding:14px 16px;border-radius:10px;font-size:14px;line-height:1.5;display:none}
+    .form-message.success{display:block;background:#f0fdf4;color:#166534;border:1px solid #bbf7d0}
+    .form-message.error{display:block;background:#fef2f2;color:#991b1b;border:1px solid #fecaca}
+
+    /* Footer */
+    .page-footer{background:var(--gradient-hero);color:white;text-align:center;padding:32px 20px}
+    .page-footer p{font-size:13px;color:rgba(255,255,255,0.6)}
+    .page-footer a{color:rgba(255,255,255,0.8);transition:color 0.2s}
+    .page-footer a:hover{color:white}
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="page-header">
+    <div class="container">
+      <a href="/" class="back-link">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        <span data-i18n="mensajes.back">Volver al inicio</span>
+      </a>
+      <h1 data-i18n="mensajes.title">Recibe nuestros mensajes</h1>
+      <p data-i18n="mensajes.subtitle">Autoriza el envío de mensajes de texto (SMS) y WhatsApp de Raíces Médicas con contenido educativo sobre salud renal y avisos de contenido nuevo del sitio.</p>
+      <div class="lang-switcher">
+        <a href="#" class="lang-btn active" data-lang="es">ES</a>
+        <a href="#" class="lang-btn" data-lang="en">EN</a>
+        <a href="#" class="lang-btn" data-lang="pt">PT</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="form-card">
+      <form id="sms-optin-form" novalidate>
+        <div class="form-group">
+          <label for="phone" data-i18n="mensajes.form.phone.label">Número de celular</label>
+          <input type="tel" id="phone" name="phone" data-i18n-placeholder="mensajes.form.phone.ph" placeholder="+1 809 555 1234" autocomplete="tel" required />
+          <p class="form-hint" data-i18n="mensajes.form.phone.hint">Incluya el código de país si es posible (ej. +1 para EE. UU./Canadá). Si escribe 10 dígitos sin código, asumiremos +1.</p>
+        </div>
+
+        <!-- Honeypot anti-spam field: left blank by real visitors, hidden with CSS, never shown or read aloud -->
+        <div class="hp-field" aria-hidden="true">
+          <label for="website">Website</label>
+          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <div class="consent-group">
+          <input type="checkbox" id="consent" name="consent" />
+          <label for="consent" data-i18n="mensajes.form.consent.text">Acepto recibir mensajes de texto (SMS) y de WhatsApp de Raíces Médicas LLC con contenido educativo sobre salud renal y avisos de contenido nuevo del sitio. La frecuencia de los mensajes varía. Pueden aplicar tarifas de mensajes y datos. Responda STOP para cancelar o HELP para ayuda. El consentimiento no es condición para usar el sitio ni recibir ningún servicio.</label>
+        </div>
+
+        <p class="legal-links">
+          <span data-i18n="mensajes.form.legal.intro">Lea también nuestra</span>
+          <a href="/politica-privacidad.html" data-i18n="mensajes.form.legal.privacidad">Política de Privacidad</a>
+          <span data-i18n="mensajes.form.legal.y">y</span>
+          <a href="/aviso-legal.html" data-i18n="mensajes.form.legal.aviso">Aviso Legal</a>.
+        </p>
+
+        <button type="submit" class="form-submit" id="submit-btn" disabled data-i18n="mensajes.form.submit">Enviar</button>
+
+        <div class="form-message" id="form-message"></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="page-footer">
+    <p data-i18n="footer.copy">&copy; 2026 Raíces Médicas. Todos los derechos reservados.</p>
+    <p style="margin-top:6px">
+      <a href="/aviso-legal.html" data-i18n="footer.legal.aviso">Aviso legal</a> |
+      <a href="/politica-privacidad.html" data-i18n="footer.legal.privacidad">Privacidad</a> |
+      <a href="/cookies.html" data-i18n="footer.legal.cookies">Cookies</a>
+    </p>
+  </div>
+
+  <script src="/i18n.js"></script>
+  <script>
+    /**
+     * Normalizes a user-entered phone number to E.164 (+ and 8-15 digits).
+     * A bare 10-digit number (no leading +) is assumed to be a US/Canada
+     * number and gets +1 prepended. Mirrors the server-side logic in
+     * functions/api/sms-optin.js — keep both in sync if this changes.
+     */
+    function normalizePhoneE164(raw) {
+      var cleaned = (raw || '').trim().replace(/[^\d+]/g, '');
+      if (cleaned.indexOf('00') === 0) {
+        cleaned = '+' + cleaned.slice(2);
+      }
+      var hasPlus = cleaned.charAt(0) === '+';
+      var digits = hasPlus ? cleaned.slice(1) : cleaned;
+      digits = digits.replace(/\D/g, '');
+
+      if (!hasPlus) {
+        if (digits.length === 10) {
+          digits = '1' + digits;
+        } else {
+          return null;
+        }
+      }
+
+      var e164 = '+' + digits;
+      if (!/^\+[1-9]\d{7,14}$/.test(e164)) {
+        return null;
+      }
+      return e164;
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var form = document.getElementById('sms-optin-form');
+      var phoneInput = document.getElementById('phone');
+      var consentInput = document.getElementById('consent');
+      var submitBtn = document.getElementById('submit-btn');
+      var messageEl = document.getElementById('form-message');
+
+      function t(key, fallback) {
+        var lang = (typeof getCurrentLang === 'function') ? getCurrentLang() : 'es';
+        return (typeof translations !== 'undefined' && translations[lang] && translations[lang][key]) || fallback;
+      }
+
+      function showMessage(type, text) {
+        messageEl.className = 'form-message ' + type;
+        messageEl.textContent = text;
+      }
+
+      function clearMessage() {
+        messageEl.className = 'form-message';
+        messageEl.textContent = '';
+      }
+
+      consentInput.addEventListener('change', function () {
+        submitBtn.disabled = !consentInput.checked;
+      });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        clearMessage();
+
+        if (!consentInput.checked) {
+          showMessage('error', t('mensajes.form.error.consent', 'Debe marcar la casilla de autorización para continuar.'));
+          return;
+        }
+
+        var e164 = normalizePhoneE164(phoneInput.value);
+        if (!e164) {
+          showMessage('error', t('mensajes.form.error.phone', 'Por favor ingrese un número de celular válido.'));
+          return;
+        }
+
+        submitBtn.disabled = true;
+
+        fetch('/api/sms-optin', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            phone: e164,
+            consent: true,
+            language: (typeof getCurrentLang === 'function') ? getCurrentLang() : 'es',
+            website: document.getElementById('website').value
+          })
+        })
+          .then(function (res) {
+            if (!res.ok) throw new Error('request failed');
+            return res.json();
+          })
+          .then(function () {
+            showMessage('success', t('mensajes.form.success', 'Gracias. Hemos registrado su consentimiento.'));
+            form.reset();
+            submitBtn.disabled = true;
+          })
+          .catch(function () {
+            showMessage('error', t('mensajes.form.error.generic', 'Ocurrió un error. Intente de nuevo más tarde.'));
+            submitBtn.disabled = !consentInput.checked;
+          });
+      });
+    });
+  </script>
+</body>
+</html>

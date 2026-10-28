@@ -153,6 +153,7 @@ const translations = {
     "footer.legal.aviso": "Aviso legal",
     "footer.legal.privacidad": "Privacidad",
     "footer.legal.cookies": "Cookies",
+    "footer.legal.mensajes": "Mensajes SMS/WhatsApp",
 
     // Cookie Banner
     "cookie.text": "Este sitio utiliza cookies para mejorar la experiencia del usuario, analizar el tr\u00e1fico y medir el rendimiento de campa\u00f1as publicitarias. Al continuar navegando, usted acepta nuestro uso de cookies. Lea nuestra",
@@ -203,6 +204,26 @@ const translations = {
     "actualidades.next": "Siguiente \u00bb",
     "actualidades.meta.title": "Actualidades de Salud Renal | Ra\u00edces M\u00e9dicas",
     "actualidades.meta.description": "Noticias y actualidades sobre salud renal, nefrolog\u00eda e investigaci\u00f3n m\u00e9dica curadas por Ra\u00edces M\u00e9dicas.",
+
+    // Mensajes (SMS/WhatsApp opt-in) page
+    "mensajes.meta.title": "Recibe nuestros mensajes | Ra\u00edces M\u00e9dicas",
+    "mensajes.meta.description": "Autoriza el env\u00edo de mensajes de texto (SMS) y WhatsApp de Ra\u00edces M\u00e9dicas con contenido educativo sobre salud renal.",
+    "mensajes.back": "Volver al inicio",
+    "mensajes.title": "Recibe nuestros mensajes",
+    "mensajes.subtitle": "Autoriza el env\u00edo de mensajes de texto (SMS) y WhatsApp de Ra\u00edces M\u00e9dicas con contenido educativo sobre salud renal y avisos de contenido nuevo del sitio.",
+    "mensajes.form.phone.label": "N\u00famero de celular",
+    "mensajes.form.phone.ph": "+1 809 555 1234",
+    "mensajes.form.phone.hint": "Incluya el c\u00f3digo de pa\u00eds si es posible (ej. +1 para EE. UU./Canad\u00e1). Si escribe 10 d\u00edgitos sin c\u00f3digo, asumiremos +1.",
+    "mensajes.form.consent.text": "Acepto recibir mensajes de texto (SMS) y de WhatsApp de Ra\u00edces M\u00e9dicas LLC con contenido educativo sobre salud renal y avisos de contenido nuevo del sitio. La frecuencia de los mensajes var\u00eda. Pueden aplicar tarifas de mensajes y datos. Responda STOP para cancelar o HELP para ayuda. El consentimiento no es condici\u00f3n para usar el sitio ni recibir ning\u00fan servicio.",
+    "mensajes.form.legal.intro": "Lea tambi\u00e9n nuestra",
+    "mensajes.form.legal.privacidad": "Pol\u00edtica de Privacidad",
+    "mensajes.form.legal.y": "y",
+    "mensajes.form.legal.aviso": "Aviso Legal",
+    "mensajes.form.submit": "Enviar",
+    "mensajes.form.success": "Gracias. Hemos registrado su consentimiento.",
+    "mensajes.form.error.consent": "Debe marcar la casilla de autorizaci\u00f3n para continuar.",
+    "mensajes.form.error.phone": "Por favor ingrese un n\u00famero de celular v\u00e1lido.",
+    "mensajes.form.error.generic": "Ocurri\u00f3 un error. Intente de nuevo m\u00e1s tarde.",
 
     // Legal pages — shared
     "legal.back": "\u2190 Volver al inicio",
@@ -273,7 +294,7 @@ const translations = {
     "privacidad.s11.title": "11. Mensajes de texto (SMS) y WhatsApp",
     "privacidad.s11.p1": "Si usted nos proporciona su n\u00famero de tel\u00e9fono celular y acepta expresamente recibir mensajes, Ra\u00edces M\u00e9dicas LLC (\"Ra\u00edces M\u00e9dicas\") podr\u00e1 enviarle mensajes de texto (SMS) y mensajes por WhatsApp con contenido educativo e informativo sobre salud renal, avisos de contenido nuevo del sitio y respuestas a sus consultas. Estos mensajes son de car\u00e1cter general, no incluyen informaci\u00f3n m\u00e9dica personal y no sustituyen la consulta con un profesional de la salud.",
     "privacidad.s11.p2": "Consentimiento. Solo enviamos mensajes a las personas que los han solicitado y han dado su consentimiento de forma expresa, por ejemplo marcando una casilla de autorizaci\u00f3n en un formulario de nuestro sitio web. El consentimiento no es una condici\u00f3n para usar el sitio ni para recibir ning\u00fan servicio.",
-    "privacidad.s11.p3": "Frecuencia. La frecuencia var\u00eda seg\u00fan su solicitud, con un m\u00e1ximo de 4 mensajes al mes.",
+    "privacidad.s11.p3": "Frecuencia. La frecuencia var\u00eda seg\u00fan su solicitud.",
     "privacidad.s11.p4": "Tarifas. Pueden aplicarse tarifas de mensajes y datos de su operador de telefon\u00eda.",
     "privacidad.s11.p5": "C\u00f3mo darse de baja. Puede cancelar en cualquier momento respondiendo STOP a cualquier mensaje. Para recibir ayuda, responda HELP o escr\u00edbanos a info@raicesmedicas.health.",
     "privacidad.s11.p6": "Privacidad de su n\u00famero. No vendemos, alquilamos ni compartimos su n\u00famero de tel\u00e9fono ni su consentimiento para recibir mensajes con terceros ni con empresas afiliadas con fines de marketing o promoci\u00f3n. Solo compartimos esta informaci\u00f3n con los proveedores de mensajer\u00eda que nos ayudan a entregar los mensajes, y no pueden usarla para sus propios fines.",
@@ -479,6 +500,7 @@ const translations = {
     "footer.legal.aviso": "Legal notice",
     "footer.legal.privacidad": "Privacy",
     "footer.legal.cookies": "Cookies",
+    "footer.legal.mensajes": "SMS/WhatsApp Messages",
 
     // Cookie Banner
     "cookie.text": "This site uses cookies to improve user experience, analyze traffic, and measure advertising campaign performance. By continuing to browse, you accept our use of cookies. Read our",
@@ -529,6 +551,26 @@ const translations = {
     "actualidades.next": "Next \u00bb",
     "actualidades.meta.title": "Renal Health News | Ra\u00edces M\u00e9dicas",
     "actualidades.meta.description": "News and updates on renal health, nephrology, and medical research curated by Ra\u00edces M\u00e9dicas.",
+
+    // Mensajes (SMS/WhatsApp opt-in) page
+    "mensajes.meta.title": "Get our messages | Ra\u00edces M\u00e9dicas",
+    "mensajes.meta.description": "Authorize Ra\u00edces M\u00e9dicas to send you text messages (SMS) and WhatsApp messages with educational content about kidney health.",
+    "mensajes.back": "Back to home",
+    "mensajes.title": "Get our messages",
+    "mensajes.subtitle": "Authorize Ra\u00edces M\u00e9dicas to send you text messages (SMS) and WhatsApp messages with educational content about kidney health and notices about new content on the site.",
+    "mensajes.form.phone.label": "Mobile phone number",
+    "mensajes.form.phone.ph": "+1 809 555 1234",
+    "mensajes.form.phone.hint": "Include the country code if possible (e.g. +1 for US/Canada). If you enter 10 digits with no code, we'll assume +1.",
+    "mensajes.form.consent.text": "I agree to receive text messages (SMS) and WhatsApp messages from Ra\u00edces M\u00e9dicas LLC with educational content about kidney health and notices about new content on the site. Message frequency varies. Message and data rates may apply. Reply STOP to cancel or HELP for help. Consent is not a condition of using the site or receiving any service.",
+    "mensajes.form.legal.intro": "Please also read our",
+    "mensajes.form.legal.privacidad": "Privacy Policy",
+    "mensajes.form.legal.y": "and",
+    "mensajes.form.legal.aviso": "Legal Notice",
+    "mensajes.form.submit": "Submit",
+    "mensajes.form.success": "Thank you. We have recorded your consent.",
+    "mensajes.form.error.consent": "You must check the authorization box to continue.",
+    "mensajes.form.error.phone": "Please enter a valid mobile phone number.",
+    "mensajes.form.error.generic": "An error occurred. Please try again later.",
 
     // Legal pages — shared
     "legal.back": "\u2190 Back to home",
@@ -599,7 +641,7 @@ const translations = {
     "privacidad.s11.title": "11. Text Messages (SMS) and WhatsApp",
     "privacidad.s11.p1": "If you provide us with your mobile phone number and expressly agree to receive messages, Ra\u00edces M\u00e9dicas LLC (\"Ra\u00edces M\u00e9dicas\") may send you text messages (SMS) and WhatsApp messages with educational and informational content about kidney health, notices about new content on the site, and responses to your inquiries. These messages are general in nature, do not include personal medical information, and do not replace consultation with a healthcare professional.",
     "privacidad.s11.p2": "Consent. We only send messages to people who have requested them and have given their consent expressly, for example by checking an authorization box on a form on our website. Consent is not a condition of using the site or of receiving any service.",
-    "privacidad.s11.p3": "Frequency. Frequency varies depending on your request, with a maximum of 4 messages per month.",
+    "privacidad.s11.p3": "Frequency. Frequency varies depending on your request.",
     "privacidad.s11.p4": "Rates. Message and data rates from your mobile carrier may apply.",
     "privacidad.s11.p5": "How to opt out. You may cancel at any time by replying STOP to any message. For help, reply HELP or write to us at info@raicesmedicas.health.",
     "privacidad.s11.p6": "Privacy of your number. We do not sell, rent, or share your phone number or your consent to receive messages with third parties or affiliated companies for marketing or promotional purposes. We only share this information with the messaging providers that help us deliver the messages, and they may not use it for their own purposes.",
@@ -805,6 +847,7 @@ const translations = {
     "footer.legal.aviso": "Aviso legal",
     "footer.legal.privacidad": "Privacidade",
     "footer.legal.cookies": "Cookies",
+    "footer.legal.mensajes": "Mensagens SMS/WhatsApp",
 
     // Cookie Banner
     "cookie.text": "Este site utiliza cookies para melhorar a experi\u00eancia do usu\u00e1rio, analisar o tr\u00e1fego e medir o desempenho de campanhas publicit\u00e1rias. Ao continuar navegando, voc\u00ea aceita nosso uso de cookies. Leia nossa",
@@ -855,6 +898,26 @@ const translations = {
     "actualidades.next": "Pr\u00f3ximo \u00bb",
     "actualidades.meta.title": "Atualidades de Sa\u00fade Renal | Ra\u00edces M\u00e9dicas",
     "actualidades.meta.description": "Not\u00edcias e atualidades sobre sa\u00fade renal, nefrologia e pesquisa m\u00e9dica curadas por Ra\u00edces M\u00e9dicas.",
+
+    // Mensajes (SMS/WhatsApp opt-in) page
+    "mensajes.meta.title": "Receba nossas mensagens | Ra\u00edces M\u00e9dicas",
+    "mensajes.meta.description": "Autorize a Ra\u00edces M\u00e9dicas a enviar mensagens de texto (SMS) e WhatsApp com conte\u00fado educativo sobre sa\u00fade renal.",
+    "mensajes.back": "Voltar ao in\u00edcio",
+    "mensajes.title": "Receba nossas mensagens",
+    "mensajes.subtitle": "Autorize a Ra\u00edces M\u00e9dicas a enviar mensagens de texto (SMS) e WhatsApp com conte\u00fado educativo sobre sa\u00fade renal e avisos de novo conte\u00fado do site.",
+    "mensajes.form.phone.label": "N\u00famero de celular",
+    "mensajes.form.phone.ph": "+1 809 555 1234",
+    "mensajes.form.phone.hint": "Inclua o c\u00f3digo do pa\u00eds se poss\u00edvel (ex. +1 para EUA/Canad\u00e1). Se voc\u00ea digitar 10 d\u00edgitos sem c\u00f3digo, assumiremos +1.",
+    "mensajes.form.consent.text": "Concordo em receber mensagens de texto (SMS) e mensagens de WhatsApp da Ra\u00edces M\u00e9dicas LLC com conte\u00fado educativo sobre sa\u00fade renal e avisos de novo conte\u00fado do site. A frequ\u00eancia das mensagens varia. Podem ser aplicadas tarifas de mensagens e dados. Responda STOP para cancelar ou HELP para ajuda. O consentimento n\u00e3o \u00e9 condi\u00e7\u00e3o para usar o site nem para receber nenhum servi\u00e7o.",
+    "mensajes.form.legal.intro": "Leia tamb\u00e9m nossa",
+    "mensajes.form.legal.privacidad": "Pol\u00edtica de Privacidade",
+    "mensajes.form.legal.y": "e o",
+    "mensajes.form.legal.aviso": "Aviso Legal",
+    "mensajes.form.submit": "Enviar",
+    "mensajes.form.success": "Obrigado. Registramos seu consentimento.",
+    "mensajes.form.error.consent": "Voc\u00ea deve marcar a caixa de autoriza\u00e7\u00e3o para continuar.",
+    "mensajes.form.error.phone": "Por favor, insira um n\u00famero de celular v\u00e1lido.",
+    "mensajes.form.error.generic": "Ocorreu um erro. Tente novamente mais tarde.",
 
     // Legal pages — shared
     "legal.back": "\u2190 Voltar ao in\u00edcio",
@@ -925,7 +988,7 @@ const translations = {
     "privacidad.s11.title": "11. Mensagens de texto (SMS) e WhatsApp",
     "privacidad.s11.p1": "Se voc\u00ea nos fornecer seu n\u00famero de celular e concordar expressamente em receber mensagens, a Ra\u00edces M\u00e9dicas LLC (\"Ra\u00edces M\u00e9dicas\") poder\u00e1 enviar-lhe mensagens de texto (SMS) e mensagens por WhatsApp com conte\u00fado educativo e informativo sobre sa\u00fade renal, avisos de novo conte\u00fado no site e respostas \u00e0s suas perguntas. Essas mensagens t\u00eam car\u00e1ter geral, n\u00e3o incluem informa\u00e7\u00f5es m\u00e9dicas pessoais e n\u00e3o substituem a consulta com um profissional de sa\u00fade.",
     "privacidad.s11.p2": "Consentimento. S\u00f3 enviamos mensagens para pessoas que as solicitaram e deram seu consentimento de forma expressa, por exemplo marcando uma caixa de autoriza\u00e7\u00e3o em um formul\u00e1rio do nosso site. O consentimento n\u00e3o \u00e9 uma condi\u00e7\u00e3o para usar o site nem para receber nenhum servi\u00e7o.",
-    "privacidad.s11.p3": "Frequ\u00eancia. A frequ\u00eancia varia de acordo com sua solicita\u00e7\u00e3o, com um m\u00e1ximo de 4 mensagens por m\u00eas.",
+    "privacidad.s11.p3": "Frequ\u00eancia. A frequ\u00eancia varia de acordo com sua solicita\u00e7\u00e3o.",
     "privacidad.s11.p4": "Tarifas. Podem ser aplicadas tarifas de mensagens e dados da sua operadora de telefonia.",
     "privacidad.s11.p5": "Como cancelar. Voc\u00ea pode cancelar a qualquer momento respondendo STOP a qualquer mensagem. Para obter ajuda, responda HELP ou escreva para info@raicesmedicas.health.",
     "privacidad.s11.p6": "Privacidade do seu n\u00famero. N\u00e3o vendemos, alugamos nem compartilhamos seu n\u00famero de telefone ou seu consentimento para receber mensagens com terceiros ou empresas afiliadas para fins de marketing ou promo\u00e7\u00e3o. Compartilhamos essas informa\u00e7\u00f5es apenas com os provedores de mensagens que nos ajudam a entregar as mensagens, e eles n\u00e3o podem us\u00e1-las para seus pr\u00f3prios fins.",
