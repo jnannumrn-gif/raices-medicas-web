@@ -52,6 +52,15 @@
     .form-group input[type="tel"]:focus{border-color:var(--primary)}
     .form-hint{font-size:13px;color:var(--muted);margin-top:6px}
 
+    .phone-row{display:flex;gap:10px}
+    .phone-row .country-code{flex:0 0 150px}
+    .phone-row .national-number{flex:1 1 auto}
+    .phone-row select,.phone-row input[type="tel"]{padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;font-family:'Inter',sans-serif;font-size:15px;transition:border-color .2s;outline:none;background:var(--bg);width:100%}
+    .phone-row select:focus,.phone-row input[type="tel"]:focus{border-color:var(--primary)}
+    .country-other-wrap{margin-top:8px}
+    .country-other-wrap input[type="text"]{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;font-family:'Inter',sans-serif;font-size:15px;outline:none;background:var(--bg)}
+    .country-other-wrap input[type="text"]:focus{border-color:var(--primary)}
+
     /* Honeypot field — hidden from real users, left open for bots */
     .hp-field{position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden}
 
@@ -102,9 +111,34 @@
     <div class="form-card">
       <form id="sms-optin-form" novalidate>
         <div class="form-group">
-          <label for="phone" data-i18n="mensajes.form.phone.label">Número de celular</label>
-          <input type="tel" id="phone" name="phone" data-i18n-placeholder="mensajes.form.phone.ph" placeholder="+1 809 555 1234" autocomplete="tel" required />
-          <p class="form-hint" data-i18n="mensajes.form.phone.hint">Incluya el código de país si es posible (ej. +1 para EE. UU./Canadá). Si escribe 10 dígitos sin código, asumiremos +1.</p>
+          <label for="country-code" data-i18n="mensajes.form.phone.label">Número de celular</label>
+          <div class="phone-row">
+            <div class="country-code">
+              <select id="country-code" name="country-code">
+                <option value="+1" selected data-i18n="mensajes.form.phone.country.us">+1 (EE. UU./Canadá/Rep. Dominicana)</option>
+                <option value="+52" data-i18n="mensajes.form.phone.country.mx">+52 México</option>
+                <option value="+55" data-i18n="mensajes.form.phone.country.br">+55 Brasil</option>
+                <option value="+57" data-i18n="mensajes.form.phone.country.co">+57 Colombia</option>
+                <option value="+58" data-i18n="mensajes.form.phone.country.ve">+58 Venezuela</option>
+                <option value="+51" data-i18n="mensajes.form.phone.country.pe">+51 Perú</option>
+                <option value="+54" data-i18n="mensajes.form.phone.country.ar">+54 Argentina</option>
+                <option value="+56" data-i18n="mensajes.form.phone.country.cl">+56 Chile</option>
+                <option value="+593" data-i18n="mensajes.form.phone.country.ec">+593 Ecuador</option>
+                <option value="+503" data-i18n="mensajes.form.phone.country.sv">+503 El Salvador</option>
+                <option value="+502" data-i18n="mensajes.form.phone.country.gt">+502 Guatemala</option>
+                <option value="+506" data-i18n="mensajes.form.phone.country.cr">+506 Costa Rica</option>
+                <option value="+34" data-i18n="mensajes.form.phone.country.es">+34 España</option>
+                <option value="other" data-i18n="mensajes.form.phone.other">Otro</option>
+              </select>
+            </div>
+            <div class="national-number">
+              <input type="tel" id="phone" name="phone" data-i18n-placeholder="mensajes.form.phone.ph" placeholder="809 555 1234" autocomplete="tel" required />
+            </div>
+          </div>
+          <div class="country-other-wrap" id="country-other-wrap" style="display:none">
+            <input type="text" id="country-other" name="country-other" data-i18n-placeholder="mensajes.form.phone.otherPh" placeholder="+xxx" autocomplete="off" />
+          </div>
+          <p class="form-hint" data-i18n="mensajes.form.phone.hint">Seleccione su código de país e ingrese su número de celular sin el código de país.</p>
         </div>
 
         <!-- Honeypot anti-spam field: left blank by real visitors, hidden with CSS, never shown or read aloud -->
@@ -122,7 +156,7 @@
           <span data-i18n="mensajes.form.legal.intro">Lea también nuestra</span>
           <a href="/politica-privacidad.html" data-i18n="mensajes.form.legal.privacidad">Política de Privacidad</a>
           <span data-i18n="mensajes.form.legal.y">y</span>
-          <a href="/aviso-legal.html" data-i18n="mensajes.form.legal.aviso">Aviso Legal</a>.
+          <a href="/aviso-legal.html#mensajes" data-i18n="mensajes.form.legal.aviso">Términos y Aviso Legal</a>.
         </p>
 
         <button type="submit" class="form-submit" id="submit-btn" disabled data-i18n="mensajes.form.submit">Enviar</button>
@@ -145,56 +179,80 @@
   <script src="/i18n.js"></script>
   <script>
     /**
-     * Normalizes a user-entered phone number to E.164 (+ and 8-15 digits).
-     * A bare 10-digit number (no leading +) is assumed to be a US/Canada
-     * number and gets +1 prepended. Mirrors the server-side logic in
-     * functions/api/sms-optin.js — keep both in sync if this changes.
+     * Builds and validates an E.164 phone number from the country-code
+     * selector + national number field. The country code always comes from
+     * the selector (or the free-text "other" field) — the client never
+     * guesses or defaults a country code. Mirrors the server-side validation
+     * in functions/api/sms-optin.js — keep both in sync if this changes.
+     *
+     * Returns the E.164 string on success, or null if invalid.
      */
-    function normalizePhoneE164(raw) {
-      var cleaned = (raw || '').trim().replace(/[^\d+]/g, '');
-      if (cleaned.indexOf('00') === 0) {
-        cleaned = '+' + cleaned.slice(2);
-      }
-      var hasPlus = cleaned.charAt(0) === '+';
-      var digits = hasPlus ? cleaned.slice(1) : cleaned;
-      digits = digits.replace(/\D/g, '');
+    function buildPhoneE164(countryCode, otherCode, nationalRaw) {
+      var code = countryCode === 'other'
+        ? (otherCode || '').trim().replace(/[^\d+]/g, '')
+        : countryCode;
 
-      if (!hasPlus) {
-        if (digits.length === 10) {
-          digits = '1' + digits;
-        } else {
-          return null;
-        }
-      }
-
-      var e164 = '+' + digits;
-      if (!/^\+[1-9]\d{7,14}$/.test(e164)) {
+      if (!code || code.charAt(0) !== '+' || !/^\+\d{1,4}$/.test(code)) {
         return null;
       }
-      return e164;
+
+      var nationalDigits = (nationalRaw || '').replace(/\D/g, '');
+      if (!nationalDigits) {
+        return null;
+      }
+
+      var e164 = code + nationalDigits;
+
+      if (code === '+1') {
+        return /^\+1\d{10}$/.test(e164) ? e164 : null;
+      }
+      if (code === '+55') {
+        return /^\+55\d{10}$/.test(e164) || /^\+55\d{11}$/.test(e164) ? e164 : null;
+      }
+      return /^\+[1-9]\d{7,14}$/.test(e164) ? e164 : null;
     }
 
     document.addEventListener('DOMContentLoaded', function () {
       var form = document.getElementById('sms-optin-form');
+      var countrySelect = document.getElementById('country-code');
+      var countryOtherWrap = document.getElementById('country-other-wrap');
+      var countryOtherInput = document.getElementById('country-other');
       var phoneInput = document.getElementById('phone');
       var consentInput = document.getElementById('consent');
       var submitBtn = document.getElementById('submit-btn');
       var messageEl = document.getElementById('form-message');
+      var lastMessage = null; // { type, key, fallback } — re-rendered on language change
 
       function t(key, fallback) {
         var lang = (typeof getCurrentLang === 'function') ? getCurrentLang() : 'es';
         return (typeof translations !== 'undefined' && translations[lang] && translations[lang][key]) || fallback;
       }
 
-      function showMessage(type, text) {
+      function showMessage(type, key, fallback) {
+        lastMessage = { type: type, key: key, fallback: fallback };
         messageEl.className = 'form-message ' + type;
-        messageEl.textContent = text;
+        messageEl.textContent = t(key, fallback);
       }
 
       function clearMessage() {
+        lastMessage = null;
         messageEl.className = 'form-message';
         messageEl.textContent = '';
       }
+
+      // Re-render the currently shown message (if any) whenever the
+      // language changes, so it doesn't stay stuck in the old language.
+      document.querySelectorAll('.lang-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          if (lastMessage) {
+            messageEl.textContent = t(lastMessage.key, lastMessage.fallback);
+          }
+        });
+      });
+
+      countrySelect.addEventListener('change', function () {
+        countryOtherWrap.style.display = countrySelect.value === 'other' ? 'block' : 'none';
+      });
 
       consentInput.addEventListener('change', function () {
         submitBtn.disabled = !consentInput.checked;
@@ -205,13 +263,13 @@
         clearMessage();
 
         if (!consentInput.checked) {
-          showMessage('error', t('mensajes.form.error.consent', 'Debe marcar la casilla de autorización para continuar.'));
+          showMessage('error', 'mensajes.form.error.consent', 'Debe marcar la casilla de autorización para continuar.');
           return;
         }
 
-        var e164 = normalizePhoneE164(phoneInput.value);
+        var e164 = buildPhoneE164(countrySelect.value, countryOtherInput.value, phoneInput.value);
         if (!e164) {
-          showMessage('error', t('mensajes.form.error.phone', 'Por favor ingrese un número de celular válido.'));
+          showMessage('error', 'mensajes.form.error.phone', 'Por favor ingrese un número de celular válido.');
           return;
         }
 
@@ -232,12 +290,13 @@
             return res.json();
           })
           .then(function () {
-            showMessage('success', t('mensajes.form.success', 'Gracias. Hemos registrado su consentimiento.'));
+            showMessage('success', 'mensajes.form.success', 'Gracias. Hemos registrado su consentimiento.');
             form.reset();
+            countryOtherWrap.style.display = 'none';
             submitBtn.disabled = true;
           })
           .catch(function () {
-            showMessage('error', t('mensajes.form.error.generic', 'Ocurrió un error. Intente de nuevo más tarde.'));
+            showMessage('error', 'mensajes.form.error.generic', 'Ocurrió un error. Intente de nuevo más tarde.');
             submitBtn.disabled = !consentInput.checked;
           });
       });

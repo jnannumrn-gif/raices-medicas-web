@@ -21,40 +21,29 @@ const CONSENT_TEXT = {
 
 const JSON_HEADERS = {
   "Content-Type": "application/json",
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Methods": "POST, OPTIONS",
-  "Access-Control-Allow-Headers": "Content-Type",
   "Cache-Control": "no-store",
 };
 
 /**
- * Normalizes a phone number to E.164 (+ and 8-15 digits). A bare 10-digit
- * number (no leading +) is assumed to be a US/Canada number and gets +1
- * prepended. Mirrors the client-side logic in mensajes.html — keep both in
- * sync if this changes.
+ * Validates a phone number that the client has already assembled into E.164
+ * (+ and digits only). The country code always comes from the form's country
+ * selector — the server never guesses or defaults a country code. Mirrors
+ * the client-side logic in mensajes.html — keep both in sync if this changes.
+ *
+ * Rules: +1 numbers must have exactly 10 national digits; +55 (Brazil)
+ * numbers must have 10 or 11 national digits; any other country code must
+ * total 8-15 digits after the +.
  */
-function normalizePhoneE164(raw) {
-  let cleaned = String(raw || "").trim().replace(/[^\d+]/g, "");
-  if (cleaned.indexOf("00") === 0) {
-    cleaned = "+" + cleaned.slice(2);
-  }
-  const hasPlus = cleaned.charAt(0) === "+";
-  let digits = hasPlus ? cleaned.slice(1) : cleaned;
-  digits = digits.replace(/\D/g, "");
+function isValidPhoneE164(raw) {
+  const e164 = String(raw || "").trim();
 
-  if (!hasPlus) {
-    if (digits.length === 10) {
-      digits = "1" + digits;
-    } else {
-      return null;
-    }
-  }
+  if (/^\+1\d{10}$/.test(e164)) return true;
+  if (e164.indexOf("+1") === 0) return false;
 
-  const e164 = "+" + digits;
-  if (!/^\+[1-9]\d{7,14}$/.test(e164)) {
-    return null;
-  }
-  return e164;
+  if (/^\+55\d{10}$/.test(e164) || /^\+55\d{11}$/.test(e164)) return true;
+  if (e164.indexOf("+55") === 0) return false;
+
+  return /^\+[1-9]\d{7,14}$/.test(e164);
 }
 
 export async function onRequestPost(context) {
@@ -83,8 +72,8 @@ export async function onRequestPost(context) {
     });
   }
 
-  const phoneE164 = normalizePhoneE164(body.phone);
-  if (!phoneE164) {
+  const phoneE164 = String(body.phone || "").trim();
+  if (!isValidPhoneE164(phoneE164)) {
     return new Response(JSON.stringify({ error: "Invalid phone number" }), {
       status: 400,
       headers: JSON_HEADERS,
@@ -118,8 +107,4 @@ export async function onRequestPost(context) {
       headers: JSON_HEADERS,
     });
   }
-}
-
-export async function onRequestOptions() {
-  return new Response(null, { headers: JSON_HEADERS });
 }
